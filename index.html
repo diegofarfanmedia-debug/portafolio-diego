@@ -202,6 +202,7 @@
             flex-direction: column;
             gap: 12px;
             position: relative;
+            cursor: pointer;
         }
 
         .project-media {
@@ -223,7 +224,7 @@
             border: none;
         }
 
-        /* Indicador visual de que es un video interactivo */
+        /* Indicador visual */
         .play-badge {
             position: absolute;
             bottom: 15px;
@@ -369,7 +370,7 @@
                 </div>
             </section>
 
-            <!-- MOTION / CINE (CON VIDEOS INTERACTIVOS AL PASAR EL CURSOR) -->
+            <!-- MOTION / CINE (CON EFECTO GIF DESDE EL SEGUNDO 10) -->
             <section id="motion">
                 <h2 class="section-title">motion / cine (videoclips)</h2>
                 <div class="projects-grid">
@@ -465,14 +466,13 @@
 
     </div>
 
-    <!-- SCRIPT PARA EL EFECTO TIPO GIF AL PASAR EL CURSOR -->
+    <!-- SCRIPT CONFIGURADO DESDE EL SEGUNDO 10 EN MUTE -->
     <script>
         function swapToVideo(card, videoId) {
             const mediaContainer = card.querySelector('.project-media');
-            const badge = card.querySelector('.play-badge');
-            // Reemplaza la imagen por el iframe de YouTube reproduciéndose en mute y sin controles (efecto loop/gif)
+            // Se agregó start=10, autoplay=1, mute=1 para que actúe como un gif silenciado desde el segundo 10
             mediaContainer.innerHTML = `
-                <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&disablekb=1&modestbranding=1" 
+                <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&start=10&controls=0&loop=1&playlist=${videoId}&disablekb=1&modestbranding=1" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
                 </iframe>
                 <div class="play-badge" style="background: #1b365d;">▶ ver en youtube</div>
@@ -481,7 +481,6 @@
 
         function swapToImage(card, videoId) {
             const mediaContainer = card.querySelector('.project-media');
-            // Vuelve a colocar la imagen estática original al retirar el cursor
             mediaContainer.innerHTML = `
                 <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" alt="Video thumbnail">
                 <div class="play-badge">▶ ver en youtube</div>
