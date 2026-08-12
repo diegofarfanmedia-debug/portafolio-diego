@@ -7,13 +7,16 @@
     <style>
         :root { --accent: #C1FF72; --black: #000; }
         
-        /* Cursor Personalizado */
-        body { background: var(--black); color: #fff; margin: 0; font-family: 'Syne', sans-serif; overflow-x: hidden; text-align: left; cursor: default; }
-        .custom-cursor { position: fixed; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; pointer-events: none; transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease; z-index: 10000; transform: translate(-50%, -50%); mix-blend-mode: difference; }
+        /* OCULTAR CURSOR NORMAL Y MOSTRAR EL NUESTRO */
+        * { cursor: none !important; } /* Esto mata el cursor de Windows/Mac */
+        body { background: var(--black); color: #fff; margin: 0; font-family: 'Syne', sans-serif; overflow-x: hidden; text-align: left; }
+        
+        .custom-cursor { position: fixed; width: 15px; height: 15px; background: var(--accent); border-radius: 50%; pointer-events: none; transition: transform 0.2s ease; z-index: 999999; transform: translate(-50%, -50%); mix-blend-mode: difference; }
+        .custom-cursor.hovered { transform: translate(-50%, -50%) scale(3); }
 
         h1, h2, h3, p { text-align: left; margin: 0; }
 
-        /* PRELOADER COLLAGE AL AZAR */
+        /* PRELOADER COLLAGE */
         #preloader { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: var(--accent); z-index: 9999; 
@@ -45,9 +48,10 @@
         .project-tag { color: var(--accent); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
         .project-desc { color: #888; font-size: 1.05rem; margin-bottom: 30px; line-height: 1.6; max-width: 800px; }
         
+        /* HOVER CINEMÁTICO EN VIDEOS */
         .zoom-img { overflow: hidden; border-radius: 8px; position: relative; }
-        video { width: 100%; display: block; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); background: #0a0a0a; height: 580px; object-fit: cover; }
-        .zoom-img:hover video { transform: scale(1.03); }
+        video, .clickable-media { width: 100%; display: block; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease; background: #0a0a0a; height: 580px; object-fit: cover; }
+        .zoom-img:hover video, .covers-item:hover img, .categories-grid img:hover { transform: scale(1.03); filter: brightness(1.1); }
 
         /* PILARES */
         .pillars-section { padding: 100px 5%; max-width: 1100px; margin: 0 auto; }
@@ -56,57 +60,62 @@
         .pillar-card h3 { color: var(--accent); font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; }
         .pillar-card p { color: #888; font-size: 1.05rem; line-height: 1.6; }
 
-        /* LO QUE HAGO */
-        .skills-section { padding: 100px 5%; max-width: 1100px; margin: 0 auto; }
-        .skills-section h2 { font-size: 3rem; font-weight: 800; text-transform: uppercase; margin-bottom: 50px; }
-        .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-        .skills-grid h3 { color: var(--accent); font-size: 1.25rem; font-weight: 700; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
-        .skills-grid ul { list-style: none; padding: 0; color: #888; font-size: 1.05rem; }
-        .skills-grid li { margin-bottom: 14px; }
-
-        /* PORTADAS ASIMÉTRICAS (MÓDULO DE LUJO) */
+        /* PORTADAS ASIMÉTRICAS */
         .covers-section { padding: 100px 5%; max-width: 1100px; margin: 0 auto; }
         .covers-section h2 { font-size: 3rem; font-weight: 800; text-transform: uppercase; margin-bottom: 50px; }
         .covers-grid { display: grid; grid-template-columns: 1.2fr 0.8fr 1fr; gap: 20px; align-items: center; }
         .cover-item:nth-child(1) img { height: 420px; }
         .cover-item:nth-child(2) img { height: 320px; }
         .cover-item:nth-child(3) img { height: 480px; }
-        .cover-item img { width: 100%; object-fit: cover; border-radius: 6px; margin-bottom: 15px; transition: filter 0.4s ease; }
-        .cover-item img:hover { filter: brightness(1.1); }
-        .cover-item p { color: #fff; font-weight: 700; font-size: 1.05srem; text-transform: uppercase; letter-spacing: 1px; }
+        .cover-item img { width: 100%; object-fit: cover; border-radius: 6px; margin-bottom: 15px; transition: transform 0.5s ease, filter 0.4s ease; }
+        .cover-item p { color: #fff; font-weight: 700; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* CATEGORÍAS FOTO (MASONRY ASIMÉTRICO) */
+        /* CATEGORÍAS FOTO (MASONRY) */
         .categories-section { padding: 100px 5%; max-width: 1100px; margin: 0 auto; }
         .categories-nav { display: flex; gap: 30px; flex-wrap: wrap; margin-bottom: 40px; font-weight: 800; font-size: 1.1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
         .categories-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 15px; }
-        .categories-grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; transition: transform 0.5s ease; }
-        .categories-grid img:hover { transform: scale(1.02); }
+        .categories-grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; transition: transform 0.5s ease, filter 0.4s ease; }
         .cat-1 { grid-column: span 2; grid-row: span 2; }
         .cat-2 { grid-row: span 2; }
-        .cat-3 { grid-column: span 1; grid-row: span 1; }
 
-        /* FOOTER APOTEÓSICO */
+        /* FOOTER */
         footer { padding: 120px 5% 80px 5%; max-width: 1100px; margin: 0 auto; border-top: 1px solid #151515; position: relative; }
         footer h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; color: var(--accent); text-transform: uppercase; margin-bottom: 40px; line-height: 0.95; letter-spacing: -1px; }
-        
         .back-to-top { position: absolute; right: 5%; top: 120px; background: #111; color: var(--accent); border: 1px solid #333; padding: 15px 20px; border-radius: 50%; font-weight: 800; text-decoration: none; transition: background 0.3s; }
-        .back-to-top:hover { background: var(--accent); color: #000; }
-
-        @media (max-width: 768px) {
-            .bio-grid, .pillars-grid, .skills-grid, .covers-grid, .categories-grid { grid-template-columns: 1fr; }
-            .categories-grid { grid-auto-rows: 250px; }
-            .cat-1, .cat-2 { grid-column: span 1; grid-row: span 1; }
-            #preloader { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 1fr); }
-            video { height: 320px; }
+        
+        /* ---------------------------------------------------
+           LIGHTBOX CINEMÁTICO (VISOR PANTALLA COMPLETA)
+           --------------------------------------------------- */
+        #lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95); z-index: 100000;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+            backdrop-filter: blur(10px);
         }
+        #lightbox.active { opacity: 1; pointer-events: all; }
+        
+        #lightbox img, #lightbox video { 
+            max-width: 90vw; max-height: 90vh; border-radius: 8px; display: none; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8); transform: scale(0.95); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        #lightbox.show-img img { display: block; transform: scale(1); }
+        #lightbox.show-video video { display: block; transform: scale(1); }
+        
+        .close-lightbox { 
+            position: absolute; top: 30px; right: 40px; color: #fff; font-size: 3rem; 
+            font-weight: 300; line-height: 1; transition: color 0.3s; z-index: 100001; 
+        }
+        .close-lightbox:hover { color: var(--accent); }
     </style>
 </head>
 <body>
 
-    <!-- Cursor customizado -->
+    <!-- CURSOR PERSONALIZADO -->
     <div class="custom-cursor" id="cursor"></div>
 
-    <!-- PRELOADER COLLAGE -->
+    <!-- PRELOADER -->
     <div id="preloader">
         <div class="item large"><img src="foto1.jpg"></div>
         <div class="item"><img src="foto2.jpg"></div>
@@ -117,16 +126,13 @@
         <div class="item"><img src="foto7.jpg"></div>
     </div>
 
-    <!-- 1. CABECERA -->
+    <!-- CABECERA -->
     <header>
-        <div class="hero-title">
-            <span>DIEGO</span><br>
-            <span>FARFÁN</span>
-        </div>
+        <div class="hero-title"><span>DIEGO</span><br><span>FARFÁN</span></div>
         <div class="hero-subtitle">Director creativo & filmmaker</div>
     </header>
 
-    <!-- 2. QUIEN SOY (FONDO VERDE) -->
+    <!-- QUIEN SOY -->
     <section class="section-green">
         <div class="section-green-content">
             <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; text-transform: uppercase; line-height: 1.1;">CREO HISTORIAS VISUALES QUE CONECTAN, INSPIRAN Y DEJAN HUELLA.</h2>
@@ -135,203 +141,150 @@
                 <div>
                     <p style="font-size: 1.2rem; font-weight: 700; color: #000; line-height: 1.5; margin-bottom: 25px;">Soy un Director Creativo y Cineasta de Lima, Perú.</p>
                     <p style="font-size: 1.1rem; color: #111; line-height: 1.6; margin-bottom: 25px;">Me especializo en la narrativa visual, la dirección y la creación de contenido cinematográfico para marcas, artistas y proyectos impulsados por la cultura.</p>
-                    <p style="font-size: 1.1rem; color: #111; line-height: 1.6;">Mi trabajo combina la moda, la música y la estética urbana con un fuerte enfoque en la emoción, el ritmo y la identidad.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 3. OBSESIÓN -->
+    <!-- PROYECTOS (VIDEOS) -->
+    <!-- OBSESIÓN -->
     <div class="project">
         <div class="project-header">
             <div class="project-title">OBSESIÓN</div>
             <div class="project-tag">CORTOMETRAJE - 2025</div>
         </div>
         <div style="font-weight: 700; color: #fff; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">DIRECTOR DE FOTOGRAFÍA</div>
-        <p class="project-desc">Tras ser secuestrado y sometido a una brutal alteración facial para reemplazar a la difunta esposa de su captor, una joven despojada de su identidad emprende un implacable camino de venganza para recuperar su rostro y hacer pagar al responsable.</p>
         <div class="zoom-img">
-            <video autoplay muted loop playsinline><source src="obsesion.mp4" type="video/mp4"></video>
+            <video class="media-item" autoplay muted loop playsinline><source src="obsesion.mp4" type="video/mp4"></video>
         </div>
     </div>
 
-    <!-- 4. GUAYA GUAYA -->
+    <!-- GUAYA GUAYA -->
     <div class="project">
         <div class="project-header">
             <div class="project-title">GUAYA GUAYA - L CATA</div>
             <div class="project-tag">VIDEOCLIP - 2026</div>
         </div>
-        <div style="font-weight: 700; color: #fff; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">DIRECTOR DE FOTOGRAFÍA</div>
         <div class="zoom-img">
-            <video autoplay muted loop playsinline><source src="guaya-guaya.mp4" type="video/mp4"></video>
+            <video class="media-item" autoplay muted loop playsinline><source src="guaya-guaya.mp4" type="video/mp4"></video>
         </div>
     </div>
 
-    <!-- 5. DIME, ¿CÓMO HAGO? -->
+    <!-- DIME, ¿CÓMO HAGO? -->
     <div class="project">
         <div class="project-header">
             <div class="project-title">DIME, ¿CÓMO HAGO?</div>
             <div class="project-tag">ROD CASTEL • VIDEOCLIP - 2026</div>
         </div>
-        <div style="font-weight: 700; color: #fff; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">DIRECTOR DE FOTOGRAFÍA</div>
         <div class="zoom-img">
-            <video autoplay muted loop playsinline><source src="dime-como-hago.mp4" type="video/mp4"></video>
+            <video class="media-item" autoplay muted loop playsinline><source src="dime-como-hago.mp4" type="video/mp4"></video>
         </div>
     </div>
 
-    <!-- 6. NUNCA HUBO NADA MALO -->
-    <div class="project">
-        <div class="project-header">
-            <div class="project-title">NUNCA HUBO NADA MALO</div>
-            <div class="project-tag">COLECTIVE • FASHION FILM - 2026</div>
-        </div>
-        <div style="font-weight: 700; color: #fff; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">DIRECTOR DE FOTOGRAFÍA</div>
-        <div class="zoom-img">
-            <video autoplay muted loop playsinline><source src="nunca-hubo.mp4" type="video/mp4"></video>
-        </div>
-    </div>
-
-    <!-- 7. MIX MEDIA -->
-    <div class="project">
-        <div class="project-header">
-            <div class="project-title">MIX MEDIA</div>
-            <div class="project-tag">DIEGO FARFÁN • EXPERIMENTAL - 2026</div>
-        </div>
-        <div class="zoom-img">
-            <video autoplay muted loop playsinline><source src="mix-media.mp4" type="video/mp4"></video>
-        </div>
-    </div>
-
-    <!-- 8. EL ENSAYO -->
-    <div class="project">
-        <div class="project-header">
-            <div class="project-title">EL ENSAYO</div>
-            <div class="project-tag">DIEGO FARFÁN • CORTO 1 MIN - 2026</div>
-        </div>
-        <div class="zoom-img">
-            <video autoplay muted loop playsinline><source src="el-ensayo.mp4" type="video/mp4"></video>
-        </div>
-    </div>
-
-    <!-- 9. PILARES / ATMÓSFERA -->
-    <section class="pillars-section">
-        <h2>CONSTRUYO IMÁGENES ALREDEDOR DE LA EMOCIÓN, LA IDENTIDAD Y LA ATMÓSFERA.</h2>
-        <div class="pillars-grid">
-            <div class="pillar-card">
-                <h3>LUZ</h3>
-                <p>Contraste, textura y color que moldean el estado de ánimo y el significado.</p>
-            </div>
-            <div class="pillar-card">
-                <h3>CÁMARA</h3>
-                <p>Movimiento, encuadre y perspectiva que guían la emoción.</p>
-            </div>
-            <div class="pillar-card">
-                <h3>HISTORIA</h3>
-                <p>Personajes, emoción y narrativa en el centro de todo.</p>
-            </div>
-            <div class="pillar-card">
-                <h3>DIRECCIÓN DE ARTE</h3>
-                <p>Espacios, texturas y detalles que construyen el mundo.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 10. LO QUE HAGO -->
-    <section class="skills-section">
-        <h2>LO QUE HAGO!</h2>
-        <div class="skills-grid">
-            <div>
-                <h3>FILMMAKER</h3>
-                <ul>
-                    <li>Cinematografía</li>
-                    <li>Cortometrajes</li>
-                    <li>Vidoclips</li>
-                    <li>Fashion films</li>
-                    <li>Experimental</li>
-                </ul>
-            </div>
-            <div>
-                <h3>DIRECCIÓN CREATIVA</h3>
-                <ul>
-                    <li>Conceptos visuales</li>
-                    <li>Dirección de arte</li>
-                    <li>Campañas</li>
-                    <li>Identidad de marca</li>
-                </ul>
-            </div>
-            <div>
-                <h3>FOTOGRAFÍA</h3>
-                <ul>
-                    <li>Moda</li>
-                    <li>Retrato</li>
-                    <li>Editorial</li>
-                    <li>Conciertos</li>
-                    <li>Artistas</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- 11. PORTADAS PARA ARTISTAS (ASIMÉTRICO) -->
+    <!-- PORTADAS PARA ARTISTAS -->
     <section class="covers-section">
         <h2>PORTADAS PARA ARTISTAS</h2>
         <div class="covers-grid">
             <div class="cover-item">
-                <img src="portada-1.jpg" alt="Mikele - Alive">
+                <img src="portada-1.jpg" alt="Mikele - Alive" class="media-item">
                 <p>MIKELE - Alive</p>
             </div>
             <div class="cover-item">
-                <img src="portada-2.jpg" alt="Gianpool - A primera vista">
+                <img src="portada-2.jpg" alt="Gianpool" class="media-item">
                 <p>Gianpool - A primera vista</p>
             </div>
             <div class="cover-item">
-                <img src="portada-3.jpg" alt="Rod Castel - Autosaboteo">
+                <img src="portada-3.jpg" alt="Rod Castel" class="media-item">
                 <p>Rod Castel - Autosaboteo</p>
             </div>
         </div>
     </section>
 
-    <!-- 12. CATEGORÍAS FOTO (MASONRY) -->
+    <!-- CATEGORÍAS FOTO -->
     <section class="categories-section">
         <div class="categories-nav">
-            <span>CASA</span>
-            <span>MODA</span>
-            <span>ARTISTAS</span>
-            <span>EDITORIAL</span>
-            <span>CONCIERTO</span>
+            <span>CASA</span><span>MODA</span><span>ARTISTAS</span><span>EDITORIAL</span><span>CONCIERTO</span>
         </div>
         <div class="categories-grid">
-            <img src="casa-1.jpg" alt="Casa" class="cat-1">
-            <img src="moda-1.jpg" alt="Moda" class="cat-2">
-            <img src="artistas-1.jpg" alt="Artistas" class="cat-3">
-            <img src="editorial-1.jpg" alt="Editorial">
-            <img src="concierto-1.jpg" alt="Concierto">
+            <img src="casa-1.jpg" alt="Casa" class="media-item cat-1">
+            <img src="moda-1.jpg" alt="Moda" class="media-item cat-2">
+            <img src="artistas-1.jpg" alt="Artistas" class="media-item">
+            <img src="editorial-1.jpg" alt="Editorial" class="media-item">
+            <img src="concierto-1.jpg" alt="Concierto" class="media-item">
         </div>
     </section>
 
-    <!-- 13. FOOTER -->
+    <!-- FOOTER -->
     <footer>
         <a href="#" class="back-to-top">↑</a>
         <h2>CREEEEEMOS ALGO EXTRAAAAORDINARIOOOOO!!!</h2>
-        <p style="font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Director creativo & filmmaker</p>
-        <p style="font-size: 1.4rem; font-weight: 800; text-transform: uppercase; color: var(--accent); margin-top: 10px; letter-spacing: 1px;">DIEGO FARFÁN</p>
-        <p style="margin-top: 30px; font-size: 1.1rem; line-height: 1.8; color: #aaa;">
-            +51 977 403 711<br>
-            Diegofarfan.media@gmail.com<br>
-            IG: Diego farfan___
-        </p>
-        <p style="color: #555; font-size: 0.9rem; margin-top: 40px; letter-spacing: 1px;">Disponible para proyectos a nivel mundial.</p>
+        <p style="font-size: 1.1rem; font-weight: 700; text-transform: uppercase;">Director creativo & filmmaker</p>
+        <p style="font-size: 1.4rem; font-weight: 800; text-transform: uppercase; color: var(--accent); margin-top: 10px;">DIEGO FARFÁN</p>
+        <p style="margin-top: 30px; font-size: 1.1rem; line-height: 1.8; color: #aaa;">+51 977 403 711<br>Diegofarfan.media@gmail.com</p>
     </footer>
 
+    <!-- LIGHTBOX (CINE / PANTALLA COMPLETA) -->
+    <div id="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img id="lightbox-img" src="" alt="Vista ampliada">
+        <!-- Aquí el video SÍ tiene controles para que el usuario suba volumen o pause -->
+        <video id="lightbox-video" controls></video>
+    </div>
+
+    <!-- SCRIPTS MÁGICOS -->
     <script>
-        // Script para el cursor personalizado
+        // 1. LÓGICA DEL CURSOR PERSONALIZADO (Arreglado)
         const cursor = document.getElementById('cursor');
         window.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
-        document.querySelectorAll('a, video, img').forEach(el => {
-            el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%, -50%) scale(2.5)'; });
-            el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%, -50%) scale(1)'; });
+
+        // Hacer que el cursor crezca cuando pasa por fotos, videos o links
+        document.querySelectorAll('a, video, img, .close-lightbox').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+
+        // 2. LÓGICA DEL LIGHTBOX (PANTALLA COMPLETA)
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        const lbVideo = document.getElementById('lightbox-video');
+        const closeBtn = document.querySelector('.close-lightbox');
+
+        document.querySelectorAll('.media-item').forEach(media => {
+            media.addEventListener('click', () => {
+                lightbox.classList.add('active');
+                
+                // Si es Imagen
+                if(media.tagName.toLowerCase() === 'img') {
+                    lightbox.classList.add('show-img');
+                    lbImg.src = media.src;
+                } 
+                // Si es Video
+                else if (media.tagName.toLowerCase() === 'video') {
+                    lightbox.classList.add('show-video');
+                    // Buscamos el src dentro de la etiqueta <source>
+                    const sourceTag = media.querySelector('source');
+                    lbVideo.src = sourceTag ? sourceTag.src : media.src;
+                    lbVideo.play(); // Inicia la reproducción al abrir
+                }
+            });
+        });
+
+        // Función para cerrar y detener el video
+        const closeLightbox = () => {
+            lightbox.classList.remove('active', 'show-img', 'show-video');
+            setTimeout(() => {
+                lbImg.src = '';
+                lbVideo.src = ''; // Esto detiene el video y el audio de fondo
+            }, 400); // Esperamos a que termine la transición de opacidad
+        };
+
+        // Cerrar al hacer clic en la "X" o en el fondo negro
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if(e.target === lightbox) closeLightbox();
         });
     </script>
 </body>
