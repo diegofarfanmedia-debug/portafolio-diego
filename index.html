@@ -8,99 +8,147 @@
         :root { --accent: #C1FF72; --black: #000; }
         body { background: var(--black); color: #fff; margin: 0; font-family: 'Syne', sans-serif; overflow-x: hidden; }
 
-        /* PRELOADER */
-        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--accent); display: flex; justify-content: center; align-items: center; z-index: 9999; animation: fadeOut 1s ease 4s forwards; }
-        .mosaic-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 400px; }
-        .mosaic-grid img { width: 100%; height: 180px; object-fit: cover; animation: popIn 0.8s ease forwards; opacity: 0; }
+        /* PRELOADER COLLAGE AL AZAR */
+        #preloader { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: var(--accent); z-index: 9999; 
+            display: grid; padding: 20px; gap: 15px;
+            grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr);
+            animation: fadeOut 1s ease 4s forwards;
+        }
+        .item { overflow: hidden; border-radius: 4px; animation: popIn 0.8s ease forwards; opacity: 0; }
+        .item img { width: 100%; height: 100%; object-fit: cover; }
+        .large { grid-column: span 2; grid-row: span 2; }
+        .tall { grid-row: span 2; }
+        
         @keyframes popIn { to { opacity: 1; transform: scale(1); } }
         @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
 
-        /* ESTRUCTURA */
+        /* ESTRUCTURA GENERAL */
         header { padding: 80px 5%; }
-        .hero-title { font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; line-height: 1; text-transform: uppercase; }
+        .hero-title { font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; text-transform: uppercase; line-height: 1; }
         
         .section-green { background: var(--accent); color: var(--black); padding: 80px 5%; }
-        .bio-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; }
-        .profile-img { width: 100%; height: 400px; object-fit: cover; border-radius: 10px; }
+        .bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .profile-img { width: 100%; height: 400px; object-fit: cover; border-radius: 8px; }
 
         .project { padding: 80px 5%; border-bottom: 1px solid #222; }
-        .project-title { font-size: 2rem; font-weight: 700; margin-bottom: 10px; }
+        .project-title { font-size: 2rem; font-weight: 700; margin-bottom: 5px; }
         .project-tag { color: var(--accent); font-size: 0.9rem; margin-bottom: 20px; text-transform: uppercase; }
         .zoom-img { overflow: hidden; border-radius: 8px; margin-top: 20px; }
-        video { width: 100%; transition: transform 0.6s ease; display: block; }
+        video { width: 100%; display: block; transition: transform 0.6s ease; }
         .zoom-img:hover video { transform: scale(1.02); }
 
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 80px 5%; }
-        .card img { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; }
-        
-        .footer { padding: 80px 5%; text-align: left; }
-        .footer h2 { font-size: 2.5rem; color: var(--accent); }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 80px 5%; }
+        .card img { width: 100%; height: 320px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
+
+        .footer { padding: 80px 5%; }
+        .footer h2 { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
+
+        @media (max-width: 768px) {
+            .bio-grid { grid-template-columns: 1fr; }
+            #preloader { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 1fr); }
+        }
     </style>
 </head>
 <body>
 
+    <!-- PRELOADER CON COLLAGE -->
     <div id="preloader">
-        <div class="mosaic-grid">
-            <img src="foto1.jpg" style="animation-delay: 0.5s;">
-            <img src="foto2.jpg" style="animation-delay: 1.5s;">
-            <img src="foto3.jpg" style="animation-delay: 2.5s;">
-            <img src="foto4.jpg" style="animation-delay: 3.5s;">
-        </div>
+        <div class="item large"><img src="foto1.jpg"></div>
+        <div class="item"><img src="foto2.jpg"></div>
+        <div class="item tall"><img src="foto3.jpg"></div>
+        <div class="item"><img src="foto4.jpg"></div>
+        <div class="item"><img src="foto5.jpg"></div>
+        <div class="item large"><img src="foto6.jpg"></div>
+        <div class="item"><img src="foto7.jpg"></div>
     </div>
 
+    <!-- CABECERA -->
     <header>
         <div class="hero-title">
-            <span>DIEGO</span>
-            <span style="color: var(--accent);">FARFÁN</span>
+            <span>DIEGO</span><br><span style="color: var(--accent);">FARFÁN</span>
         </div>
         <div style="margin-top: 15px; font-size: 1rem; letter-spacing: 2px;">DIRECTOR CREATIVO & FILMMAKER</div>
     </header>
 
+    <!-- BIO -->
     <section class="section-green">
         <div class="bio-grid">
-            <img src="tu-foto.jpg" alt="Diego" class="profile-img">
+            <img src="tu-foto.jpg" alt="Diego Farfán" class="profile-img">
             <div>
-                <h2 style="font-size: 2rem; line-height: 1.2;">CREO HISTORIAS VISUALES QUE CONECTAN.</h2>
-                <p style="font-size: 1rem;">Director de fotografía y cineasta basado en Lima. Mi trabajo reside en la intersección entre la moda, la música y la narrativa cinematográfica.</p>
+                <h2 style="font-size: 2rem; margin: 0; line-height: 1.2;">CREO HISTORIAS VISUALES QUE CONECTAN.</h2>
+                <p style="font-size: 1rem; margin-top: 20px; line-height: 1.6;">Soy un Director Creativo y Cineasta de Lima, Perú. Me especializo en la narrativa visual, la dirección y la creación de contenido cinematográfico para marcas, artistas y proyectos impulsados por la cultura. Mi trabajo combina la moda, la música y la estética urbana con un fuerte enfoque en la emoción, el ritmo y la identidad.</p>
             </div>
         </div>
     </section>
 
-    <!-- PROYECTOS -->
+    <!-- 1. OBSESIÓN -->
     <div class="project">
         <div class="project-title">OBSESIÓN</div>
-        <div class="project-tag">Cortometraje – 2025</div>
+        <div class="project-tag">Cortometraje – 2025 | Director de Fotografía</div>
+        <p style="color: #aaa; margin-bottom: 20px;">Tras ser secuestrado y sometido a una brutal alteración facial para reemplazar a la difunta esposa de su captor, una joven despojada de su identidad emprende un implacable camino de venganza.</p>
         <div class="zoom-img"><video controls><source src="obsesion.mp4" type="video/mp4"></video></div>
     </div>
 
+    <!-- 2. GUAYA GUAYA -->
     <div class="project">
         <div class="project-title">GUAYA GUAYA – L'CATA</div>
-        <div class="project-tag">Videoclip – 2026</div>
+        <div class="project-tag">Videoclip – 2026 | Director de Fotografía</div>
         <div class="zoom-img"><video controls><source src="guaya-guaya.mp4" type="video/mp4"></video></div>
     </div>
 
+    <!-- 3. ROD CASTEL -->
     <div class="project">
         <div class="project-title">DIME, ¿CÓMO HAGO? – ROD CASTEL</div>
-        <div class="project-tag">Videoclip – 2026</div>
+        <div class="project-tag">Videoclip – 2026 | Director de Fotografía</div>
         <div class="zoom-img"><video controls><source src="dime-como-hago.mp4" type="video/mp4"></video></div>
     </div>
 
+    <!-- 4. FASHION FILM -->
     <div class="project">
-        <div class="project-title">NUNCA HUBO NADA MALO</div>
-        <div class="project-tag">Fashion Film – 2026</div>
+        <div class="project-title">NUNCA HUBO NADA MALO – COLECTIVE</div>
+        <div class="project-tag">Fashion Film – 2026 | Director de Fotografía</div>
         <div class="zoom-img"><video controls><source src="nunca-hubo.mp4" type="video/mp4"></video></div>
+    </div>
+
+    <!-- 5. MIX MEDIA -->
+    <div class="project">
+        <div class="project-title">MIX MEDIA – DIEGO FARFÁN</div>
+        <div class="project-tag">Experimental – 2026</div>
+        <div class="zoom-img"><video controls><source src="mix-media.mp4" type="video/mp4"></video></div>
+    </div>
+
+    <!-- 6. EL ENSAYO -->
+    <div class="project">
+        <div class="project-title">EL ENSAYO – DIEGO FARFÁN</div>
+        <div class="project-tag">Corto de 1 min – 2026</div>
+        <div class="zoom-img"><video controls><source src="el-ensayo.mp4" type="video/mp4"></video></div>
     </div>
 
     <!-- PILARES -->
     <div class="grid-3">
-        <div class="card"><img src="foto-luz.jpg"><h3>LUZ</h3></div>
-        <div class="card"><img src="foto-camara.jpg"><h3>CÁMARA</h3></div>
-        <div class="card"><img src="foto-arte.jpg"><h3>ARTE</h3></div>
+        <div class="card"><img src="foto-luz.jpg"><h3>LUZ</h3><p style="color: #888; font-size: 0.9rem;">Contraste, textura y color que moldean el estado de ánimo.</p></div>
+        <div class="card"><img src="foto-camara.jpg"><h3>CÁMARA</h3><p style="color: #888; font-size: 0.9rem;">Movimiento, encuadre y perspectiva que guían la emoción.</p></div>
+        <div class="card"><img src="foto-arte.jpg"><h3>DIRECCIÓN DE ARTE</h3><p style="color: #888; font-size: 0.9rem;">Espacios y detalles que construyen el mundo visual.</p></div>
     </div>
 
+    <!-- PORTADAS PARA ARTISTAS -->
+    <div class="grid-3">
+        <div class="card"><img src="portada-1.jpg"><p style="color: #C1FF72; font-weight: 700;">Mikele – Alive</p></div>
+        <div class="card"><img src="portada-2.jpg"><p style="color: #C1FF72; font-weight: 700;">Gianpool – A primera vista</p></div>
+        <div class="card"><img src="portada-3.jpg"><p style="color: #C1FF72; font-weight: 700;">Rod Castel – Autosaboteo</p></div>
+    </div>
+
+    <!-- FOOTER -->
     <footer class="footer">
         <h2>CREEMOS ALGO EXTRAORDINARIO</h2>
-        <p>@diegofarfan____ | diegofarfan.media@gmail.com | +51 977 403 711</p>
+        <p style="font-size: 1.1rem; line-height: 1.8;">
+            IG: @diegofarfan____<br>
+            diegofarfan.media@gmail.com<br>
+            +51 977 403 711
+        </p>
+        <p style="color: #555; font-size: 0.85rem; margin-top: 40px;">Disponible para proyectos a nivel mundial.</p>
     </footer>
 
 </body>
