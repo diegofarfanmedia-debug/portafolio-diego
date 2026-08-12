@@ -3,112 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <title>DIEGO FARFÁN — Director Creativo & Filmmaker</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --accent: #C1FF72; 
-            --black: #080808; 
-            --surface: #121212;
-            --border: #222222; 
-            --text-muted: #888888;
+            --accent: #ffffff; 
+            --bg-blueprint: #1b365d; /* Tono cianotipia profundo de referencia */
+            --border: rgba(255, 255, 255, 0.2);
         }
         
         * { cursor: default; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
+        
         body { 
-            background: var(--black); 
+            background-color: var(--bg-blueprint);
+            /* Simulación de textura de papel/grano con CSS */
+            background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 24px 24px;
             color: #fff; 
             margin: 0; 
             font-family: 'Syne', sans-serif; 
             overflow-x: hidden; 
         }
 
-        /* LAYOUT PRINCIPAL DE GALERÍA EDITORIAL */
         .site-wrapper {
             display: grid;
-            grid-template-columns: 280px 1fr;
+            grid-template-columns: 260px 1fr;
             min-height: 100vh;
         }
 
-        /* SIDEBAR FIJO */
+        /* SIDEBAR ESTILO COLLAGE DE AUTOR */
         aside {
             position: fixed;
             top: 0;
             left: 0;
-            width: 280px;
+            width: 260px;
             height: 100vh;
-            padding: 50px 40px;
+            padding: 40px 30px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             border-right: 1px solid var(--border);
-            background: var(--black);
+            background: rgba(27, 54, 93, 0.95);
+            backdrop-filter: blur(5px);
             z-index: 1000;
         }
 
         .brand-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             color: #fff;
             text-decoration: none;
             display: block;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            opacity: 0.8;
         }
 
         .side-nav {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
         }
 
         .side-nav a {
-            color: var(--text-muted);
+            color: #fff;
             text-decoration: none;
             font-weight: 700;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: color 0.3s ease;
+            font-size: 1.1rem;
+            text-transform: lowercase;
+            letter-spacing: 0.5px;
+            transition: opacity 0.2s;
         }
 
-        .side-nav a:hover, .side-nav a.active {
-            color: var(--accent);
+        .side-nav a:hover {
+            opacity: 0.5;
         }
 
-        .side-subnav {
+        .side-links-group {
+            margin-top: 30px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 1px solid var(--border);
+            gap: 8px;
+            font-size: 0.85rem;
+            opacity: 0.7;
         }
 
-        .side-subnav a {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
-        .side-footer a {
-            color: var(--accent);
+        .side-links-group a {
+            color: #fff;
             text-decoration: none;
-            font-weight: 800;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        /* CONTENEDOR PRINCIPAL */
+        .side-links-group a:hover {
+            text-decoration: underline;
+        }
+
+        /* CONTENIDO PRINCIPAL */
         main {
             grid-column: 2;
-            padding: 80px 100px;
+            padding: 60px 80px;
         }
 
         section {
-            padding: 80px 0;
+            padding: 60px 0;
             border-bottom: 1px solid var(--border);
         }
 
@@ -116,44 +113,55 @@
             border-bottom: none;
         }
 
-        /* HERO SECTION */
+        /* HERO CON ESTILO EDITORIAL / ESTRELLITAS */
         .hero-section {
-            padding-top: 0;
+            padding-top: 10px;
+            position: relative;
         }
 
         .hero-title {
-            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 800;
-            text-transform: uppercase;
-            line-height: 0.95;
-            letter-spacing: -2px;
-            margin: 0 0 30px 0;
+            text-transform: lowercase;
+            line-height: 1;
+            margin: 0 0 20px 0;
+            letter-spacing: -1px;
         }
 
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: var(--accent);
+        .hero-links-cluster {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .hero-link-item {
+            font-size: 1.4rem;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            max-width: 700px;
-            line-height: 1.6;
+            text-decoration: none;
+            color: #fff;
+            transition: transform 0.2s ease;
         }
 
-        /* GRILLA DE PROYECTOS */
+        .hero-link-item:hover {
+            transform: translateX(6px);
+            opacity: 0.8;
+        }
+
+        /* GRILLA DE PROYECTOS TIPO COLLAGE */
         .section-title {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 50px;
-            color: #fff;
+            margin-bottom: 40px;
         }
 
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 50px 40px;
+            gap: 30px;
         }
 
         .project-card {
@@ -161,46 +169,42 @@
             color: inherit;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 12px;
         }
 
         .project-media {
             width: 100%;
-            height: 480px;
-            background: var(--surface);
-            border-radius: 6px;
+            height: 380px;
+            background: #000;
+            border-radius: 2px;
             overflow: hidden;
-            position: relative;
             border: 1px solid var(--border);
+            filter: contrast(1.1);
         }
 
         .project-media video, .project-media img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+            transition: transform 0.5s ease;
         }
 
         .project-card:hover .project-media video, 
         .project-card:hover .project-media img {
-            transform: scale(1.03);
-            filter: brightness(1.08);
+            transform: scale(1.02);
         }
 
         .project-meta h3 {
-            font-size: 1.25rem;
+            font-size: 1.05rem;
             font-weight: 800;
             text-transform: uppercase;
-            margin: 0 0 6px 0;
-            letter-spacing: 0.5px;
+            margin: 0;
         }
 
         .project-meta p {
-            font-size: 0.85rem;
-            color: var(--accent);
+            font-size: 0.8rem;
+            opacity: 0.7;
             font-family: monospace;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             margin: 0;
         }
 
@@ -208,76 +212,49 @@
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1.2fr;
-            gap: 60px;
+            gap: 40px;
             align-items: center;
         }
 
         .about-img {
             width: 100%;
-            height: 500px;
+            height: 420px;
             object-fit: cover;
-            border-radius: 6px;
-            filter: grayscale(20%);
+            border-radius: 2px;
+            border: 1px solid var(--border);
+            filter: grayscale(40%) contrast(1.1);
         }
 
         .about-text p {
-            font-size: 1.15rem;
-            line-height: 1.7;
-            color: #ddd;
-            font-weight: 600;
-            margin-bottom: 25px;
-        }
-
-        .about-tags {
-            font-size: 0.85rem;
-            color: var(--accent);
-            font-family: monospace;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-top: 30px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
         /* CONTACTO */
         .contact-section h2 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-size: clamp(2rem, 4vw, 3.5rem);
             font-weight: 800;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin: 0 0 30px 0;
-            line-height: 1;
-            letter-spacing: -1px;
-        }
-
-        .contact-section p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            max-width: 650px;
-            line-height: 1.7;
-            margin-bottom: 40px;
+            text-transform: lowercase;
+            margin: 0 0 20px 0;
         }
 
         .contact-email {
-            font-size: 1.5rem;
-            font-weight: 800;
+            font-size: 1.3rem;
+            font-weight: 700;
             color: #fff;
             text-decoration: none;
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 6px;
+            border-bottom: 1px solid #fff;
+            padding-bottom: 4px;
             display: inline-block;
-            transition: color 0.3s;
-        }
-
-        .contact-email:hover {
-            color: var(--accent);
         }
 
         /* RESPONSIVE */
-        @media (max-width: 1024px) {
+        @media (max-width: 900px) {
             .site-wrapper { display: block; }
-            aside { position: relative; width: 100%; height: auto; padding: 30px; border-right: none; border-bottom: 1px solid var(--border); }
-            main { padding: 50px 30px; }
+            aside { position: relative; width: 100%; height: auto; padding: 25px; border-right: none; border-bottom: 1px solid var(--border); }
+            main { padding: 40px 20px; }
             .projects-grid, .about-grid { grid-template-columns: 1fr; }
-            .project-media { height: 380px; }
         }
     </style>
 </head>
@@ -285,39 +262,42 @@
 
     <div class="site-wrapper">
 
-        <!-- MENÚ LATERAL -->
+        <!-- MENÚ LATERAL ESTILO ARCHIVO -->
         <aside>
             <div>
-                <a href="#home" class="brand-title">Diego Farfán</a>
+                <a href="#home" class="brand-title">diego farfán</a>
                 <nav class="side-nav">
-                    <a href="#home" class="active">Home</a>
-                    <a href="#proyectos">Projects</a>
-                    <a href="#about">About Me</a>
-                    
-                    <div class="side-subnav">
-                        <a href="#proyectos">Editorial / Moda</a>
-                        <a href="#proyectos">Videoclips</a>
-                        <a href="#proyectos">Cortometrajes</a>
-                        <a href="#proyectos">Dirección de Arte</a>
-                    </div>
+                    <a href="#proyectos">portafolio</a>
+                    <a href="#contacto">cotiza tu idea</a>
+                    <a href="#about">sobre mí</a>
                 </nav>
+                <div class="side-links-group">
+                    <a href="https://instagram.com" target="_blank">instagram</a>
+                    <a href="https://youtube.com" target="_blank">youtube</a>
+                    <a href="https://tiktok.com" target="_blank">tiktok</a>
+                </div>
             </div>
-            <div class="side-footer">
-                <a href="#contacto">Let's Talk →</a>
+            <div class="side-links-group" style="margin-top: 0;">
+                <span style="font-family: monospace;">lima, perú</span>
             </div>
         </aside>
 
-        <!-- CONTENIDO -->
+        <!-- CONTENIDO PRINCIPAL -->
         <main>
-            <!-- HERO -->
+            <!-- HERO CON ENLACES ESTILO CIANOTIPIA -->
             <section id="home" class="hero-section">
-                <h1 class="hero-title">Director Creativo<br>& Filmmaker</h1>
-                <p class="hero-subtitle">Construyendo identidades visuales, atmósferas y narrativas cinematográficas con base en Lima, Perú.</p>
+                <h1 class="hero-title">fotografía / conceptualización / dirección creativa</h1>
+                
+                <div class="hero-links-cluster">
+                    <a href="#proyectos" class="hero-link-item">★ portafolio</a>
+                    <a href="#contacto" class="hero-link-item">★ cotiza tu idea</a>
+                    <a href="#about" class="hero-link-item">★ content creation</a>
+                </div>
             </section>
 
             <!-- PROYECTOS -->
             <section id="proyectos">
-                <h2 class="section-title">Trabajos Seleccionados</h2>
+                <h2 class="section-title">trabajos seleccionados</h2>
                 <div class="projects-grid">
                     
                     <div class="project-card">
@@ -326,7 +306,7 @@
                         </div>
                         <div class="project-meta">
                             <h3>Obsesión</h3>
-                            <p>Cortometraje • 2025 // Director de Fotografía</p>
+                            <p>Cortometraje • 2025 // DP</p>
                         </div>
                     </div>
 
@@ -336,7 +316,7 @@
                         </div>
                         <div class="project-meta">
                             <h3>Guaya Guaya - L Cata</h3>
-                            <p>Videoclip • 2026 // Director de Fotografía</p>
+                            <p>Videoclip • 2026 // DP</p>
                         </div>
                     </div>
 
@@ -346,7 +326,7 @@
                         </div>
                         <div class="project-meta">
                             <h3>Dime, ¿Cómo hago? - Rod Castel</h3>
-                            <p>Videoclip • 2026 // Director de Fotografía</p>
+                            <p>Videoclip • 2026 // DP</p>
                         </div>
                     </div>
 
@@ -356,7 +336,7 @@
                         </div>
                         <div class="project-meta">
                             <h3>Nunca hubo nada malo</h3>
-                            <p>Fashion Film • 2026 // Cinematografía</p>
+                            <p>Fashion Film • 2026</p>
                         </div>
                     </div>
 
@@ -365,23 +345,20 @@
 
             <!-- ABOUT ME -->
             <section id="about">
-                <h2 class="section-title">Sobre Mí</h2>
+                <h2 class="section-title">sobre mí</h2>
                 <div class="about-grid">
                     <img src="tu-foto.jpg" alt="Diego Farfán" class="about-img">
                     <div class="about-text">
-                        <p>Me especializo en la dirección de fotografía, la narrativa visual y el montaje cinematográfico. Mi enfoque fusiona la estética de la moda, la música y la cultura urbana.</p>
-                        <p>Cada fotograma está pensado para transmitir una atmósfera precisa, priorizando el contraste, la textura y la emoción cruda.</p>
-                        <div class="about-tags">
-                            Cinematografía • Dirección de Arte • Edición • Color Grading
-                        </div>
+                        <p>Me especializo en la dirección de fotografía, el diseño conceptual y la creación de piezas audiovisuales con un fuerte carácter estético y experimental.</p>
+                        <p>Trabajo de la mano con artistas, marcas y proyectos independientes que buscan un lenguaje visual crudo y sofisticado.</p>
                     </div>
                 </div>
             </section>
 
             <!-- CONTACTO -->
             <section id="contacto" class="contact-section">
-                <h2>Creemos algo extraordinario!</h2>
-                <p>Disponible para proyectos independientes, campañas comerciales y videoclips a nivel mundial. Conversemos sobre tu próxima visión.</p>
+                <h2>hablemos de tu proyecto</h2>
+                <p style="opacity: 0.8; margin-bottom: 25px;">Escríbeme directamente para cotizaciones, colaboraciones o consultas creativas.</p>
                 <a href="mailto:Diegofarfan.media@gmail.com" class="contact-email">Diegofarfan.media@gmail.com</a>
             </section>
         </main>
