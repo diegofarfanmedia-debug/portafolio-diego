@@ -6,18 +6,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --accent: #38bdf8; /* Azul eléctrico / cielo vibrante y cinematográfico */
-            --black: #07090e; /* Fondo negro azulado profundo */
-            --surface: #0f1420; /* Superficie de tarjetas en tono azul oscuro sutil */
-            --border: #1e293b; /* Bordes estilizados */
-            --text-muted: #94a3b8; /* Texto secundario legible */
+            --accent: #C1FF72; /* Verde neón original */
+            --black: #080808; 
+            --surface: #111111;
+            --border: #1f1f1f; 
+            --text-muted: #999;
         }
         
         * { cursor: none !important; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { background: var(--black); color: #fff; margin: 0; font-family: 'Syne', sans-serif; overflow-x: hidden; }
         
-        /* CURSOR DE ESTRELLA LIMPIO */
+        /* CURSOR DE ESTRELLA */
         .custom-cursor { 
             position: fixed; 
             width: 8px; 
@@ -53,7 +53,7 @@
         /* NAVBAR FIJA */
         nav {
             position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            background: rgba(7, 9, 14, 0.85); backdrop-filter: blur(12px);
+            background: rgba(8, 8, 8, 0.85); backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border); padding: 20px 5%;
             display: flex; justify-content: space-between; align-items: center;
         }
@@ -72,12 +72,12 @@
         .hero-subtitle { font-size: 0.9rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; text-align: right; }
 
         /* BIO */
-        .section-accent { background: var(--accent); color: var(--black); padding: 100px 5%; }
-        .section-accent-content { max-width: 1300px; margin: 0 auto; }
+        .section-green { background: var(--accent); color: var(--black); padding: 100px 5%; }
+        .section-green-content { max-width: 1300px; margin: 0 auto; }
         .bio-title { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; text-transform: uppercase; line-height: 1.15; margin: 0 0 50px 0; max-width: 1000px; }
         .bio-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; align-items: center; }
         .profile-img { width: 100%; height: 500px; object-fit: cover; border-radius: 8px; filter: contrast(1.05); }
-        .bio-text p { font-size: 1.15rem; font-weight: 600; line-height: 1.6; margin: 0 0 24px 0; color: #080d16; }
+        .bio-text p { font-size: 1.15rem; font-weight: 600; line-height: 1.6; margin: 0 0 24px 0; color: #111; }
 
         /* PROYECTOS */
         .projects-container { max-width: 1300px; margin: 0 auto; padding: 0 5%; }
@@ -92,38 +92,42 @@
         }
         .project-desc { font-size: 1.05rem; color: var(--text-muted); line-height: 1.6; max-width: 850px; margin-bottom: 30px; }
         
-        .zoom-img { overflow: hidden; border-radius: 8px; position: relative; background: var(--surface); border: 1px solid var(--border); }
+        .zoom-img { overflow: hidden; border-radius: 8px; position: relative; background: var(--surface); }
         video, .media-item { width: 100%; display: block; transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease; height: 620px; object-fit: cover; }
         .project.small-project video, .project.small-project .media-item { height: 440px; }
         .zoom-img:hover video, .zoom-img:hover img { transform: scale(1.02); filter: brightness(1.05); }
 
-        /* PILARES CREATIVOS */
+        /* PILARES CREATIVOS (Como en la captura) */
         .pillars-section { padding: 120px 5%; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid var(--border); }
-        .pillars-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; text-transform: uppercase; line-height: 1.2; margin-bottom: 60px; max-width: 900px; }
+        .pillars-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; text-transform: uppercase; line-height: 1.2; margin-bottom: 60px; max-width: 1100px; }
         .pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
         .pillar-card { background: var(--surface); padding: 35px 30px; border-radius: 8px; border: 1px solid var(--border); transition: border-color 0.3s; }
         .pillar-card:hover { border-color: var(--accent); }
-        .pillar-card h3 { color: var(--accent); font-size: 1.2rem; font-weight: 800; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 1px; }
-        .pillar-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin: 0; }
+        .pillar-card .pillar-icon { color: var(--accent); font-size: 1.4rem; margin-bottom: 15px; display: block; }
+        .pillar-card h3 { color: var(--accent); font-size: 1.1rem; font-weight: 800; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 1px; }
+        .pillar-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0; }
 
-        /* CATEGORÍAS */
+        /* CATEGORÍAS (Como en la captura) */
         .categories-section { padding: 120px 5%; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid var(--border); }
         .categories-nav { display: flex; gap: 35px; flex-wrap: wrap; margin-bottom: 40px; }
         .category-btn {
             background: transparent; border: none; color: var(--text-muted);
             font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
             text-transform: uppercase; letter-spacing: 2px; padding: 0; position: relative;
-            text-decoration: none; transition: color 0.3s ease;
+            cursor: none; transition: color 0.3s ease;
         }
         .category-btn.active, .category-btn:hover { color: var(--accent); }
-        .categories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .categories-grid img { width: 100%; height: 360px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); }
+        
+        .categories-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .categories-grid img { width: 100%; height: 380px; object-fit: cover; border-radius: 8px; transition: transform 0.4s ease; }
+        .categories-grid img:hover { transform: scale(1.02); }
 
-        /* PORTADAS */
+        /* PORTADAS PARA ARTISTAS (Como en la captura) */
         .covers-section { padding: 120px 5%; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid var(--border); }
         .covers-section h2 { font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; text-transform: uppercase; margin: 0 0 50px 0; }
+        .covers-section h2 span { color: var(--accent); }
         .covers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .cover-item img { width: 100%; height: 440px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; border: 1px solid var(--border); }
+        .cover-item img { width: 100%; height: 440px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
         .cover-item p { color: #fff; font-weight: 700; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; margin: 0; }
 
         /* SKILLS */
@@ -161,7 +165,7 @@
         /* LIGHTBOX */
         #lightbox {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(7, 9, 14, 0.96); z-index: 100000;
+            background: rgba(0, 0, 0, 0.96); z-index: 100000;
             display: flex; justify-content: center; align-items: center;
             opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
             backdrop-filter: blur(15px);
@@ -169,13 +173,13 @@
         #lightbox.active { opacity: 1; pointer-events: all; }
         #lightbox img, #lightbox video { 
             max-width: 90vw; max-height: 90vh; border-radius: 8px; display: none; 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.9); border: 1px solid var(--border);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.9); 
         }
         #lightbox.show-img img { display: block; }
         #lightbox.show-video video { display: block; }
         .close-lightbox { 
             position: absolute; top: 35px; right: 45px; color: #fff; font-size: 3rem; 
-            font-weight: 300; line-height: 1; transition: color 0.3s; z-index: 100001; 
+            font-weight: 300; line-height: 1; transition: color 0.3s; z-index: 100001; cursor: none;
         }
         .close-lightbox:hover { color: var(--accent); }
 
@@ -223,8 +227,8 @@
     </header>
 
     <!-- BIO -->
-    <section class="section-accent">
-        <div class="section-accent-content">
+    <section class="section-green">
+        <div class="section-green-content">
             <h2 class="bio-title">Creo historias visuales que conectan, inspiran y dejan huella.</h2>
             <div class="bio-grid">
                 <img src="tu-foto.jpg" alt="Diego Farfán" class="profile-img">
@@ -327,30 +331,34 @@
 
     </div>
 
-    <!-- PILARES CREATIVOS -->
+    <!-- PILARES CREATIVOS (IDÉNTICO A LA CAPTURA) -->
     <section class="pillars-section" id="filosofia">
         <h2 class="pillars-title">CONSTRUYO IMÁGENES ALREDEDOR DE LA EMOCIÓN, LA IDENTIDAD Y LA ATMÓSFERA.</h2>
         <div class="pillars-grid">
             <div class="pillar-card">
+                <span class="pillar-icon">☀</span>
                 <h3>Luz</h3>
                 <p>Contraste, textura y color que moldean el estado de ánimo y el significado.</p>
             </div>
             <div class="pillar-card">
+                <span class="pillar-icon">🔲</span>
                 <h3>Cámara</h3>
                 <p>Movimiento, encuadre y perspectiva que guían la emoción.</p>
             </div>
             <div class="pillar-card">
+                <span class="pillar-icon">📖</span>
                 <h3>Historia</h3>
                 <p>Personajes, emoción y narrativa en el centro de todo.</p>
             </div>
             <div class="pillar-card">
+                <span class="pillar-icon">👕</span>
                 <h3>Dirección de Arte</h3>
                 <p>Espacios, texturas y detalles que construyen el mundo.</p>
             </div>
         </div>
     </section>
 
-    <!-- CATEGORÍAS -->
+    <!-- CATEGORÍAS (IDÉNTICO A LA CAPTURA) -->
     <section class="categories-section">
         <div class="categories-nav">
             <button class="category-btn active">CASA</button>
@@ -363,12 +371,13 @@
             <img src="casa-1.jpg" alt="Casa" class="media-item">
             <img src="moda-1.jpg" alt="Moda" class="media-item">
             <img src="artistas-1.jpg" alt="Artistas" class="media-item">
+            <img src="concierto-1.jpg" alt="Concierto" class="media-item">
         </div>
     </section>
 
-    <!-- PORTADAS PARA ARTISTAS -->
+    <!-- PORTADAS PARA ARTISTAS (IDÉNTICO A LA CAPTURA) -->
     <section class="covers-section" id="portadas">
-        <h2>PORTADAS PARA ARTISTAS</h2>
+        <h2>PORTADAS <span>PARA ARTISTAS</span></h2>
         <div class="covers-grid">
             <div class="cover-item">
                 <img src="portada-1.jpg" alt="Mikele - Alive" class="media-item">
