@@ -1,29 +1,441 @@
-<!-- MOTION / CINE -->
-<section id="motion">
-    <h2 class="section-title">motion / cine (videoclips)</h2>
-    <div class="projects-grid">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>DIEGO FARFÁN — Director Creativo & Filmmaker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --bg-color: #f4f6f9;
+            --blueprint-blue: #1b365d;
+            --text-main: #111111;
+            --text-muted: #555555;
+            --border: #d0d7de;
+        }
         
-        <!-- Proyecto: Guaya Guaya -->
-        <a href="https://www.youtube.com/watch?v=wrGP7YdDEyk" target="_blank" class="project-card">
-            <div class="project-media">
-                <img src="https://img.youtube.com/vi/wrGP7YdDEyk/maxresdefault.jpg" alt="Guaya Guaya">
-            </div>
-            <div class="project-meta">
-                <h3>Guaya Guaya - L Cata</h3>
-                <p>Videoclip • 2026 // DP & Post-prod</p>
-            </div>
-        </a>
+        * { cursor: default; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body { 
+            background-color: var(--bg-color);
+            background-image: radial-gradient(rgba(27, 54, 93, 0.04) 1px, transparent 0);
+            background-size: 20px 20px;
+            color: var(--text-main); 
+            margin: 0; 
+            font-family: 'Syne', sans-serif; 
+            overflow-x: hidden; 
+        }
 
-        <!-- Proyecto: Dime, ¿Cómo hago? -->
-        <a href="https://www.youtube.com/watch?v=M3XugrBFs4k" target="_blank" class="project-card">
-            <div class="project-media">
-                <img src="https://img.youtube.com/vi/M3XugrBFs4k/maxresdefault.jpg" alt="Dime, ¿Cómo hago?">
+        .site-wrapper {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR DE AUTOR LIMPIO Y JERARQUIZADO */
+        aside {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid var(--border);
+            background: rgba(244, 246, 249, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .brand-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--blueprint-blue);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .side-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .side-nav > a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: lowercase;
+            letter-spacing: 0.5px;
+            transition: color 0.2s;
+        }
+
+        .side-nav > a:hover {
+            color: var(--blueprint-blue);
+        }
+
+        /* Submenús estructurados */
+        .side-subgroup {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding-left: 15px;
+            margin: 2px 0 6px 0;
+            border-left: 2px solid var(--border);
+        }
+
+        .side-subgroup a {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .side-subgroup a:hover {
+            color: var(--blueprint-blue);
+        }
+
+        .side-links-group {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.85rem;
+        }
+
+        .side-links-group a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .side-links-group a:hover {
+            color: var(--blueprint-blue);
+            text-decoration: underline;
+        }
+
+        /* CONTENIDO PRINCIPAL */
+        main {
+            grid-column: 2;
+            padding: 60px 80px;
+        }
+
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        /* HERO CINEMATOGRÁFICO */
+        .hero-section {
+            padding-top: 10px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+            font-weight: 800;
+            text-transform: lowercase;
+            line-height: 1.05;
+            margin: 0 0 20px 0;
+            color: var(--blueprint-blue);
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            font-weight: 600;
+        }
+
+        /* REEL PRINCIPAL */
+        .hero-reel {
+            width: 100%;
+            height: 500px;
+            background: #111;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .hero-reel video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* SECCIONES Y GRILLAS */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 35px;
+            color: var(--blueprint-blue);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+        }
+
+        .project-card {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .project-media {
+            width: 100%;
+            height: 380px;
+            background: #e1e4e8;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .project-media video, .project-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease, filter 0.3s ease;
+        }
+
+        .project-card:hover .project-media video, 
+        .project-card:hover .project-media img {
+            transform: scale(1.03);
+            filter: brightness(1.05);
+        }
+
+        .project-meta h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin: 0;
+            color: var(--blueprint-blue);
+        }
+
+        .project-meta p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: monospace;
+            margin: 0;
+        }
+
+        /* SOBRE MÍ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        /* CONTACTO */
+        .contact-section h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            text-transform: lowercase;
+            margin: 0 0 20px 0;
+            color: var(--blueprint-blue);
+        }
+
+        .contact-email {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--blueprint-blue);
+            text-decoration: none;
+            border-bottom: 2px solid var(--blueprint-blue);
+            padding-bottom: 4px;
+            display: inline-block;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .site-wrapper { display: block; }
+            aside { position: relative; width: 100%; height: auto; padding: 25px; border-right: none; border-bottom: 1px solid var(--border); }
+            main { padding: 40px 20px; }
+            .projects-grid, .about-grid { grid-template-columns: 1fr; }
+            .hero-reel { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="site-wrapper">
+
+        <!-- MENÚ LATERAL -->
+        <aside>
+            <div>
+                <a href="#home" class="brand-title">diego farfán<br><span style="font-size: 0.75rem; font-weight: 600; opacity: 0.7;">director creativo & filmmaker</span></a>
+                
+                <nav class="side-nav">
+                    <a href="#motion">motion / cine</a>
+                    <div class="side-subgroup">
+                        <a href="#motion">↳ videoclips</a>
+                        <a href="#motion">↳ cortometrajes</a>
+                        <a href="#motion">↳ autor (experimental)</a>
+                    </div>
+                    
+                    <a href="#fotografia">fotografía</a>
+                    <div class="side-subgroup">
+                        <a href="#fotografia">↳ moda & editorial</a>
+                        <a href="#fotografia">↳ artistas & conciertos</a>
+                    </div>
+
+                    <a href="#contenido">content creator & brands</a>
+                    <a href="#about">sobre mí</a>
+                    <a href="#contacto">contacto</a>
+                </nav>
+
+                <div class="side-links-group">
+                    <a href="https://instagram.com" target="_blank">instagram</a>
+                    <a href="https://youtube.com" target="_blank">youtube</a>
+                    <a href="https://tiktok.com" target="_blank">tiktok</a>
+                </div>
             </div>
-            <div class="project-meta">
-                <h3>Rod Castel - Dime, ¿Cómo hago?</h3>
-                <p>Videoclip • 2026 // DP</p>
+            <div class="side-links-group" style="margin-top: 15px;">
+                <span style="font-family: monospace; color: var(--text-muted);">lima, perú</span>
             </div>
-        </a>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main>
+            <!-- HERO -->
+            <section id="home" class="hero-section">
+                <h1 class="hero-title">dirección de fotografía & content creation</h1>
+                <p class="hero-subtitle">Fusionando el lenguaje del cine de autor con la agilidad y el impacto digital de la creación de contenido para marcas y artistas.</p>
+                
+                <div class="hero-reel">
+                    <video autoplay muted loop playsinline><source src="showreel.mp4" type="video/mp4"></video>
+                </div>
+            </section>
+
+            <!-- MOTION / CINE (CON TUS VIDEOS DE YOUTUBE) -->
+            <section id="motion">
+                <h2 class="section-title">motion / cine (videoclips)</h2>
+                <div class="projects-grid">
+                    
+                    <!-- Guaya Guaya -->
+                    <a href="https://www.youtube.com/watch?v=wrGP7YdDEyk" target="_blank" class="project-card">
+                        <div class="project-media">
+                            <img src="https://img.youtube.com/vi/wrGP7YdDEyk/maxresdefault.jpg" alt="Guaya Guaya">
+                        </div>
+                        <div class="project-meta">
+                            <h3>Guaya Guaya - L Cata</h3>
+                            <p>Videoclip • 2026 // DP & Post-prod</p>
+                        </div>
+                    </a>
+
+                    <!-- Dime, ¿Cómo hago? -->
+                    <a href="https://www.youtube.com/watch?v=M3XugrBFs4k" target="_blank" class="project-card">
+                        <div class="project-media">
+                            <img src="https://img.youtube.com/vi/M3XugrBFs4k/maxresdefault.jpg" alt="Dime, ¿Cómo hago?">
+                        </div>
+                        <div class="project-meta">
+                            <h3>Rod Castel - Dime, ¿Cómo hago?</h3>
+                            <p>Videoclip • 2026 // DP</p>
+                        </div>
+                    </a>
+
+                </div>
+            </section>
+
+            <!-- FOTOGRAFÍA -->
+            <section id="fotografia">
+                <h2 class="section-title">fotografía (moda, editorial & música)</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-media">
+                            <img src="nunca-huyo.jpg" alt="Moda y Editorial">
+                        </div>
+                        <div class="project-meta">
+                            <h3>Colección Editorial</h3>
+                            <p>Moda • 2026</p>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-media">
+                            <img src="concierto.jpg" alt="Conciertos y Artistas">
+                        </div>
+                        <div class="project-meta">
+                            <h3>Live Session / Artistas</h3>
+                            <p>Conciertos • 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTENT CREATOR & BRANDS -->
+            <section id="contenido">
+                <h2 class="section-title">content creator & brand collaborations</h2>
+                <p style="color: var(--text-muted); margin-bottom: 25px;">Piezas digitales con dirección estética de alto nivel para marcas de lifestyle, moda y dermocosmética.</p>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-media">
+                            <video autoplay muted loop playsinline><source src="marca-collab.mp4" type="video/mp4"></video>
+                        </div>
+                        <div class="project-meta">
+                            <h3>Campaña Digital / Creator</h3>
+                            <p>Colaboración con Marcas • 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SOBRE MÍ -->
+            <section id="about">
+                <h2 class="section-title">sobre mí</h2>
+                <div class="about-grid">
+                    <img src="tu-foto.jpg" alt="Diego Farfán" class="about-img">
+                    <div class="about-text">
+                        <p>Soy Diego Farfán, director creativo, filmmaker y creador de contenido basado en Lima. Mi trabajo une la rigurosidad visual del cine con la inmediatez y frescura del contenido digital.</p>
+                        <p>Diseño universos visuales únicos que funcionan tanto en la gran pantalla como en las plataformas de las marcas más exigentes.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACTO -->
+            <section id="contacto" class="contact-section">
+                <h2>contacto</h2>
+                <p style="color: var(--text-muted); margin-bottom: 25px;">¿Tienes un proyecto, campaña o colaboración en mente? Escríbeme directamente.</p>
+                <a href="mailto:Diegofarfan.media@gmail.com" class="contact-email">Diegofarfan.media@gmail.com</a>
+            </section>
+        </main>
 
     </div>
-</section>
+
+</body>
+</html>
