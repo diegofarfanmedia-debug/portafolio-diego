@@ -32,7 +32,7 @@
             min-height: 100vh;
         }
 
-        /* SIDEBAR DE NAVEGACIÓN EXTENDIDA */
+        /* SIDEBAR DE AUTOR LIMPIO Y JERARQUIZADO */
         aside {
             position: fixed;
             top: 0;
@@ -51,23 +51,24 @@
         }
 
         .brand-title {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--blueprint-blue);
             text-decoration: none;
             display: block;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            line-height: 1.2;
         }
 
         .side-nav {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 14px;
         }
 
-        .side-nav a {
+        .side-nav > a {
             color: var(--text-main);
             text-decoration: none;
             font-weight: 700;
@@ -77,27 +78,29 @@
             transition: color 0.2s;
         }
 
-        .side-nav a:hover {
+        .side-nav > a:hover {
             color: var(--blueprint-blue);
         }
 
-        /* Submenús internos para fotografía */
-        .side-subnav {
+        /* Submenús estructurados con elegancia */
+        .side-subgroup {
             display: flex;
             flex-direction: column;
             gap: 6px;
             padding-left: 15px;
-            margin: 4px 0 8px 0;
+            margin: 2px 0 6px 0;
             border-left: 2px solid var(--border);
         }
 
-        .side-subnav a {
+        .side-subgroup a {
             font-size: 0.82rem;
             color: var(--text-muted);
+            text-decoration: none;
             font-weight: 600;
+            transition: color 0.2s;
         }
 
-        .side-subnav a:hover {
+        .side-subgroup a:hover {
             color: var(--blueprint-blue);
         }
 
@@ -135,40 +138,45 @@
             border-bottom: none;
         }
 
-        /* HERO */
+        /* HERO CINEMATOGRÁFICO */
         .hero-section {
             padding-top: 10px;
         }
 
         .hero-title {
-            font-size: clamp(2.2rem, 4.2vw, 3.8rem);
+            font-size: clamp(2.4rem, 4.5vw, 4.2rem);
             font-weight: 800;
             text-transform: lowercase;
-            line-height: 1.1;
-            margin: 0 0 25px 0;
+            line-height: 1.05;
+            margin: 0 0 20px 0;
             color: var(--blueprint-blue);
             letter-spacing: -1px;
         }
 
-        .hero-links-cluster {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 10px;
-            margin-top: 20px;
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            font-weight: 600;
         }
 
-        .hero-link-item {
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-decoration: none;
-            color: var(--text-main);
-            transition: transform 0.2s ease, color 0.2s ease;
+        /* RECOIL / HERO MEDIA PRINCIPAL */
+        .hero-reel {
+            width: 100%;
+            height: 500px;
+            background: #111;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin-bottom: 40px;
         }
 
-        .hero-link-item:hover {
-            transform: translateX(6px);
-            color: var(--blueprint-blue);
+        .hero-reel video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* SECCIONES Y GRILLAS */
@@ -265,7 +273,7 @@
         }
 
         .contact-email {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--blueprint-blue);
             text-decoration: none;
@@ -280,6 +288,7 @@
             aside { position: relative; width: 100%; height: auto; padding: 25px; border-right: none; border-bottom: 1px solid var(--border); }
             main { padding: 40px 20px; }
             .projects-grid, .about-grid { grid-template-columns: 1fr; }
+            .hero-reel { height: 300px; }
         }
     </style>
 </head>
@@ -287,26 +296,28 @@
 
     <div class="site-wrapper">
 
-        <!-- MENÚ LATERAL ORGANIZADO -->
+        <!-- MENÚ LATERAL JERARQUIZADO A1 -->
         <aside>
             <div>
-                <a href="#home" class="brand-title">diego farfán<br><span style="font-size: 0.75rem; font-weight: 600; opacity: 0.8;">director creativo & filmmaker</span></a>
+                <a href="#home" class="brand-title">diego farfán<br><span style="font-size: 0.75rem; font-weight: 600; opacity: 0.7;">director creativo & filmmaker</span></a>
                 
                 <nav class="side-nav">
-                    <a href="#fotografia">fotografía</a>
-                    <div class="side-subnav">
-                        <a href="#fotografia">moda</a>
-                        <a href="#fotografia">editorial</a>
-                        <a href="#fotografia">artistas</a>
-                        <a href="#fotografia">conciertos</a>
+                    <a href="#motion">motion / cine</a>
+                    <div class="side-subgroup">
+                        <a href="#motion">↳ videoclips</a>
+                        <a href="#motion">↳ cortometrajes</a>
+                        <a href="#motion">↳ autor (experimental)</a>
                     </div>
                     
-                    <a href="#videoclips">videoclips</a>
-                    <a href="#cortometrajes">cortometrajes</a>
-                    <a href="#autor">autor (experimental)</a>
-                    <a href="#contenido">creación de contenido</a>
+                    <a href="#fotografia">fotografía</a>
+                    <div class="side-subgroup">
+                        <a href="#fotografia">↳ moda & editorial</a>
+                        <a href="#fotografia">↳ artistas & conciertos</a>
+                    </div>
+
+                    <a href="#contenido">marcas & contenido</a>
                     <a href="#about">sobre mí</a>
-                    <a href="#contacto">contáctame</a>
+                    <a href="#contacto">contacto</a>
                 </nav>
 
                 <div class="side-links-group">
@@ -322,22 +333,63 @@
 
         <!-- CONTENIDO PRINCIPAL -->
         <main>
-            <!-- HERO -->
+            <!-- HERO CON REEL PRINCIPAL -->
             <section id="home" class="hero-section">
-                <h1 class="hero-title">diego farfán / director creativo & filmmaker</h1>
-                <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin-bottom: 25px;">Construyendo identidades visuales, atmósferas y narrativas cinematográficas desde Lima.</p>
+                <h1 class="hero-title">dirección de fotografía & narrativa visual</h1>
+                <p class="hero-subtitle">Construyendo identidades visuales, atmósferas y piezas cinematográficas de alto impacto para la música, la moda y la cultura.</p>
                 
-                <div class="hero-links-cluster">
-                    <a href="#fotografia" class="hero-link-item">★ fotografía (moda, editorial, conciertos)</a>
-                    <a href="#videoclips" class="hero-link-item">★ videoclips & cortometrajes</a>
-                    <a href="#contenido" class="hero-link-item">★ creación de contenido (marcas)</a>
-                    <a href="#contacto" class="hero-link-item">★ contáctame</a>
+                <!-- SHOWREEL PRINCIPAL (GANCHO VISUAL OBLIGATORIO) -->
+                <div class="hero-reel">
+                    <video autoplay muted loop playsinline><source src="showreel.mp4" type="video/mp4"></video>
                 </div>
             </section>
 
-            <!-- FOTOGRAFÍA -->
+            <!-- MOTION / CINE (Videoclips, Cortos, Autor) -->
+            <section id="motion">
+                <h2 class="section-title">motion / cine (videoclips & cortos)</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-media">
+                            <video autoplay muted loop playsinline><source src="guaya-guaya.mp4" type="video/mp4"></video>
+                        </div>
+                        <div class="project-meta">
+                            <h3>Guaya Guaya - L Cata</h3>
+                            <p>Videoclip • 2026 // DP</p>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-media">
+                            <video autoplay muted loop playsinline><source src="obsesion.mp4" type="video/mp4"></video>
+                        </div>
+                        <div class="project-meta">
+                            <h3>Obsesión</h3>
+                            <p>Cortometraje • 2025 // DP</p>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-media">
+                            <video autoplay muted loop playsinline><source src="dime-como-hago.mp4" type="video/mp4"></video>
+                        </div>
+                        <div class="project-meta">
+                            <h3>Dime, ¿Cómo hago? - Rod Castel</h3>
+                            <p>Videoclip • 2026 // DP</p>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-media">
+                            <video autoplay muted loop playsinline><source src="experimental.mp4" type="video/mp4"></video>
+                        </div>
+                        <div class="project-meta">
+                            <h3>Pieza Industrial / Minimal</h3>
+                            <p>Cine de Autor • 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOTOGRAFÍA (Moda, Editorial, Artistas) -->
             <section id="fotografia">
-                <h2 class="section-title">fotografía (moda, editorial, artistas & conciertos)</h2>
+                <h2 class="section-title">fotografía (moda, editorial & música)</h2>
                 <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-media">
@@ -353,82 +405,25 @@
                             <img src="concierto.jpg" alt="Conciertos y Artistas">
                         </div>
                         <div class="project-meta">
-                            <h3>Live Session / Conciertos</h3>
-                            <p>Artistas • 2026</p>
+                            <h3>Live Session / Artistas</h3>
+                            <p>Conciertos • 2026</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- VIDEOCLIPS -->
-            <section id="videoclips">
-                <h2 class="section-title">videoclips</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-media">
-                            <video autoplay muted loop playsinline><source src="guaya-guaya.mp4" type="video/mp4"></video>
-                        </div>
-                        <div class="project-meta">
-                            <h3>Guaya Guaya - L Cata</h3>
-                            <p>Videoclip • 2026 // DP</p>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-media">
-                            <video autoplay muted loop playsinline><source src="dime-como-hago.mp4" type="video/mp4"></video>
-                        </div>
-                        <div class="project-meta">
-                            <h3>Dime, ¿Cómo hago? - Rod Castel</h3>
-                            <p>Videoclip • 2026 // DP</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CORTOMETRAJES -->
-            <section id="cortometrajes">
-                <h2 class="section-title">cortometrajes</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-media">
-                            <video autoplay muted loop playsinline><source src="obsesion.mp4" type="video/mp4"></video>
-                        </div>
-                        <div class="project-meta">
-                            <h3>Obsesión</h3>
-                            <p>Cortometraje • 2025 // Director de Fotografía</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- AUTOR (VIDEO EXPERIMENTAL) -->
-            <section id="autor">
-                <h2 class="section-title">autor (videos experimentales)</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-media">
-                            <video autoplay muted loop playsinline><source src="experimental.mp4" type="video/mp4"></video>
-                        </div>
-                        <div class="project-meta">
-                            <h3>Pieza Industrial / Minimal</h3>
-                            <p>Cine de Autor • 2026</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CREACIÓN DE CONTENIDO (INFLUENCER / MARCAS) -->
+            <!-- CREACIÓN DE CONTENIDO Y MARCAS -->
             <section id="contenido">
-                <h2 class="section-title">creación de contenido (marcas)</h2>
-                <p style="color: var(--text-muted); margin-bottom: 25px;">Campañas digitales, reels y contenido estratégico optimizado para marcas y creadores.</p>
+                <h2 class="section-title">marcas & creación de contenido</h2>
+                <p style="color: var(--text-muted); margin-bottom: 25px;">Campañas digitales y contenido estratégico optimizado para marcas de estilo de vida y dermocosmética.</p>
                 <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-media">
                             <video autoplay muted loop playsinline><source src="marca-collab.mp4" type="video/mp4"></video>
                         </div>
                         <div class="project-meta">
-                            <h3>Campaña Dermocosmética</h3>
-                            <p>Contenido Comercial / UGC • 2026</p>
+                            <h3>Campaña Comercial</h3>
+                            <p>Estrategia Digital • 2026</p>
                         </div>
                     </div>
                 </div>
@@ -446,9 +441,9 @@
                 </div>
             </section>
 
-            <!-- CONTÁCTAME -->
+            <!-- CONTACTO -->
             <section id="contacto" class="contact-section">
-                <h2>contáctame</h2>
+                <h2>contacto</h2>
                 <p style="color: var(--text-muted); margin-bottom: 25px;">¿Tienes un proyecto, campaña o colaboración en mente? Escríbeme directamente.</p>
                 <a href="mailto:Diegofarfan.media@gmail.com" class="contact-email">Diegofarfan.media@gmail.com</a>
             </section>
