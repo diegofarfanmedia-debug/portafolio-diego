@@ -3,24 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diego Farfán | Director Creativo</title>
+    <title>Diego Farfán | Director Creativo & Filmmaker</title>
     <style>
-        body { background: #000; color: #fff; margin: 0; font-family: sans-serif; }
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        h1 { font-size: 4rem; color: #fff; margin: 0; }
-        .accent { color: #C1FF72; } /* Tu verde lima */
-        .work { padding: 50px; }
-        video { width: 100%; max-width: 800px; border-radius: 8px; }
+        body { background: #000; color: #fff; margin: 0; font-family: system-ui, -apple-system, sans-serif; line-height: 1.5; }
+        header { padding: 40px 20px; text-align: center; }
+        h1 { font-size: 3.5rem; margin: 0; letter-spacing: -1px; }
+        .accent { color: #C1FF72; }
+        .subtitle { font-size: 1.2rem; color: #C1FF72; font-weight: bold; margin-top: 5px; }
+        
+        .section-green { background: #C1FF72; color: #000; padding: 60px 20px; text-align: center; }
+        .section-green h2 { font-size: 2.2rem; max-width: 800px; margin: 0 auto 30px auto; }
+        
+        .profile-img { width: 280px; height: 280px; border-radius: 50%; object-fit: cover; border: 4px solid #000; margin: 20px auto; display: block; }
+        .bio-text { max-width: 600px; margin: 20px auto 0 auto; font-size: 1.1rem; text-align: left; }
+
+        .project { padding: 40px 20px; max-width: 900px; margin: 0 auto; border-bottom: 1px solid #222; }
+        .project h2 { font-size: 2rem; margin-bottom: 5px; }
+        .project-tag { color: #C1FF72; font-weight: bold; font-size: 0.9rem; margin-bottom: 15px; text-transform: uppercase; }
+        .project-desc { color: #ccc; margin-bottom: 20px; }
+        
+        video, iframe { width: 100%; max-width: 900px; height: 500px; border-radius: 8px; background: #111; border: none; }
+        
+        .grid-photos { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+        .grid-photos img { width: 100%; height: 180px; object-fit: cover; border-radius: 6px; }
+
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        .skills-grid h3 { color: #C1FF72; border-bottom: 2px solid #C1FF72; padding-bottom: 5px; }
+        .skills-grid ul { list-style: none; padding: 0; color: #ccc; }
+        .skills-grid li { margin-bottom: 8px; }
+
+        footer { background: #000; color: #fff; padding: 60px 20px; text-align: center; border-top: 1px solid #222; }
+        footer h2 { color: #C1FF72; font-size: 2.5rem; }
     </style>
 </head>
 <body>
-    <div class="hero">
+
+    <!-- CABECERA -->
+    <header>
         <h1>DIEGO <span class="accent">FARFÁN</span></h1>
-        <p>Director creativo & filmmaker</p>
+        <div class="subtitle">Director creativo & filmmaker</div>
+    </header>
+
+    <!-- SECCIÓN BIO / VERDE -->
+    <section class="section-green">
+        <h2>CREO HISTORIAS VISUALES QUE CONECTAN, INSPIRAN Y DEJAN HUELLA.</h2>
+        <!-- Nota: Aquí puedes subir tu foto a GitHub y cambiar el enlace de abajo -->
+        <img src="tu-foto.jpg" alt="Diego Farfán" class="profile-img">
+        <div class="bio-text">
+            <p>Soy un Director Creativo y Cineasta de Lima, Perú.</p>
+            <p>Me especializo en la narrativa visual, la dirección y la creación de contenido cinematográfico para marcas, artistas y proyectos impulsados por la cultura.</p>
+            <p>Mi trabajo combina la moda, la música y la estética urbana con un fuerte enfoque en la emoción, el ritmo y la identidad.</p>
+        </div>
+    </section>
+
+    <!-- PROYECTO: EL ENSAYO -->
+    <div class="project">
+        <h2>EL ENSAYO</h2>
+        <div class="project-tag">Corto de 1 min – 2026</div>
+        <!-- Reemplaza el src con el enlace de tu video o YouTube/Vimeo -->
+        <video controls>
+            <source src="tu-video-ensayo.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+        </video>
     </div>
-    <div class="work">
-        <h2>PORTAFOLIO</h2>
-        <!-- Aquí pondremos tus videos -->
+
+    <!-- PROYECTO: OBSESIÓN -->
+    <div class="project">
+        <h2>OBSESIÓN</h2>
+        <div class="project-tag">Cortometraje – 2025</div>
+        <p class="project-desc">Tras ser secuestrado y sometido a una brutal alteración facial para reemplazar a la difunta esposa de su captor, una joven despojada de su identidad emprende un implacable camino de venganza para recuperar su rostro y hacer pagar al responsable.</p>
+        <video controls>
+            <source src="tu-video-obsesion.mp4" type="video/mp4">
+        </video>
     </div>
+
+    <!-- LO QUE HAGO (HABILIDADES) -->
+    <section>
+        <div class="skills-grid">
+            <div>
+                <h3>FILMMAKER</h3>
+                <ul>
+                    <li>• Cinematografía</li>
+                    <li>• Cortometrajes</li>
+                    <li>• Videoclips</li>
+                    <li>• Fashion films</li>
+                    <li>• Experimental</li>
+                </ul>
+            </div>
+            <div>
+                <h3>DIRECCIÓN CREATIVA</h3>
+                <ul>
+                    <li>• Conceptos visuales</li>
+                    <li>• Dirección de arte</li>
+                    <li>• Campañas</li>
+                    <li>• Identidad de marca</li>
+                </ul>
+            </div>
+            <div>
+                <h3>FOTOGRAFÍA</h3>
+                <ul>
+                    <li>• Moda</li>
+                    <li>• Retrato</li>
+                    <li>• Editorial</li>
+                    <li>• Conciertos</li>
+                    <li>• Artistas</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CONTACTO -->
+    <footer>
+        <h2>CREEEEMOS ALGO EXTRAAAAAORDINARIOOOOO!!!</h2>
+        <p><strong>DIEGO FARFÁN</strong><br><span class="accent">Director creativo & filmmaker</span></p>
+        <p style="margin-top: 30px;">
+            IG: Diego_farfan____<br>
+            diegofarfan.media@gmail.com<br>
+            +51 977403 711
+        </p>
+        <p style="color: #666; font-size: 0.8rem; margin-top: 40px;">Disponible para proyectos a nivel mundial.</p>
+    </footer>
+
 </body>
 </html>
