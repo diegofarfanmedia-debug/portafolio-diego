@@ -6,20 +6,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --accent: #ffffff; 
-            --bg-blueprint: #1b365d; /* Tono cianotipia profundo de referencia */
-            --border: rgba(255, 255, 255, 0.2);
+            --bg-color: #f4f6f9;
+            --blueprint-blue: #1b365d;
+            --text-main: #111111;
+            --text-muted: #555555;
+            --border: #d0d7de;
         }
         
         * { cursor: default; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         
         body { 
-            background-color: var(--bg-blueprint);
-            /* Simulación de textura de papel/grano con CSS */
-            background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 0);
-            background-size: 24px 24px;
-            color: #fff; 
+            background-color: var(--bg-color);
+            /* Sutil textura de papel o trama limpia */
+            background-image: radial-gradient(rgba(27, 54, 93, 0.04) 1px, transparent 0);
+            background-size: 20px 20px;
+            color: var(--text-main); 
             margin: 0; 
             font-family: 'Syne', sans-serif; 
             overflow-x: hidden; 
@@ -31,7 +33,7 @@
             min-height: 100vh;
         }
 
-        /* SIDEBAR ESTILO COLLAGE DE AUTOR */
+        /* SIDEBAR ESTILO ARCHIVO EDITORIAL */
         aside {
             position: fixed;
             top: 0;
@@ -43,7 +45,7 @@
             flex-direction: column;
             justify-content: space-between;
             border-right: 1px solid var(--border);
-            background: rgba(27, 54, 93, 0.95);
+            background: rgba(244, 246, 249, 0.95);
             backdrop-filter: blur(5px);
             z-index: 1000;
         }
@@ -53,11 +55,10 @@
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #fff;
+            color: var(--blueprint-blue);
             text-decoration: none;
             display: block;
             margin-bottom: 30px;
-            opacity: 0.8;
         }
 
         .side-nav {
@@ -67,17 +68,17 @@
         }
 
         .side-nav a {
-            color: #fff;
+            color: var(--text-main);
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             text-transform: lowercase;
             letter-spacing: 0.5px;
-            transition: opacity 0.2s;
+            transition: color 0.2s;
         }
 
         .side-nav a:hover {
-            opacity: 0.5;
+            color: var(--blueprint-blue);
         }
 
         .side-links-group {
@@ -86,15 +87,16 @@
             flex-direction: column;
             gap: 8px;
             font-size: 0.85rem;
-            opacity: 0.7;
         }
 
         .side-links-group a {
-            color: #fff;
+            color: var(--text-muted);
             text-decoration: none;
+            transition: color 0.2s;
         }
 
         .side-links-group a:hover {
+            color: var(--blueprint-blue);
             text-decoration: underline;
         }
 
@@ -113,18 +115,18 @@
             border-bottom: none;
         }
 
-        /* HERO CON ESTILO EDITORIAL / ESTRELLITAS */
+        /* HERO CON ESTILO EDITORIAL */
         .hero-section {
             padding-top: 10px;
-            position: relative;
         }
 
         .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-size: clamp(2.3ul, 4.5vw, 4rem);
             font-weight: 800;
             text-transform: lowercase;
-            line-height: 1;
-            margin: 0 0 20px 0;
+            line-height: 1.1;
+            margin: 0 0 30px 0;
+            color: var(--blueprint-blue);
             letter-spacing: -1px;
         }
 
@@ -133,35 +135,36 @@
             flex-direction: column;
             align-items: flex-start;
             gap: 12px;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
         .hero-link-item {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
             text-decoration: none;
-            color: #fff;
-            transition: transform 0.2s ease;
+            color: var(--text-main);
+            transition: transform 0.2s ease, color 0.2s ease;
         }
 
         .hero-link-item:hover {
             transform: translateX(6px);
-            opacity: 0.8;
+            color: var(--blueprint-blue);
         }
 
-        /* GRILLA DE PROYECTOS TIPO COLLAGE */
+        /* GRILLA DE PROYECTOS TIPO COLLAGE LIMPIO */
         .section-title {
             font-size: 1.3rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 40px;
+            color: var(--blueprint-blue);
         }
 
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
+            gap: 35px;
         }
 
         .project-card {
@@ -175,35 +178,36 @@
         .project-media {
             width: 100%;
             height: 380px;
-            background: #000;
-            border-radius: 2px;
+            background: #e1e4e8;
+            border-radius: 4px;
             overflow: hidden;
             border: 1px solid var(--border);
-            filter: contrast(1.1);
         }
 
         .project-media video, .project-media img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.5s ease, filter 0.3s ease;
         }
 
         .project-card:hover .project-media video, 
         .project-card:hover .project-media img {
-            transform: scale(1.02);
+            transform: scale(1.03);
+            filter: brightness(1.05);
         }
 
         .project-meta h3 {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: 800;
             text-transform: uppercase;
             margin: 0;
+            color: var(--blueprint-blue);
         }
 
         .project-meta p {
             font-size: 0.8rem;
-            opacity: 0.7;
+            color: var(--text-muted);
             font-family: monospace;
             margin: 0;
         }
@@ -220,14 +224,14 @@
             width: 100%;
             height: 420px;
             object-fit: cover;
-            border-radius: 2px;
+            border-radius: 4px;
             border: 1px solid var(--border);
-            filter: grayscale(40%) contrast(1.1);
         }
 
         .about-text p {
             font-size: 1.05rem;
-            line-height: 1.6;
+            line-height: 1.7;
+            color: var(--text-muted);
             margin-bottom: 20px;
         }
 
@@ -237,14 +241,15 @@
             font-weight: 800;
             text-transform: lowercase;
             margin: 0 0 20px 0;
+            color: var(--blueprint-blue);
         }
 
         .contact-email {
             font-size: 1.3rem;
             font-weight: 700;
-            color: #fff;
+            color: var(--blueprint-blue);
             text-decoration: none;
-            border-bottom: 1px solid #fff;
+            border-bottom: 2px solid var(--blueprint-blue);
             padding-bottom: 4px;
             display: inline-block;
         }
@@ -262,7 +267,7 @@
 
     <div class="site-wrapper">
 
-        <!-- MENÚ LATERAL ESTILO ARCHIVO -->
+        <!-- MENÚ LATERAL -->
         <aside>
             <div>
                 <a href="#home" class="brand-title">diego farfán</a>
@@ -278,13 +283,13 @@
                 </div>
             </div>
             <div class="side-links-group" style="margin-top: 0;">
-                <span style="font-family: monospace;">lima, perú</span>
+                <span style="font-family: monospace; color: var(--text-muted);">lima, perú</span>
             </div>
         </aside>
 
         <!-- CONTENIDO PRINCIPAL -->
         <main>
-            <!-- HERO CON ENLACES ESTILO CIANOTIPIA -->
+            <!-- HERO -->
             <section id="home" class="hero-section">
                 <h1 class="hero-title">fotografía / conceptualización / dirección creativa</h1>
                 
@@ -350,7 +355,7 @@
                     <img src="tu-foto.jpg" alt="Diego Farfán" class="about-img">
                     <div class="about-text">
                         <p>Me especializo en la dirección de fotografía, el diseño conceptual y la creación de piezas audiovisuales con un fuerte carácter estético y experimental.</p>
-                        <p>Trabajo de la mano con artistas, marcas y proyectos independientes que buscan un lenguaje visual crudo y sofisticado.</p>
+                        <p>Trabajo de la mano con artistas, marcas y proyectos independientes que buscan un lenguaje visual sofisticado y memorable.</p>
                     </div>
                 </div>
             </section>
@@ -358,7 +363,7 @@
             <!-- CONTACTO -->
             <section id="contacto" class="contact-section">
                 <h2>hablemos de tu proyecto</h2>
-                <p style="opacity: 0.8; margin-bottom: 25px;">Escríbeme directamente para cotizaciones, colaboraciones o consultas creativas.</p>
+                <p style="color: var(--text-muted); margin-bottom: 25px;">Escríbeme directamente para cotizaciones, colaboraciones o consultas creativas.</p>
                 <a href="mailto:Diegofarfan.media@gmail.com" class="contact-email">Diegofarfan.media@gmail.com</a>
             </section>
         </main>
