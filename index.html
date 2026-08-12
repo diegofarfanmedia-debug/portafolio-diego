@@ -201,25 +201,51 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
+            position: relative;
         }
 
         .project-media {
             width: 100%;
             height: 380px;
-            background: #e1e4e8;
+            background: #111;
             border-radius: 4px;
             overflow: hidden;
             border: 1px solid var(--border);
+            position: relative;
         }
 
-        .project-media video, .project-media img {
+        .project-media img, .project-media iframe {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease, filter 0.3s ease;
+            display: block;
+            border: none;
         }
 
-        .project-card:hover .project-media video, 
+        /* Indicador visual de que es un video interactivo */
+        .play-badge {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(27, 54, 93, 0.85);
+            color: #fff;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 2px;
+            backdrop-filter: blur(4px);
+            z-index: 10;
+            pointer-events: none;
+            transition: background 0.3s;
+        }
+
+        .project-card:hover .play-badge {
+            background: var(--blueprint-blue);
+        }
+
         .project-card:hover .project-media img {
             transform: scale(1.03);
             filter: brightness(1.05);
@@ -343,32 +369,34 @@
                 </div>
             </section>
 
-            <!-- MOTION / CINE (CON TUS VIDEOS DE YOUTUBE) -->
+            <!-- MOTION / CINE (CON VIDEOS INTERACTIVOS AL PASAR EL CURSOR) -->
             <section id="motion">
                 <h2 class="section-title">motion / cine (videoclips)</h2>
                 <div class="projects-grid">
                     
                     <!-- Guaya Guaya -->
-                    <a href="https://www.youtube.com/watch?v=wrGP7YdDEyk" target="_blank" class="project-card">
+                    <div class="project-card" onmouseenter="swapToVideo(this, 'wrGP7YdDEyk')" onmouseleave="swapToImage(this, 'wrGP7YdDEyk')" onclick="openYouTube('https://www.youtube.com/watch?v=wrGP7YdDEyk')">
                         <div class="project-media">
                             <img src="https://img.youtube.com/vi/wrGP7YdDEyk/maxresdefault.jpg" alt="Guaya Guaya">
+                            <span class="play-badge">▶ ver en youtube</span>
                         </div>
                         <div class="project-meta">
                             <h3>Guaya Guaya - L Cata</h3>
                             <p>Videoclip • 2026 // DP & Post-prod</p>
                         </div>
-                    </a>
+                    </div>
 
                     <!-- Dime, ¿Cómo hago? -->
-                    <a href="https://www.youtube.com/watch?v=M3XugrBFs4k" target="_blank" class="project-card">
+                    <div class="project-card" onmouseenter="swapToVideo(this, 'M3XugrBFs4k')" onmouseleave="swapToImage(this, 'M3XugrBFs4k')" onclick="openYouTube('https://www.youtube.com/watch?v=M3XugrBFs4k')">
                         <div class="project-media">
                             <img src="https://img.youtube.com/vi/M3XugrBFs4k/maxresdefault.jpg" alt="Dime, ¿Cómo hago?">
+                            <span class="play-badge">▶ ver en youtube</span>
                         </div>
                         <div class="project-meta">
                             <h3>Rod Castel - Dime, ¿Cómo hago?</h3>
                             <p>Videoclip • 2026 // DP</p>
                         </div>
-                    </a>
+                    </div>
 
                 </div>
             </section>
@@ -437,5 +465,32 @@
 
     </div>
 
+    <!-- SCRIPT PARA EL EFECTO TIPO GIF AL PASAR EL CURSOR -->
+    <script>
+        function swapToVideo(card, videoId) {
+            const mediaContainer = card.querySelector('.project-media');
+            const badge = card.querySelector('.play-badge');
+            // Reemplaza la imagen por el iframe de YouTube reproduciéndose en mute y sin controles (efecto loop/gif)
+            mediaContainer.innerHTML = `
+                <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&disablekb=1&modestbranding=1" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                </iframe>
+                <div class="play-badge" style="background: #1b365d;">▶ ver en youtube</div>
+            `;
+        }
+
+        function swapToImage(card, videoId) {
+            const mediaContainer = card.querySelector('.project-media');
+            // Vuelve a colocar la imagen estática original al retirar el cursor
+            mediaContainer.innerHTML = `
+                <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" alt="Video thumbnail">
+                <div class="play-badge">▶ ver en youtube</div>
+            `;
+        }
+
+        function openYouTube(url) {
+            window.open(url, '_blank');
+        }
+    </script>
 </body>
 </html>
