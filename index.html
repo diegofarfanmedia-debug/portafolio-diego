@@ -18,7 +18,6 @@
         
         body { 
             background-color: var(--bg-color);
-            /* Sutil textura de papel o trama limpia */
             background-image: radial-gradient(rgba(27, 54, 93, 0.04) 1px, transparent 0);
             background-size: 20px 20px;
             color: var(--text-main); 
@@ -29,16 +28,16 @@
 
         .site-wrapper {
             display: grid;
-            grid-template-columns: 260px 1fr;
+            grid-template-columns: 280px 1fr;
             min-height: 100vh;
         }
 
-        /* SIDEBAR ESTILO ARCHIVO EDITORIAL */
+        /* SIDEBAR DE NAVEGACIÓN EXTENDIDA */
         aside {
             position: fixed;
             top: 0;
             left: 0;
-            width: 260px;
+            width: 280px;
             height: 100vh;
             padding: 40px 30px;
             display: flex;
@@ -48,6 +47,7 @@
             background: rgba(244, 246, 249, 0.95);
             backdrop-filter: blur(5px);
             z-index: 1000;
+            overflow-y: auto;
         }
 
         .brand-title {
@@ -58,20 +58,20 @@
             color: var(--blueprint-blue);
             text-decoration: none;
             display: block;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .side-nav {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .side-nav a {
             color: var(--text-main);
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             text-transform: lowercase;
             letter-spacing: 0.5px;
             transition: color 0.2s;
@@ -81,11 +81,31 @@
             color: var(--blueprint-blue);
         }
 
-        .side-links-group {
-            margin-top: 30px;
+        /* Submenús internos para fotografía */
+        .side-subnav {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
+            padding-left: 15px;
+            margin: 4px 0 8px 0;
+            border-left: 2px solid var(--border);
+        }
+
+        .side-subnav a {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .side-subnav a:hover {
+            color: var(--blueprint-blue);
+        }
+
+        .side-links-group {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
             font-size: 0.85rem;
         }
 
@@ -115,17 +135,17 @@
             border-bottom: none;
         }
 
-        /* HERO CON ESTILO EDITORIAL */
+        /* HERO */
         .hero-section {
             padding-top: 10px;
         }
 
         .hero-title {
-            font-size: clamp(2.3ul, 4.5vw, 4rem);
+            font-size: clamp(2.2rem, 4.2vw, 3.8rem);
             font-weight: 800;
             text-transform: lowercase;
             line-height: 1.1;
-            margin: 0 0 30px 0;
+            margin: 0 0 25px 0;
             color: var(--blueprint-blue);
             letter-spacing: -1px;
         }
@@ -134,12 +154,12 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 12px;
+            gap: 10px;
             margin-top: 20px;
         }
 
         .hero-link-item {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
             text-decoration: none;
             color: var(--text-main);
@@ -151,13 +171,13 @@
             color: var(--blueprint-blue);
         }
 
-        /* GRILLA DE PROYECTOS TIPO COLLAGE LIMPIO */
+        /* SECCIONES Y GRILLAS */
         .section-title {
             font-size: 1.3rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             color: var(--blueprint-blue);
         }
 
@@ -267,22 +287,35 @@
 
     <div class="site-wrapper">
 
-        <!-- MENÚ LATERAL -->
+        <!-- MENÚ LATERAL ORGANIZADO -->
         <aside>
             <div>
-                <a href="#home" class="brand-title">diego farfán</a>
+                <a href="#home" class="brand-title">diego farfán<br><span style="font-size: 0.75rem; font-weight: 600; opacity: 0.8;">director creativo & filmmaker</span></a>
+                
                 <nav class="side-nav">
-                    <a href="#proyectos">portafolio</a>
-                    <a href="#contacto">cotiza tu idea</a>
+                    <a href="#fotografia">fotografía</a>
+                    <div class="side-subnav">
+                        <a href="#fotografia">moda</a>
+                        <a href="#fotografia">editorial</a>
+                        <a href="#fotografia">artistas</a>
+                        <a href="#fotografia">conciertos</a>
+                    </div>
+                    
+                    <a href="#videoclips">videoclips</a>
+                    <a href="#cortometrajes">cortometrajes</a>
+                    <a href="#autor">autor (experimental)</a>
+                    <a href="#contenido">creación de contenido</a>
                     <a href="#about">sobre mí</a>
+                    <a href="#contacto">contáctame</a>
                 </nav>
+
                 <div class="side-links-group">
                     <a href="https://instagram.com" target="_blank">instagram</a>
                     <a href="https://youtube.com" target="_blank">youtube</a>
                     <a href="https://tiktok.com" target="_blank">tiktok</a>
                 </div>
             </div>
-            <div class="side-links-group" style="margin-top: 0;">
+            <div class="side-links-group" style="margin-top: 15px;">
                 <span style="font-family: monospace; color: var(--text-muted);">lima, perú</span>
             </div>
         </aside>
@@ -291,30 +324,46 @@
         <main>
             <!-- HERO -->
             <section id="home" class="hero-section">
-                <h1 class="hero-title">fotografía / conceptualización / dirección creativa</h1>
+                <h1 class="hero-title">diego farfán / director creativo & filmmaker</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin-bottom: 25px;">Construyendo identidades visuales, atmósferas y narrativas cinematográficas desde Lima.</p>
                 
                 <div class="hero-links-cluster">
-                    <a href="#proyectos" class="hero-link-item">★ portafolio</a>
-                    <a href="#contacto" class="hero-link-item">★ cotiza tu idea</a>
-                    <a href="#about" class="hero-link-item">★ content creation</a>
+                    <a href="#fotografia" class="hero-link-item">★ fotografía (moda, editorial, conciertos)</a>
+                    <a href="#videoclips" class="hero-link-item">★ videoclips & cortometrajes</a>
+                    <a href="#contenido" class="hero-link-item">★ creación de contenido (marcas)</a>
+                    <a href="#contacto" class="hero-link-item">★ contáctame</a>
                 </div>
             </section>
 
-            <!-- PROYECTOS -->
-            <section id="proyectos">
-                <h2 class="section-title">trabajos seleccionados</h2>
+            <!-- FOTOGRAFÍA -->
+            <section id="fotografia">
+                <h2 class="section-title">fotografía (moda, editorial, artistas & conciertos)</h2>
                 <div class="projects-grid">
-                    
                     <div class="project-card">
                         <div class="project-media">
-                            <video autoplay muted loop playsinline><source src="obsesion.mp4" type="video/mp4"></video>
+                            <img src="nunca-huyo.jpg" alt="Moda y Editorial">
                         </div>
                         <div class="project-meta">
-                            <h3>Obsesión</h3>
-                            <p>Cortometraje • 2025 // DP</p>
+                            <h3>Colección Editorial</h3>
+                            <p>Moda • 2026</p>
                         </div>
                     </div>
+                    <div class="project-card">
+                        <div class="project-media">
+                            <img src="concierto.jpg" alt="Conciertos y Artistas">
+                        </div>
+                        <div class="project-meta">
+                            <h3>Live Session / Conciertos</h3>
+                            <p>Artistas • 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
+            <!-- VIDEOCLIPS -->
+            <section id="videoclips">
+                <h2 class="section-title">videoclips</h2>
+                <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-media">
                             <video autoplay muted loop playsinline><source src="guaya-guaya.mp4" type="video/mp4"></video>
@@ -324,7 +373,6 @@
                             <p>Videoclip • 2026 // DP</p>
                         </div>
                     </div>
-
                     <div class="project-card">
                         <div class="project-media">
                             <video autoplay muted loop playsinline><source src="dime-como-hago.mp4" type="video/mp4"></video>
@@ -334,36 +382,74 @@
                             <p>Videoclip • 2026 // DP</p>
                         </div>
                     </div>
-
-                    <div class="project-card">
-                        <div class="project-media">
-                            <img src="nunca-huyo.jpg" alt="Nunca hubo nada malo">
-                        </div>
-                        <div class="project-meta">
-                            <h3>Nunca hubo nada malo</h3>
-                            <p>Fashion Film • 2026</p>
-                        </div>
-                    </div>
-
                 </div>
             </section>
 
-            <!-- ABOUT ME -->
+            <!-- CORTOMETRAJES -->
+            <section id="cortometrajes">
+                <h2 class="section-title">cortometrajes</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-media">
+                            <video autoplay muted loop playsinline><source src="obsesion.mp4" type="video/mp4"></video>
+                        </div>
+                        <div class="project-meta">
+                            <h3>Obsesión</h3>
+                            <p>Cortometraje • 2025 // Director de Fotografía</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AUTOR (VIDEO EXPERIMENTAL) -->
+            <section id="autor">
+                <h2 class="section-title">autor (videos experimentales)</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-media">
+                            <video autoplay muted loop playsinline><source src="experimental.mp4" type="video/mp4"></video>
+                        </div>
+                        <div class="project-meta">
+                            <h3>Pieza Industrial / Minimal</h3>
+                            <p>Cine de Autor • 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CREACIÓN DE CONTENIDO (INFLUENCER / MARCAS) -->
+            <section id="contenido">
+                <h2 class="section-title">creación de contenido (marcas)</h2>
+                <p style="color: var(--text-muted); margin-bottom: 25px;">Campañas digitales, reels y contenido estratégico optimizado para marcas y creadores.</p>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-media">
+                            <video autoplay muted loop playsinline><source src="marca-collab.mp4" type="video/mp4"></video>
+                        </div>
+                        <div class="project-meta">
+                            <h3>Campaña Dermocosmética</h3>
+                            <p>Contenido Comercial / UGC • 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SOBRE MÍ -->
             <section id="about">
                 <h2 class="section-title">sobre mí</h2>
                 <div class="about-grid">
                     <img src="tu-foto.jpg" alt="Diego Farfán" class="about-img">
                     <div class="about-text">
-                        <p>Me especializo en la dirección de fotografía, el diseño conceptual y la creación de piezas audiovisuales con un fuerte carácter estético y experimental.</p>
-                        <p>Trabajo de la mano con artistas, marcas y proyectos independientes que buscan un lenguaje visual sofisticado y memorable.</p>
+                        <p>Soy Diego Farfán, director creativo, filmmaker y fotógrafo basado en Lima. Mi trabajo explora la intersección entre la estética de la moda, la música y el cine de autor.</p>
+                        <p>Me especializo en transformar conceptos visuales crudos en piezas con un lenguaje estético sumamente sofisticado y memorable.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- CONTACTO -->
+            <!-- CONTÁCTAME -->
             <section id="contacto" class="contact-section">
-                <h2>hablemos de tu proyecto</h2>
-                <p style="color: var(--text-muted); margin-bottom: 25px;">Escríbeme directamente para cotizaciones, colaboraciones o consultas creativas.</p>
+                <h2>contáctame</h2>
+                <p style="color: var(--text-muted); margin-bottom: 25px;">¿Tienes un proyecto, campaña o colaboración en mente? Escríbeme directamente.</p>
                 <a href="mailto:Diegofarfan.media@gmail.com" class="contact-email">Diegofarfan.media@gmail.com</a>
             </section>
         </main>
