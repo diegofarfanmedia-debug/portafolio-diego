@@ -82,7 +82,6 @@
             color: var(--blueprint-blue);
         }
 
-        /* Submenús estructurados */
         .side-subgroup {
             display: flex;
             flex-direction: column;
@@ -162,7 +161,6 @@
             font-weight: 600;
         }
 
-        /* REEL PRINCIPAL */
         .hero-reel {
             width: 100%;
             height: 500px;
@@ -195,6 +193,7 @@
             gap: 35px;
         }
 
+        /* Estilo general de tarjetas */
         .project-card {
             text-decoration: none;
             color: inherit;
@@ -202,7 +201,6 @@
             flex-direction: column;
             gap: 12px;
             position: relative;
-            cursor: pointer;
         }
 
         .project-media {
@@ -215,16 +213,21 @@
             position: relative;
         }
 
-        .project-media img, .project-media iframe {
+        /* Videos locales o imágenes que hacen zoom */
+        .project-media video, .project-media img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease, filter 0.3s ease;
             display: block;
-            border: none;
         }
 
-        /* Indicador visual */
+        .project-card:hover .project-media video, 
+        .project-card:hover .project-media img {
+            transform: scale(1.03);
+            filter: brightness(1.05);
+        }
+
         .play-badge {
             position: absolute;
             bottom: 15px;
@@ -245,11 +248,6 @@
 
         .project-card:hover .play-badge {
             background: var(--blueprint-blue);
-        }
-
-        .project-card:hover .project-media img {
-            transform: scale(1.03);
-            filter: brightness(1.05);
         }
 
         .project-meta h3 {
@@ -309,7 +307,6 @@
             display: inline-block;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 900px) {
             .site-wrapper { display: block; }
             aside { position: relative; width: 100%; height: auto; padding: 25px; border-right: none; border-bottom: 1px solid var(--border); }
@@ -370,34 +367,36 @@
                 </div>
             </section>
 
-            <!-- MOTION / CINE (CON EFECTO GIF DESDE EL SEGUNDO 10) -->
+            <!-- MOTION / CINE (MEZCLA DE VIDEOS LOCALES EN BUCLE Y ENLACES DE YOUTUBE) -->
             <section id="motion">
                 <h2 class="section-title">motion / cine (videoclips)</h2>
                 <div class="projects-grid">
                     
-                    <!-- Guaya Guaya -->
-                    <div class="project-card" onmouseenter="swapToVideo(this, 'wrGP7YdDEyk')" onmouseleave="swapToImage(this, 'wrGP7YdDEyk')" onclick="openYouTube('https://www.youtube.com/watch?v=wrGP7YdDEyk')">
+                    <!-- CASO A: Video que tienes en tu PC / carpeta (Se reproduce como un gif solo) -->
+                    <div class="project-card">
+                        <div class="project-media">
+                            <video autoplay muted loop playsinline>
+                                <source src="tu-video-local.mp4" type="video/mp4">
+                            </video>
+                            <span class="play-badge">▶ reproduciendo</span>
+                        </div>
+                        <div class="project-meta">
+                            <h3>Proyecto Local - Archivo PC</h3>
+                            <p>Videoclip • 2026 // DP</p>
+                        </div>
+                    </div>
+
+                    <!-- CASO B: Video que está en YouTube (Usa miniatura y abre enlace) -->
+                    <a href="https://www.youtube.com/watch?v=wrGP7YdDEyk" target="_blank" class="project-card">
                         <div class="project-media">
                             <img src="https://img.youtube.com/vi/wrGP7YdDEyk/maxresdefault.jpg" alt="Guaya Guaya">
                             <span class="play-badge">▶ ver en youtube</span>
                         </div>
                         <div class="project-meta">
                             <h3>Guaya Guaya - L Cata</h3>
-                            <p>Videoclip • 2026 // DP & Post-prod</p>
+                            <p>Videoclip • 2026 // YouTube</p>
                         </div>
-                    </div>
-
-                    <!-- Dime, ¿Cómo hago? -->
-                    <div class="project-card" onmouseenter="swapToVideo(this, 'M3XugrBFs4k')" onmouseleave="swapToImage(this, 'M3XugrBFs4k')" onclick="openYouTube('https://www.youtube.com/watch?v=M3XugrBFs4k')">
-                        <div class="project-media">
-                            <img src="https://img.youtube.com/vi/M3XugrBFs4k/maxresdefault.jpg" alt="Dime, ¿Cómo hago?">
-                            <span class="play-badge">▶ ver en youtube</span>
-                        </div>
-                        <div class="project-meta">
-                            <h3>Rod Castel - Dime, ¿Cómo hago?</h3>
-                            <p>Videoclip • 2026 // DP</p>
-                        </div>
-                    </div>
+                    </a>
 
                 </div>
             </section>
@@ -465,31 +464,5 @@
         </main>
 
     </div>
-
-    <!-- SCRIPT CONFIGURADO DESDE EL SEGUNDO 10 EN MUTE -->
-    <script>
-        function swapToVideo(card, videoId) {
-            const mediaContainer = card.querySelector('.project-media');
-            // Se agregó start=10, autoplay=1, mute=1 para que actúe como un gif silenciado desde el segundo 10
-            mediaContainer.innerHTML = `
-                <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&start=10&controls=0&loop=1&playlist=${videoId}&disablekb=1&modestbranding=1" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
-                </iframe>
-                <div class="play-badge" style="background: #1b365d;">▶ ver en youtube</div>
-            `;
-        }
-
-        function swapToImage(card, videoId) {
-            const mediaContainer = card.querySelector('.project-media');
-            mediaContainer.innerHTML = `
-                <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" alt="Video thumbnail">
-                <div class="play-badge">▶ ver en youtube</div>
-            `;
-        }
-
-        function openYouTube(url) {
-            window.open(url, '_blank');
-        }
-    </script>
 </body>
 </html>
