@@ -2,26 +2,26 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>DIEGO FARFÁN | CREATIVE DIRECTOR</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>DIEGO FARFÁN | CREATIVE DIRECTOR & FILMMAKER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --accent: #C1FF72; --black: #000; }
+        :root { --accent: #C1FF72; --black: #080808; --gray: #888; --border: #1a1a1a; }
         
-        * { cursor: none !important; }
+        * { cursor: none !important; box-sizing: border-box; }
         body { background: var(--black); color: #fff; margin: 0; font-family: 'Syne', sans-serif; overflow-x: hidden; }
         
-        .custom-cursor { position: fixed; width: 15px; height: 15px; background: var(--accent); border-radius: 50%; pointer-events: none; transition: transform 0.2s ease; z-index: 999999; transform: translate(-50%, -50%); mix-blend-mode: difference; }
-        .custom-cursor.hovered { transform: translate(-50%, -50%) scale(3); }
+        .custom-cursor { position: fixed; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; pointer-events: none; transition: transform 0.15s ease; z-index: 999999; transform: translate(-50%, -50%); mix-blend-mode: difference; }
+        .custom-cursor.hovered { transform: translate(-50%, -50%) scale(2.5); }
 
-        /* PRELOADER COLLAGE */
+        /* PRELOADER */
         #preloader { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: var(--accent); z-index: 9999; 
             display: grid; padding: 20px; gap: 15px;
             grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr);
-            animation: fadeOut 1s ease 4s forwards;
+            animation: fadeOut 0.8s ease 3.5s forwards;
         }
-        .item { overflow: hidden; border-radius: 4px; animation: popIn 0.8s ease forwards; opacity: 0; }
+        .item { overflow: hidden; border-radius: 4px; animation: popIn 0.6s ease forwards; opacity: 0; }
         .item img { width: 100%; height: 100%; object-fit: cover; }
         .large { grid-column: span 2; grid-row: span 2; }
         .tall { grid-row: span 2; }
@@ -29,143 +29,123 @@
         @keyframes popIn { to { opacity: 1; transform: scale(1); } }
         @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
 
-        /* ESTRUCTURA GENERAL */
-        header { padding: 100px 5% 60px 5%; max-width: 1200px; margin: 0 auto; text-align: left; }
-        .hero-title { font-size: clamp(4rem, 9vw, 8rem); font-weight: 800; text-transform: uppercase; line-height: 0.95; letter-spacing: -2px; margin: 0; }
-        .hero-subtitle { font-size: 1.15rem; color: var(--accent); font-weight: 600; margin-top: 25px; text-transform: uppercase; letter-spacing: 3px; }
+        /* HEADER */
+        header { padding: 80px 5% 40px 5%; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--border); }
+        .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; text-transform: uppercase; line-height: 1; letter-spacing: -1px; margin: 0; }
+        .hero-subtitle { font-size: 0.95rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; text-align: right; }
 
-        .section-green { background: var(--accent); color: var(--black); padding: 100px 5%; }
-        .section-green-content { max-width: 1200px; margin: 0 auto; text-align: left; }
-        .bio-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; margin-top: 40px; }
-        .profile-img { width: 100%; height: 480px; object-fit: cover; border-radius: 8px; filter: contrast(1.05); }
+        /* BIO SECTION */
+        .section-green { background: var(--accent); color: var(--black); padding: 80px 5%; }
+        .section-green-content { max-width: 1200px; margin: 0 auto; }
+        .bio-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; text-transform: uppercase; line-height: 1.2; margin: 0 0 40px 0; max-width: 900px; }
+        .bio-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; align-items: center; }
+        .profile-img { width: 100%; height: 420px; object-fit: cover; border-radius: 6px; }
+        .bio-text p { font-size: 1.1rem; font-weight: 600; line-height: 1.6; margin: 0 0 20px 0; color: #111; }
 
-        .project { padding: 100px 5%; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #151515; text-align: left; }
+        /* PROJECTS */
+        .project { padding: 80px 5%; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid var(--border); }
         .project-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
-        .project-title { font-size: clamp(2rem, 5vw, 4rem); font-weight: 800; text-transform: uppercase; line-height: 1; margin: 0; }
-        .project-tag { color: var(--accent); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
-        
-        .zoom-img { overflow: hidden; border-radius: 8px; position: relative; }
-        video, .media-item { width: 100%; display: block; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease; background: #0a0a0a; height: 580px; object-fit: cover; }
-        .zoom-img:hover video, .covers-item:hover img, .categories-grid img:hover { transform: scale(1.03); filter: brightness(1.1); }
+        .project-title { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; text-transform: uppercase; line-height: 1; margin: 0; }
+        .project-tag { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        .project-desc { font-size: 1rem; color: #ccc; line-height: 1.6; max-width: 800px; margin-bottom: 25px; }
+        .project-role { font-weight: 700; color: var(--accent); margin-bottom: 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* PORTADAS ASIMÉTRICAS */
-        .covers-section { padding: 100px 5%; max-width: 1200px; margin: 0 auto; text-align: left; }
-        .covers-section h2 { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800; text-transform: uppercase; margin: 0 0 50px 0; }
-        .covers-grid { display: grid; grid-template-columns: 1.2fr 0.8fr 1fr; gap: 20px; align-items: center; }
-        .cover-item:nth-child(1) img { height: 420px; }
-        .cover-item:nth-child(2) img { height: 320px; }
-        .cover-item:nth-child(3) img { height: 480px; }
-        .cover-item img { width: 100%; object-fit: cover; border-radius: 6px; margin-bottom: 15px; transition: transform 0.5s ease; }
-        .cover-item p { color: #fff; font-weight: 700; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; margin: 0; }
+        .zoom-img { overflow: hidden; border-radius: 6px; position: relative; }
+        video, .media-item { width: 100%; display: block; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease; background: #111; height: 520px; object-fit: cover; }
+        .zoom-img:hover video, .zoom-img:hover img, .covers-item:hover img { transform: scale(1.02); filter: brightness(1.05); }
 
-        /* CATEGORÍAS - BOTONES DE NAVEGACIÓN */
-        .categories-section { padding: 100px 5%; max-width: 1200px; margin: 0 auto; text-align: left; }
+        /* PILARS (LUZ, CÁMARA, HISTORIA, ARTE) */
+        .pillars-section { padding: 90px 5%; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+        .pillars-title { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; text-transform: uppercase; line-height: 1.2; margin-bottom: 50px; max-width: 800px; }
+        .pillars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        .pillar-card { background: #111; padding: 35px; border-radius: 6px; border: 1px solid var(--border); }
+        .pillar-card h3 { color: var(--accent); font-size: 1.3rem; font-weight: 800; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 1px; }
+        .pillar-card p { color: #bbb; font-size: 1rem; line-height: 1.5; margin: 0; }
+
+        /* CATEGORÍAS (BOTONES) */
+        .categories-section { padding: 90px 5%; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid var(--border); }
         .categories-nav { display: flex; gap: 30px; flex-wrap: wrap; margin-bottom: 40px; }
-        
-        /* ESTILO DE CADA BOTÓN DE CATEGORÍA */
         .category-btn {
-            background: transparent;
-            border: none;
-            color: var(--accent);
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            padding: 0;
-            position: relative;
-            text-decoration: none;
-            transition: color 0.3s ease;
+            background: transparent; border: none; color: var(--accent);
+            font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
+            text-transform: uppercase; letter-spacing: 2px; padding: 0; position: relative;
+            text-decoration: none; transition: color 0.3s ease;
         }
         .category-btn::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
+            content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0;
+            background-color: var(--accent); transition: width 0.3s ease;
         }
-        .category-btn:hover {
-            color: #fff;
-        }
-        .category-btn:hover::after {
-            width: 100%;
-            background-color: #fff;
-        }
+        .category-btn:hover { color: #fff; }
+        .category-btn:hover::after { width: 100%; background-color: #fff; }
+        .categories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .categories-grid img { width: 100%; height: 280px; object-fit: cover; border-radius: 6px; }
 
-        .categories-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 15px; }
-        .categories-grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; transition: transform 0.5s ease; }
-        .cat-1 { grid-column: span 2; grid-row: span 2; }
-        .cat-2 { grid-row: span 2; }
+        /* PORTADAS */
+        .covers-section { padding: 90px 5%; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+        .covers-section h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; text-transform: uppercase; margin: 0 0 40px 0; }
+        .covers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .cover-item img { width: 100%; height: 380px; object-fit: cover; border-radius: 6px; margin-bottom: 12px; }
+        .cover-item p { color: #fff; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; margin: 0; }
 
-        /* FOOTER AJUSTADO */
-        footer { padding: 120px 5% 80px 5%; max-width: 1200px; margin: 0 auto; border-top: 1px solid #151515; position: relative; text-align: left; }
+        /* SKILLS / HABILIDADES */
+        .skills-section { padding: 90px 5%; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+        .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .skill-column h3 { color: var(--accent); font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .skill-column ul { list-style: none; padding: 0; margin: 0; }
+        .skill-column li { color: #ccc; font-size: 1rem; margin-bottom: 12px; font-weight: 500; }
+
+        /* FOOTER */
+        footer { padding: 100px 5% 60px 5%; max-width: 1200px; margin: 0 auto; position: relative; }
         footer h2 { 
-            font-size: clamp(2.5rem, 6.5vw, 5.5rem); 
+            font-size: clamp(2rem, 4.5vw, 4rem); 
             font-weight: 800; 
             color: var(--accent); 
             text-transform: uppercase; 
-            margin: 0 0 40px 0; 
-            line-height: 0.95; 
+            margin: 0 0 30px 0; 
+            line-height: 1.05; 
             letter-spacing: -1px; 
-            word-break: break-word; 
-            max-width: 90%; 
+            max-width: 900px; 
         }
-        footer p { margin: 0; }
+        .footer-info { margin-top: 40px; font-size: 1.05rem; line-height: 1.8; color: #aaa; }
+        .footer-info strong { color: #fff; }
         
         .back-to-top { 
-            position: absolute; 
-            right: 5%; 
-            bottom: 80px; 
-            background: #111; 
-            color: var(--accent); 
-            border: 1px solid #333; 
-            width: 60px; 
-            height: 60px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 1.5rem; 
-            font-weight: 800; 
-            text-decoration: none; 
+            position: absolute; right: 5%; bottom: 60px; 
+            background: #151515; color: var(--accent); border: 1px solid var(--border); 
+            width: 50px; height: 50px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 1.2rem; font-weight: 800; text-decoration: none; 
             transition: background 0.3s, transform 0.3s; 
         }
-        .back-to-top:hover { background: var(--accent); color: #000; transform: translateY(-5px); }
+        .back-to-top:hover { background: var(--accent); color: #000; transform: translateY(-4px); }
 
         /* LIGHTBOX */
         #lightbox {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.95); z-index: 100000;
             display: flex; justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
             backdrop-filter: blur(10px);
         }
         #lightbox.active { opacity: 1; pointer-events: all; }
-        
         #lightbox img, #lightbox video { 
-            max-width: 90vw; max-height: 90vh; border-radius: 8px; display: none; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8); transform: scale(0.95); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            max-width: 90vw; max-height: 90vh; border-radius: 6px; display: none; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8); 
         }
-        
-        #lightbox.show-img img { display: block; transform: scale(1); }
-        #lightbox.show-video video { display: block; transform: scale(1); }
-        
+        #lightbox.show-img img { display: block; }
+        #lightbox.show-video video { display: block; }
         .close-lightbox { 
-            position: absolute; top: 30px; right: 40px; color: #fff; font-size: 3rem; 
+            position: absolute; top: 25px; right: 35px; color: #fff; font-size: 2.5rem; 
             font-weight: 300; line-height: 1; transition: color 0.3s; z-index: 100001; 
         }
         .close-lightbox:hover { color: var(--accent); }
 
         @media (max-width: 768px) {
-            .bio-grid, .covers-grid, .categories-grid { grid-template-columns: 1fr; }
-            .categories-grid { grid-auto-rows: 250px; }
-            .cat-1, .cat-2 { grid-column: span 1; grid-row: span 1; }
+            header, .bio-grid, .pillars-grid, .categories-grid, .covers-grid, .skills-grid { grid-template-columns: 1fr; }
+            header { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .hero-subtitle { text-align: left; }
             #preloader { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 1fr); }
-            video, .media-item { height: 320px; }
-            footer h2 { max-width: 100%; }
+            video, .media-item, .categories-grid img, .covers-grid img { height: 300px; }
             .back-to-top { position: relative; right: auto; bottom: auto; margin-top: 40px; }
         }
     </style>
@@ -174,6 +154,7 @@
 
     <div class="custom-cursor" id="cursor"></div>
 
+    <!-- PRELOADER -->
     <div id="preloader">
         <div class="item large"><img src="foto1.jpg"></div>
         <div class="item"><img src="foto2.jpg"></div>
@@ -184,74 +165,122 @@
         <div class="item"><img src="foto7.jpg"></div>
     </div>
 
+    <!-- HEADER -->
     <header>
         <h1 class="hero-title">DIEGO<br>FARFÁN</h1>
         <div class="hero-subtitle">Director creativo & filmmaker</div>
     </header>
 
+    <!-- BIO -->
     <section class="section-green">
         <div class="section-green-content">
-            <h2 style="font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800; text-transform: uppercase; line-height: 1.1; margin: 0 0 30px 0;">CREO HISTORIAS VISUALES QUE CONECTAN, INSPIRAN Y DEJAN HUELLA.</h2>
+            <h2 class="bio-title">Creo historias visuales que conectan, inspiran y dejan huella.</h2>
             <div class="bio-grid">
                 <img src="tu-foto.jpg" alt="Diego Farfán" class="profile-img">
-                <div>
-                    <p style="font-size: 1.2rem; font-weight: 700; color: #000; line-height: 1.5; margin-bottom: 25px;">Soy un Director Creativo y Cineasta de Lima, Perú.</p>
-                    <p style="font-size: 1.1rem; color: #111; line-height: 1.6;">Me especializo en la narrativa visual, la dirección y la creación de contenido cinematográfico para marcas, artistas y proyectos impulsados por la cultura.</p>
+                <div class="bio-text">
+                    <p>Soy un Director Creativo y Cineasta de Lima, Perú.</p>
+                    <p>Me especializo en la narrativa visual, la dirección y la creación de contenido cinematográfico para marcas, artistas y proyectos impulsados por la cultura.</p>
+                    <p>Mi trabajo combina la moda, la música y la estética urbana con un fuerte enfoque en la emoción, el ritmo y la identidad.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- PROYECTO 1: OBSESIÓN -->
     <div class="project">
         <div class="project-header">
             <h2 class="project-title">OBSESIÓN</h2>
             <div class="project-tag">CORTOMETRAJE - 2025</div>
         </div>
-        <p style="font-weight: 700; color: #fff; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">DIRECTOR DE FOTOGRAFÍA</p>
+        <div class="project-role">Director de Fotografía</div>
+        <p class="project-desc">Tras ser secuestrada y sometida a una brutal alteración facial para reemplazar a la difunta esposa de su captor, una joven despojada de su identidad emprende un implacable camino de venganza para recuperar su rostro y hacer pagar al responsable.</p>
         <div class="zoom-img">
             <video class="media-item" autoplay muted loop playsinline><source src="obsesion.mp4" type="video/mp4"></video>
         </div>
     </div>
 
+    <!-- PROYECTO 2: GUAYA GUAYA -->
     <div class="project">
         <div class="project-header">
             <h2 class="project-title">GUAYA GUAYA - L CATA</h2>
             <div class="project-tag">VIDEOCLIP - 2026</div>
         </div>
+        <div class="project-role">Director de Fotografía</div>
         <div class="zoom-img">
             <video class="media-item" autoplay muted loop playsinline><source src="guaya-guaya.mp4" type="video/mp4"></video>
         </div>
     </div>
 
+    <!-- PROYECTO 3: DIME, ¿CÓMO HAGO? -->
     <div class="project">
         <div class="project-header">
-            <h2 class="project-title">DIME, ¿CÓMO HAGO?</h2>
-            <div class="project-tag">ROD CASTEL • VIDEOCLIP - 2026</div>
+            <h2 class="project-title">DIME, ¿CÓMO HAGO? - ROD CASTEL</h2>
+            <div class="project-tag">VIDEOCLIP - 2026</div>
         </div>
+        <div class="project-role">Director de Fotografía</div>
         <div class="zoom-img">
             <video class="media-item" autoplay muted loop playsinline><source src="dime-como-hago.mp4" type="video/mp4"></video>
         </div>
     </div>
 
-    <section class="covers-section">
-        <h2>PORTADAS PARA ARTISTAS</h2>
-        <div class="covers-grid">
-            <div class="cover-item">
-                <img src="portada-1.jpg" alt="Mikele - Alive" class="media-item">
-                <p>MIKELE - Alive</p>
+    <!-- PROYECTO 4: NUNCA HUBO NADA MALO -->
+    <div class="project">
+        <div class="project-header">
+            <h2 class="project-title">NUNCA HUBO NADA MALO - COLECTIVE</h2>
+            <div class="project-tag">FASHION FILM - 2026</div>
+        </div>
+        <div class="project-role">Director de Fotografía</div>
+        <div class="zoom-img">
+            <img src="nunca-huyo.jpg" alt="Nunca hubo nada malo" class="media-item">
+        </div>
+    </div>
+
+    <!-- PROYECTO 5: MIX MEDIA -->
+    <div class="project">
+        <div class="project-header">
+            <h2 class="project-title">MIX MEDIA - DIEGO FARFÁN</h2>
+            <div class="project-tag">EXPERIMENTAL - 2026</div>
+        </div>
+        <div class="zoom-img">
+            <img src="mix-media.jpg" alt="Mix Media" class="media-item">
+        </div>
+    </div>
+
+    <!-- PROYECTO 6: EL ENSAYO -->
+    <div class="project">
+        <div class="project-header">
+            <h2 class="project-title">EL ENSAYO - DIEGO FARFÁN</h2>
+            <div class="project-tag">CORTO DE 1 MIN - 2026</div>
+        </div>
+        <div class="zoom-img">
+            <img src="el-ensayo.jpg" alt="El Ensayo" class="media-item">
+        </div>
+    </div>
+
+    <!-- PILARES CREATIVOS -->
+    <section class="pillars-section">
+        <h2 class="pillars-title">Construyo imágenes alrededor de la emoción, la identidad y la atmósfera.</h2>
+        <div class="pillars-grid">
+            <div class="pillar-card">
+                <h3>Luz</h3>
+                <p>Contraste, textura y color que moldean el estado de ánimo y el significado.</p>
             </div>
-            <div class="cover-item">
-                <img src="portada-2.jpg" alt="Gianpool" class="media-item">
-                <p>Gianpool - A primera vista</p>
+            <div class="pillar-card">
+                <h3>Cámara</h3>
+                <p>Movimiento, encuadre y perspectiva que guían la emoción.</p>
             </div>
-            <div class="cover-item">
-                <img src="portada-3.jpg" alt="Rod Castel" class="media-item">
-                <p>Rod Castel - Autosaboteo</p>
+            <div class="pillar-card">
+                <h3>Historia</h3>
+                <p>Personajes, emoción y narrativa en el centro de todo.</p>
+            </div>
+            <div class="pillar-card">
+                <h3>Dirección de Arte</h3>
+                <p>Espacios, texturas y detalles que construyen el mundo.</p>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN DE CATEGORÍAS CON BOTONES FUNCIONALES -->
+    <!-- CATEGORÍAS (BOTONES) -->
     <section class="categories-section">
         <div class="categories-nav">
             <a href="#casa" class="category-btn">CASA</a>
@@ -261,23 +290,81 @@
             <a href="#concierto" class="category-btn">CONCIERTO</a>
         </div>
         <div class="categories-grid">
-            <img src="casa-1.jpg" alt="Casa" class="media-item cat-1">
-            <img src="moda-1.jpg" alt="Moda" class="media-item cat-2">
+            <img src="casa-1.jpg" alt="Casa" class="media-item">
+            <img src="moda-1.jpg" alt="Moda" class="media-item">
             <img src="artistas-1.jpg" alt="Artistas" class="media-item">
-            <img src="editorial-1.jpg" alt="Editorial" class="media-item">
-            <img src="concierto-1.jpg" alt="Concierto" class="media-item">
         </div>
     </section>
 
+    <!-- PORTADAS PARA ARTISTAS -->
+    <section class="covers-section">
+        <h2>PORTADAS PARA ARTISTAS</h2>
+        <div class="covers-grid">
+            <div class="cover-item">
+                <img src="portada-1.jpg" alt="Mikele - Alive" class="media-item">
+                <p>MIKELE - Alive</p>
+            </div>
+            <div class="cover-item">
+                <img src="portada-2.jpg" alt="Gianpool - A primera vista" class="media-item">
+                <p>Gianpool - A primera vista</p>
+            </div>
+            <div class="cover-item">
+                <img src="portada-3.jpg" alt="Rod Castel - Autosaboteo" class="media-item">
+                <p>Rod Castel - Autosaboteo</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HABILIDADES / ROLES -->
+    <section class="skills-section">
+        <div class="skills-grid">
+            <div class="skill-column">
+                <h3>Filmmaker / Dirección</h3>
+                <ul>
+                    <li>Cinematografía</li>
+                    <li>Cortometrajes</li>
+                    <li>Videoclips</li>
+                    <li>Fashion films</li>
+                    <li>Experimental</li>
+                </ul>
+            </div>
+            <div class="skill-column">
+                <h3>Dirección Creativa</h3>
+                <ul>
+                    <li>Conceptos visuales</li>
+                    <li>Dirección de arte</li>
+                    <li>Campañas</li>
+                    <li>Identidad de marca</li>
+                </ul>
+            </div>
+            <div class="skill-column">
+                <h3>Fotografía</h3>
+                <ul>
+                    <li>Moda</li>
+                    <li>Retrato</li>
+                    <li>Editorial</li>
+                    <li>Conciertos</li>
+                    <li>Artistas</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
         <h2>CREEEEEMOS ALGO EXTRAAAAORDINARIOOOOO!!!</h2>
-        <p style="font-size: 1.1rem; font-weight: 700; text-transform: uppercase;">Director creativo & filmmaker</p>
-        <p style="font-size: 1.4rem; font-weight: 800; text-transform: uppercase; color: var(--accent); margin-top: 10px;">DIEGO FARFÁN</p>
-        <p style="margin-top: 30px; font-size: 1.1rem; line-height: 1.8; color: #aaa;">+51 977 403 711<br>Diegofarfan.media@gmail.com</p>
-        
+        <div class="footer-info">
+            <strong>DIEGO FARFÁN</strong><br>
+            Director creativo & filmmaker<br><br>
+            +51 977 403 711<br>
+            Diegofarfan.media@gmail.com<br>
+            IG: Diego farfan___<br><br>
+            <span style="color: var(--accent);">Disponible para proyectos a nivel mundial.</span>
+        </div>
         <a href="#" class="back-to-top">↑</a>
     </footer>
 
+    <!-- LIGHTBOX -->
     <div id="lightbox">
         <span class="close-lightbox">&times;</span>
         <img id="lightbox-img" src="" alt="Vista ampliada">
@@ -321,7 +408,7 @@
             setTimeout(() => {
                 lbImg.src = '';
                 lbVideo.src = '';
-            }, 400);
+            }, 300);
         };
 
         closeBtn.addEventListener('click', closeLightbox);
