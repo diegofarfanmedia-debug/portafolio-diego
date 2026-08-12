@@ -6,7 +6,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root { --accent: #C1FF72; --black: #000; }
-        body { background: var(--black); color: #fff; margin: 0; font-family: 'Syne', sans-serif; overflow-x: hidden; text-align: left; }
+        
+        /* Cursor Personalizado */
+        body { background: var(--black); color: #fff; margin: 0; font-family: 'Syne', sans-serif; overflow-x: hidden; text-align: left; cursor: default; }
+        .custom-cursor { position: fixed; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; pointer-events: none; transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease; z-index: 10000; transform: translate(-50%, -50%); mix-blend-mode: difference; }
 
         h1, h2, h3, p { text-align: left; margin: 0; }
 
@@ -27,63 +30,81 @@
         @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
 
         /* ESTRUCTURA GENERAL */
-        header { padding: 80px 5%; max-width: 1000px; margin: 0 auto; }
-        .hero-title { font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; text-transform: uppercase; line-height: 1; }
-        .hero-subtitle { font-size: 1.1rem; color: var(--accent); font-weight: 600; margin-top: 15px; text-transform: uppercase; letter-spacing: 2px; }
+        header { padding: 100px 5% 60px 5%; max-width: 1100px; margin: 0 auto; }
+        .hero-title { font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 800; text-transform: uppercase; line-height: 0.95; letter-spacing: -2px; }
+        .hero-subtitle { font-size: 1.15rem; color: var(--accent); font-weight: 600; margin-top: 25px; text-transform: uppercase; letter-spacing: 3px; }
 
-        .section-green { background: var(--accent); color: var(--black); padding: 80px 5%; }
-        .section-green-content { max-width: 1000px; margin: 0 auto; }
-        .bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-top: 40px; }
-        .profile-img { width: 100%; height: 400px; object-fit: cover; border-radius: 8px; }
+        .section-green { background: var(--accent); color: var(--black); padding: 100px 5%; }
+        .section-green-content { max-width: 1100px; margin: 0 auto; }
+        .bio-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; margin-top: 40px; }
+        .profile-img { width: 100%; height: 480px; object-fit: cover; border-radius: 8px; filter: contrast(1.05); }
 
-        .project { padding: 80px 5%; max-width: 1000px; margin: 0 auto; border-bottom: 1px solid #1a1a1a; }
-        .project-title { font-size: 2.2rem; font-weight: 800; text-transform: uppercase; margin-bottom: 5px; }
-        .project-tag { color: var(--accent); font-size: 0.95rem; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
-        .project-desc { color: #aaa; font-size: 1.05rem; margin-bottom: 20px; line-height: 1.6; }
+        .project { padding: 100px 5%; max-width: 1100px; margin: 0 auto; border-bottom: 1px solid #151515; }
+        .project-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .project-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; text-transform: uppercase; line-height: 1; }
+        .project-tag { color: var(--accent); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        .project-desc { color: #888; font-size: 1.05rem; margin-bottom: 30px; line-height: 1.6; max-width: 800px; }
         
-        .zoom-img { overflow: hidden; border-radius: 8px; margin-top: 20px; }
-        video { width: 100%; display: block; transition: transform 0.6s ease; background: #111; }
-        .zoom-img:hover video { transform: scale(1.02); }
+        .zoom-img { overflow: hidden; border-radius: 8px; position: relative; }
+        video { width: 100%; display: block; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); background: #0a0a0a; height: 580px; object-fit: cover; }
+        .zoom-img:hover video { transform: scale(1.03); }
 
         /* PILARES */
-        .pillars-section { padding: 80px 5%; max-width: 1000px; margin: 0 auto; }
-        .pillars-section h2 { font-size: 2.2rem; font-weight: 800; text-transform: uppercase; margin-bottom: 40px; line-height: 1.2; }
-        .pillars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
-        .pillar-card h3 { color: var(--accent); font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; }
-        .pillar-card p { color: #aaa; font-size: 1rem; line-height: 1.5; }
+        .pillars-section { padding: 100px 5%; max-width: 1100px; margin: 0 auto; }
+        .pillars-section h2 { font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; text-transform: uppercase; margin-bottom: 60px; line-height: 1.1; max-width: 900px; }
+        .pillars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 50px; }
+        .pillar-card h3 { color: var(--accent); font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; }
+        .pillar-card p { color: #888; font-size: 1.05rem; line-height: 1.6; }
 
         /* LO QUE HAGO */
-        .skills-section { padding: 80px 5%; max-width: 1000px; margin: 0 auto; }
-        .skills-section h2 { font-size: 2.5rem; font-weight: 800; text-transform: uppercase; margin-bottom: 40px; }
-        .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .skills-grid h3 { color: var(--accent); font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; }
-        .skills-grid ul { list-style: none; padding: 0; color: #ccc; font-size: 1rem; }
-        .skills-grid li { margin-bottom: 10px; }
+        .skills-section { padding: 100px 5%; max-width: 1100px; margin: 0 auto; }
+        .skills-section h2 { font-size: 3rem; font-weight: 800; text-transform: uppercase; margin-bottom: 50px; }
+        .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .skills-grid h3 { color: var(--accent); font-size: 1.25rem; font-weight: 700; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
+        .skills-grid ul { list-style: none; padding: 0; color: #888; font-size: 1.05rem; }
+        .skills-grid li { margin-bottom: 14px; }
 
-        /* PORTADAS */
-        .covers-section { padding: 80px 5%; max-width: 1000px; margin: 0 auto; }
-        .covers-section h2 { font-size: 2.5rem; font-weight: 800; text-transform: uppercase; margin-bottom: 40px; }
-        .covers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .cover-item img { width: 100%; height: 320px; object-fit: cover; border-radius: 6px; margin-bottom: 10px; }
-        .cover-item p { color: #ccc; font-weight: 700; font-size: 1rem; }
+        /* PORTADAS ASIMÉTRICAS (MÓDULO DE LUJO) */
+        .covers-section { padding: 100px 5%; max-width: 1100px; margin: 0 auto; }
+        .covers-section h2 { font-size: 3rem; font-weight: 800; text-transform: uppercase; margin-bottom: 50px; }
+        .covers-grid { display: grid; grid-template-columns: 1.2fr 0.8fr 1fr; gap: 20px; align-items: center; }
+        .cover-item:nth-child(1) img { height: 420px; }
+        .cover-item:nth-child(2) img { height: 320px; }
+        .cover-item:nth-child(3) img { height: 480px; }
+        .cover-item img { width: 100%; object-fit: cover; border-radius: 6px; margin-bottom: 15px; transition: filter 0.4s ease; }
+        .cover-item img:hover { filter: brightness(1.1); }
+        .cover-item p { color: #fff; font-weight: 700; font-size: 1.05srem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* CATEGORÍAS FOTO */
-        .categories-section { padding: 80px 5%; max-width: 1000px; margin: 0 auto; }
-        .categories-nav { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; font-weight: 800; font-size: 1.1rem; color: var(--accent); text-transform: uppercase; }
-        .categories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-        .categories-grid img { width: 100%; height: 220px; object-fit: cover; border-radius: 6px; }
+        /* CATEGORÍAS FOTO (MASONRY ASIMÉTRICO) */
+        .categories-section { padding: 100px 5%; max-width: 1100px; margin: 0 auto; }
+        .categories-nav { display: flex; gap: 30px; flex-wrap: wrap; margin-bottom: 40px; font-weight: 800; font-size: 1.1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
+        .categories-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 15px; }
+        .categories-grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; transition: transform 0.5s ease; }
+        .categories-grid img:hover { transform: scale(1.02); }
+        .cat-1 { grid-column: span 2; grid-row: span 2; }
+        .cat-2 { grid-row: span 2; }
+        .cat-3 { grid-column: span 1; grid-row: span 1; }
 
-        /* FOOTER */
-        footer { padding: 80px 5%; max-width: 1000px; margin: 0 auto; border-top: 1px solid #1a1a1a; }
-        footer h2 { font-size: 2.8rem; font-weight: 800; color: var(--accent); text-transform: uppercase; margin-bottom: 30px; line-height: 1.1; }
+        /* FOOTER APOTEÓSICO */
+        footer { padding: 120px 5% 80px 5%; max-width: 1100px; margin: 0 auto; border-top: 1px solid #151515; position: relative; }
+        footer h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; color: var(--accent); text-transform: uppercase; margin-bottom: 40px; line-height: 0.95; letter-spacing: -1px; }
+        
+        .back-to-top { position: absolute; right: 5%; top: 120px; background: #111; color: var(--accent); border: 1px solid #333; padding: 15px 20px; border-radius: 50%; font-weight: 800; text-decoration: none; transition: background 0.3s; }
+        .back-to-top:hover { background: var(--accent); color: #000; }
 
         @media (max-width: 768px) {
             .bio-grid, .pillars-grid, .skills-grid, .covers-grid, .categories-grid { grid-template-columns: 1fr; }
+            .categories-grid { grid-auto-rows: 250px; }
+            .cat-1, .cat-2 { grid-column: span 1; grid-row: span 1; }
             #preloader { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 1fr); }
+            video { height: 320px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Cursor customizado -->
+    <div class="custom-cursor" id="cursor"></div>
 
     <!-- PRELOADER COLLAGE -->
     <div id="preloader">
@@ -108,12 +129,12 @@
     <!-- 2. QUIEN SOY (FONDO VERDE) -->
     <section class="section-green">
         <div class="section-green-content">
-            <h2 style="font-size: 2.3rem; font-weight: 800; text-transform: uppercase; line-height: 1.2;">CREO HISTORIAS VISUALES QUE CONECTAN, INSPIRAN Y DEJAN HUELLA.</h2>
+            <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; text-transform: uppercase; line-height: 1.1;">CREO HISTORIAS VISUALES QUE CONECTAN, INSPIRAN Y DEJAN HUELLA.</h2>
             <div class="bio-grid">
                 <img src="tu-foto.jpg" alt="Diego Farfán" class="profile-img">
                 <div>
-                    <p style="font-size: 1.15rem; font-weight: 600; color: #000; line-height: 1.6; margin-bottom: 20px;">Soy un Director Creativo y Cineasta de Lima, Perú.</p>
-                    <p style="font-size: 1.1rem; color: #111; line-height: 1.6; margin-bottom: 20px;">Me especializo en la narrativa visual, la dirección y la creación de contenido cinematográfico para marcas, artistas y proyectos impulsados por la cultura.</p>
+                    <p style="font-size: 1.2rem; font-weight: 700; color: #000; line-height: 1.5; margin-bottom: 25px;">Soy un Director Creativo y Cineasta de Lima, Perú.</p>
+                    <p style="font-size: 1.1rem; color: #111; line-height: 1.6; margin-bottom: 25px;">Me especializo en la narrativa visual, la dirección y la creación de contenido cinematográfico para marcas, artistas y proyectos impulsados por la cultura.</p>
                     <p style="font-size: 1.1rem; color: #111; line-height: 1.6;">Mi trabajo combina la moda, la música y la estética urbana con un fuerte enfoque en la emoción, el ritmo y la identidad.</p>
                 </div>
             </div>
@@ -122,49 +143,73 @@
 
     <!-- 3. OBSESIÓN -->
     <div class="project">
-        <div class="project-title">OBSESIÓN</div>
-        <div class="project-tag">CORTOMETRAJE - 2025</div>
-        <div style="font-weight: 700; color: #fff; margin-bottom: 15px; text-transform: uppercase;">DIRECTOR DE FOTOGRAFÍA</div>
-        <p class="project-desc">Tras ser secuestrada y sometida a una brutal alteración facial para reemplazar a la difunta esposa de su captor, una joven despojada de su identidad emprende un implacable camino de venganza para recuperar su rostro y hacer pagar al responsable.</p>
-        <div class="zoom-img"><video controls><source src="obsesion.mp4" type="video/mp4"></video></div>
+        <div class="project-header">
+            <div class="project-title">OBSESIÓN</div>
+            <div class="project-tag">CORTOMETRAJE - 2025</div>
+        </div>
+        <div style="font-weight: 700; color: #fff; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">DIRECTOR DE FOTOGRAFÍA</div>
+        <p class="project-desc">Tras ser secuestrado y sometido a una brutal alteración facial para reemplazar a la difunta esposa de su captor, una joven despojada de su identidad emprende un implacable camino de venganza para recuperar su rostro y hacer pagar al responsable.</p>
+        <div class="zoom-img">
+            <video autoplay muted loop playsinline><source src="obsesion.mp4" type="video/mp4"></video>
+        </div>
     </div>
 
     <!-- 4. GUAYA GUAYA -->
     <div class="project">
-        <div class="project-title">GUAYA GUAYA - L CATA</div>
-        <div class="project-tag">VIDEOCLIP - 2026</div>
-        <div style="font-weight: 700; color: #fff; margin-bottom: 15px; text-transform: uppercase;">DIRECTOR DE FOTOGRAFÍA</div>
-        <div class="zoom-img"><video controls><source src="guaya-guaya.mp4" type="video/mp4"></video></div>
+        <div class="project-header">
+            <div class="project-title">GUAYA GUAYA - L CATA</div>
+            <div class="project-tag">VIDEOCLIP - 2026</div>
+        </div>
+        <div style="font-weight: 700; color: #fff; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">DIRECTOR DE FOTOGRAFÍA</div>
+        <div class="zoom-img">
+            <video autoplay muted loop playsinline><source src="guaya-guaya.mp4" type="video/mp4"></video>
+        </div>
     </div>
 
     <!-- 5. DIME, ¿CÓMO HAGO? -->
     <div class="project">
-        <div class="project-title">DIME, ¿CÓMO HAGO? - ROD CASTEL</div>
-        <div class="project-tag">VIDEOCLIP - 2026</div>
-        <div style="font-weight: 700; color: #fff; margin-bottom: 15px; text-transform: uppercase;">DIRECTOR DE FOTOGRAFÍA</div>
-        <div class="zoom-img"><video controls><source src="dime-como-hago.mp4" type="video/mp4"></video></div>
+        <div class="project-header">
+            <div class="project-title">DIME, ¿CÓMO HAGO?</div>
+            <div class="project-tag">ROD CASTEL • VIDEOCLIP - 2026</div>
+        </div>
+        <div style="font-weight: 700; color: #fff; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">DIRECTOR DE FOTOGRAFÍA</div>
+        <div class="zoom-img">
+            <video autoplay muted loop playsinline><source src="dime-como-hago.mp4" type="video/mp4"></video>
+        </div>
     </div>
 
     <!-- 6. NUNCA HUBO NADA MALO -->
     <div class="project">
-        <div class="project-title">NUNCA HUBO NADA MALO - COLECTIVE</div>
-        <div class="project-tag">FASHION FLIM - 2026</div>
-        <div style="font-weight: 700; color: #fff; margin-bottom: 15px; text-transform: uppercase;">DIRECTOR DE FOTOGRAFÍA</div>
-        <div class="zoom-img"><video controls><source src="nunca-hubo.mp4" type="video/mp4"></video></div>
+        <div class="project-header">
+            <div class="project-title">NUNCA HUBO NADA MALO</div>
+            <div class="project-tag">COLECTIVE • FASHION FILM - 2026</div>
+        </div>
+        <div style="font-weight: 700; color: #fff; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">DIRECTOR DE FOTOGRAFÍA</div>
+        <div class="zoom-img">
+            <video autoplay muted loop playsinline><source src="nunca-hubo.mp4" type="video/mp4"></video>
+        </div>
     </div>
 
     <!-- 7. MIX MEDIA -->
     <div class="project">
-        <div class="project-title">MIX MEDIA - DIEGO FARFÁN</div>
-        <div class="project-tag">EXPERIMENTAL - 2026</div>
-        <div class="zoom-img"><video controls><source src="mix-media.mp4" type="video/mp4"></video></div>
+        <div class="project-header">
+            <div class="project-title">MIX MEDIA</div>
+            <div class="project-tag">DIEGO FARFÁN • EXPERIMENTAL - 2026</div>
+        </div>
+        <div class="zoom-img">
+            <video autoplay muted loop playsinline><source src="mix-media.mp4" type="video/mp4"></video>
+        </div>
     </div>
 
     <!-- 8. EL ENSAYO -->
     <div class="project">
-        <div class="project-title">EL ENSAYO - DIEGO FARFÁN</div>
-        <div class="project-tag">CORTO DE 1 MIN - 2026</div>
-        <div class="zoom-img"><video controls><source src="el-ensayo.mp4" type="video/mp4"></video></div>
+        <div class="project-header">
+            <div class="project-title">EL ENSAYO</div>
+            <div class="project-tag">DIEGO FARFÁN • CORTO 1 MIN - 2026</div>
+        </div>
+        <div class="zoom-img">
+            <video autoplay muted loop playsinline><source src="el-ensayo.mp4" type="video/mp4"></video>
+        </div>
     </div>
 
     <!-- 9. PILARES / ATMÓSFERA -->
@@ -226,7 +271,7 @@
         </div>
     </section>
 
-    <!-- 11. PORTADAS PARA ARTISTAS -->
+    <!-- 11. PORTADAS PARA ARTISTAS (ASIMÉTRICO) -->
     <section class="covers-section">
         <h2>PORTADAS PARA ARTISTAS</h2>
         <div class="covers-grid">
@@ -245,7 +290,7 @@
         </div>
     </section>
 
-    <!-- 12. CATEGORÍAS FOTO -->
+    <!-- 12. CATEGORÍAS FOTO (MASONRY) -->
     <section class="categories-section">
         <div class="categories-nav">
             <span>CASA</span>
@@ -255,9 +300,9 @@
             <span>CONCIERTO</span>
         </div>
         <div class="categories-grid">
-            <img src="casa-1.jpg" alt="Casa">
-            <img src="moda-1.jpg" alt="Moda">
-            <img src="artistas-1.jpg" alt="Artistas">
+            <img src="casa-1.jpg" alt="Casa" class="cat-1">
+            <img src="moda-1.jpg" alt="Moda" class="cat-2">
+            <img src="artistas-1.jpg" alt="Artistas" class="cat-3">
             <img src="editorial-1.jpg" alt="Editorial">
             <img src="concierto-1.jpg" alt="Concierto">
         </div>
@@ -265,16 +310,29 @@
 
     <!-- 13. FOOTER -->
     <footer>
+        <a href="#" class="back-to-top">↑</a>
         <h2>CREEEEEMOS ALGO EXTRAAAAORDINARIOOOOO!!!</h2>
-        <p style="font-size: 1.1rem; font-weight: 700; text-transform: uppercase;">Director creativo & filmmaker</p>
-        <p style="font-size: 1.3rem; font-weight: 800; text-transform: uppercase; color: var(--accent); margin-top: 10px;">DIEGO FARFÁN</p>
-        <p style="margin-top: 30px; font-size: 1.1rem; line-height: 1.8;">
+        <p style="font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Director creativo & filmmaker</p>
+        <p style="font-size: 1.4rem; font-weight: 800; text-transform: uppercase; color: var(--accent); margin-top: 10px; letter-spacing: 1px;">DIEGO FARFÁN</p>
+        <p style="margin-top: 30px; font-size: 1.1rem; line-height: 1.8; color: #aaa;">
             +51 977 403 711<br>
             Diegofarfan.media@gmail.com<br>
             IG: Diego farfan___
         </p>
-        <p style="color: #666; font-size: 0.9rem; margin-top: 40px;">Disponible para proyectos a nivel mundial.</p>
+        <p style="color: #555; font-size: 0.9rem; margin-top: 40px; letter-spacing: 1px;">Disponible para proyectos a nivel mundial.</p>
     </footer>
 
+    <script>
+        // Script para el cursor personalizado
+        const cursor = document.getElementById('cursor');
+        window.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        document.querySelectorAll('a, video, img').forEach(el => {
+            el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%, -50%) scale(2.5)'; });
+            el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%, -50%) scale(1)'; });
+        });
+    </script>
 </body>
 </html>
