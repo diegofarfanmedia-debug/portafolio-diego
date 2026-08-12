@@ -6,485 +6,368 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --accent: #C1FF72; 
-            --black: #080808; 
-            --surface: #111111;
-            --border: #1f1f1f; 
-            --text-muted: #999;
+            --accent: #3b5bdb; /* Azul editorial / eléctrico inspirador */
+            --bg-color: #f7f7f9;
+            --text-main: #111111;
+            --text-muted: #666666;
+            --border-color: #d1d1d6;
         }
         
-        * { cursor: none !important; box-sizing: border-box; }
+        * { cursor: default; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { background: var(--black); color: #fff; margin: 0; font-family: 'Syne', sans-serif; overflow-x: hidden; }
-        
-        /* CURSOR DE ESTRELLA LIMPIO */
-        .custom-cursor { 
-            position: fixed; 
-            width: 8px; 
-            height: 8px; 
-            background: var(--accent); 
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            transform: scale(2.5);
-            pointer-events: none; 
-            transition: transform 0.1s ease; 
-            z-index: 999999; 
-            margin-top: -4px;
-            margin-left: -4px;
-            mix-blend-mode: difference; 
+        body { 
+            background: var(--bg-color); 
+            color: var(--text-main); 
+            margin: 0; 
+            font-family: 'Syne', sans-serif; 
+            overflow-x: hidden; 
         }
-        .custom-cursor.hovered { transform: scale(4) rotate(45deg); }
 
-        /* PRELOADER */
-        #preloader { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: var(--accent); z-index: 9999; 
-            display: grid; padding: 20px; gap: 15px;
-            grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr);
-            animation: fadeOut 0.8s ease 3s forwards;
+        /* LAYOUT PRINCIPAL TIPO WEB EDITORIAL */
+        .site-container {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            min-height: 100vh;
         }
-        .item { overflow: hidden; border-radius: 4px; animation: popIn 0.6s ease forwards; opacity: 0; }
-        .item img { width: 100%; height: 100%; object-fit: cover; }
-        .large { grid-column: span 2; grid-row: span 2; }
-        .tall { grid-row: span 2; }
-        
-        @keyframes popIn { to { opacity: 1; transform: scale(1); } }
-        @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
 
-        /* NAVBAR FIJA */
-        nav {
-            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            background: rgba(8, 8, 8, 0.85); backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border); padding: 20px 5%;
-            display: flex; justify-content: space-between; align-items: center;
+        /* MENÚ LATERAL FIJO */
+        aside {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100vh;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid var(--border-color);
+            background: var(--bg-color);
+            z-index: 100;
         }
-        .nav-logo { font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; color: #fff; text-decoration: none; }
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--accent); }
 
-        /* HERO */
-        header { 
-            padding: 180px 5% 80px 5%; max-width: 1300px; margin: 0 auto; 
-            display: flex; justify-content: space-between; align-items: flex-end; 
-            border-bottom: 1px solid var(--border); 
+        .side-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
-        .hero-title { font-size: clamp(3rem, 7vw, 6rem); font-weight: 800; text-transform: uppercase; line-height: 0.95; letter-spacing: -2px; margin: 0; }
-        .hero-subtitle { font-size: 0.9rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; text-align: right; }
 
-        /* BIO */
-        .section-green { background: var(--accent); color: var(--black); padding: 100px 5%; }
-        .section-green-content { max-width: 1300px; margin: 0 auto; }
-        .bio-title { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; text-transform: uppercase; line-height: 1.15; margin: 0 0 50px 0; max-width: 1000px; }
-        .bio-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; align-items: center; }
-        .profile-img { width: 100%; height: 500px; object-fit: cover; border-radius: 8px; filter: contrast(1.05); }
-        .bio-text p { font-size: 1.15rem; font-weight: 600; line-height: 1.6; margin: 0 0 24px 0; color: #111; }
-
-        /* PROYECTOS */
-        .projects-container { max-width: 1300px; margin: 0 auto; padding: 0 5%; }
-        .project { padding: 90px 0; border-bottom: 1px solid var(--border); }
-        .project-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
-        .project-title { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; text-transform: uppercase; line-height: 1; margin: 0; }
-        .project-tag { color: var(--accent); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
-        
-        .project-credits { 
-            display: flex; gap: 20px; font-family: monospace; font-size: 0.85rem; 
-            color: var(--accent); text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; 
+        .side-nav a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: opacity 0.2s;
         }
-        .project-desc { font-size: 1.05rem; color: var(--text-muted); line-height: 1.6; max-width: 850px; margin-bottom: 30px; }
-        
-        .zoom-img { overflow: hidden; border-radius: 8px; position: relative; background: var(--surface); }
-        video, .media-item { width: 100%; display: block; transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease; height: 620px; object-fit: cover; }
-        .project.small-project video, .project.small-project .media-item { height: 440px; }
-        .zoom-img:hover video, .zoom-img:hover img { transform: scale(1.02); filter: brightness(1.05); }
 
-        /* PILARES CREATIVOS */
-        .pillars-section { padding: 120px 5%; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid var(--border); }
-        .pillars-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; text-transform: uppercase; line-height: 1.2; margin-bottom: 60px; max-width: 900px; }
-        .pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
-        .pillar-card { background: var(--surface); padding: 35px 30px; border-radius: 8px; border: 1px solid var(--border); transition: border-color 0.3s; }
-        .pillar-card:hover { border-color: var(--accent); }
-        .pillar-card h3 { color: var(--accent); font-size: 1.2rem; font-weight: 800; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 1px; }
-        .pillar-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin: 0; }
-
-        /* CATEGORÍAS */
-        .categories-section { padding: 120px 5%; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid var(--border); }
-        .categories-nav { display: flex; gap: 35px; flex-wrap: wrap; margin-bottom: 40px; }
-        .category-btn {
-            background: transparent; border: none; color: var(--text-muted);
-            font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
-            text-transform: uppercase; letter-spacing: 2px; padding: 0; position: relative;
-            text-decoration: none; transition: color 0.3s ease;
+        .side-nav a:hover {
+            opacity: 0.6;
         }
-        .category-btn.active, .category-btn:hover { color: var(--accent); }
-        .categories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .categories-grid img { width: 100%; height: 360px; object-fit: cover; border-radius: 8px; }
 
-        /* PORTADAS */
-        .covers-section { padding: 120px 5%; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid var(--border); }
-        .covers-section h2 { font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; text-transform: uppercase; margin: 0 0 50px 0; }
-        .covers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .cover-item img { width: 100%; height: 440px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
-        .cover-item p { color: #fff; font-weight: 700; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; margin: 0; }
+        .side-subnav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
 
-        /* SKILLS */
-        .skills-section { padding: 120px 5%; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid var(--border); }
-        .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; }
-        .skill-column h3 { color: var(--accent); font-size: 1.15rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 25px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
-        .skill-column ul { list-style: none; padding: 0; margin: 0; }
-        .skill-column li { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 14px; font-weight: 600; }
+        .side-subnav a {
+            font-size: 0.85rem;
+            color: var(--text-main);
+            font-weight: 700;
+        }
 
-        /* FOOTER */
-        footer { padding: 120px 5% 80px 5%; max-width: 1300px; margin: 0 auto; position: relative; }
-        footer h2 { 
-            font-size: clamp(2.2rem, 5vw, 4.5rem); 
-            font-weight: 800; 
-            color: var(--accent); 
-            text-transform: uppercase; 
-            margin: 0 0 40px 0; 
-            line-height: 1; 
-            letter-spacing: -1px; 
-            max-width: 1000px; 
+        .side-footer-contact a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-transform: uppercase;
         }
-        .footer-info { font-size: 1.15rem; line-height: 1.8; color: var(--text-muted); }
-        .footer-info strong { color: #fff; }
-        
-        .back-to-top { 
-            position: absolute; right: 5%; bottom: 80px; 
-            background: var(--surface); color: var(--accent); border: 1px solid var(--border); 
-            width: 60px; height: 60px; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; 
-            font-size: 1.4rem; font-weight: 800; text-decoration: none; 
-            transition: background 0.3s, transform 0.3s, color 0.3s; 
-        }
-        .back-to-top:hover { background: var(--accent); color: var(--black); transform: translateY(-5px); }
 
-        /* LIGHTBOX */
-        #lightbox {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.96); z-index: 100000;
-            display: flex; justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-            backdrop-filter: blur(15px);
+        /* CONTENIDO PRINCIPAL */
+        main {
+            grid-column: 2;
+            padding: 60px 80px;
         }
-        #lightbox.active { opacity: 1; pointer-events: all; }
-        #lightbox img, #lightbox video { 
-            max-width: 90vw; max-height: 90vh; border-radius: 8px; display: none; 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.9); 
-        }
-        #lightbox.show-img img { display: block; }
-        #lightbox.show-video video { display: block; }
-        .close-lightbox { 
-            position: absolute; top: 35px; right: 45px; color: #fff; font-size: 3rem; 
-            font-weight: 300; line-height: 1; transition: color 0.3s; z-index: 100001; 
-        }
-        .close-lightbox:hover { color: var(--accent); }
 
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        /* SECCIÓN HOME / HERO */
+        .hero-section {
+            padding-top: 20px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin: 0 0 20px 0;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* GRILLA DE PROYECTOS */
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .project-img-wrap {
+            width: 100%;
+            height: 420px;
+            overflow: hidden;
+            border-radius: 4px;
+            background: #e1e1e6;
+        }
+
+        .project-img-wrap img, .project-img-wrap video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease, filter 0.3s ease;
+        }
+
+        .project-card:hover .project-img-wrap img, 
+        .project-card:hover .project-img-wrap video {
+            transform: scale(1.03);
+            filter: brightness(1.05);
+        }
+
+        .project-info h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin: 0 0 5px 0;
+        }
+
+        .project-info p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* SECCIÓN ABOUT / SOBRE MÍ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-main);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .skills-list {
+            margin-top: 30px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* SECCIÓN CONTACTO */
+        .contact-section h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .contact-section p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .contact-email {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-block;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 4px;
+        }
+
+        /* RESPONSIVE PARA MÓVILES */
         @media (max-width: 900px) {
-            header, .bio-grid, .pillars-grid, .categories-grid, .covers-grid, .skills-grid { grid-template-columns: 1fr; }
-            header { flex-direction: column; align-items: flex-start; gap: 20px; padding-top: 140px; }
-            .hero-subtitle { text-align: left; }
-            .nav-links { display: none; }
-            #preloader { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 1fr); }
-            video, .media-item, .categories-grid img, .covers-grid img { height: 320px !important; }
-            .back-to-top { position: relative; right: auto; bottom: auto; margin-top: 40px; }
+            .site-container {
+                display: block;
+            }
+            aside {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 30px 20px;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+            main {
+                padding: 40px 20px;
+            }
+            .projects-grid, .about-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="custom-cursor" id="cursor"></div>
+    <div class="site-container">
 
-    <!-- NAVBAR FIJA -->
-    <nav>
-        <a href="#" class="nav-logo">Diego Farfán</a>
-        <div class="nav-links">
-            <a href="#proyectos">Proyectos</a>
-            <a href="#filosofia">Filosofía</a>
-            <a href="#portadas">Portadas</a>
-            <a href="#contacto">Contacto</a>
-        </div>
-    </nav>
-
-    <!-- PRELOADER -->
-    <div id="preloader">
-        <div class="item large"><img src="foto1.jpg"></div>
-        <div class="item"><img src="foto2.jpg"></div>
-        <div class="item tall"><img src="foto3.jpg"></div>
-        <div class="item"><img src="foto4.jpg"></div>
-        <div class="item"><img src="foto5.jpg"></div>
-        <div class="item large"><img src="foto6.jpg"></div>
-        <div class="item"><img src="foto7.jpg"></div>
-    </div>
-
-    <!-- HERO -->
-    <header>
-        <h1 class="hero-title">DIEGO<br>FARFÁN</h1>
-        <div class="hero-subtitle">Director creativo & filmmaker</div>
-    </header>
-
-    <!-- BIO -->
-    <section class="section-green">
-        <div class="section-green-content">
-            <h2 class="bio-title">Creo historias visuales que conectan, inspiran y dejan huella.</h2>
-            <div class="bio-grid">
-                <img src="tu-foto.jpg" alt="Diego Farfán" class="profile-img">
-                <div class="bio-text">
-                    <p>Soy un Director Creativo y Cineasta de Lima, Perú.</p>
-                    <p>Me especializo en la narrativa visual, la dirección y la creación de contenido cinematográfico para marcas, artistas y proyectos impulsados por la cultura.</p>
-                    <p>Mi trabajo combina la moda, la música y la estética urbana con un fuerte enfoque en la emoción, el ritmo y la identidad.</p>
+        <!-- MENÚ LATERAL ESTILO REFERENCIA -->
+        <aside>
+            <nav class="side-nav">
+                <a href="#home">Home</a>
+                <a href="#proyectos">Projects</a>
+                <a href="#about">About Me</a>
+                
+                <div class="side-subnav">
+                    <a href="#proyectos">Editorial</a>
+                    <a href="#proyectos">Portraits</a>
+                    <a href="#proyectos">Videoclips</a>
+                    <a href="#proyectos">Art Direction</a>
                 </div>
-            </div>
-        </div>
-    </section>
+            </nav>
 
-    <!-- SECCIÓN DE PROYECTOS -->
-    <div class="projects-container" id="proyectos">
+            <div class="side-footer-contact">
+                <a href="#contacto">Contact</a>
+            </div>
+        </aside>
 
-        <!-- OBSESIÓN -->
-        <div class="project">
-            <div class="project-header">
-                <h2 class="project-title">OBSESIÓN</h2>
-                <div class="project-tag">CORTOMETRAJE</div>
-            </div>
-            <div class="project-credits">
-                <span>2025</span> • <span>Director de Fotografía</span>
-            </div>
-            <p class="project-desc">Tras ser secuestrada y sometida a una brutal alteración facial para reemplazar a la difunta esposa de su captor, una joven despojada de su identidad emprende un implacable camino de venganza para recuperar su rostro y hacer pagar al responsable.</p>
-            <div class="zoom-img">
-                <video class="media-item" autoplay muted loop playsinline><source src="obsesion.mp4" type="video/mp4"></video>
-            </div>
-        </div>
+        <!-- CONTENIDO PRINCIPAL -->
+        <main>
+            <!-- HERO -->
+            <section id="home" class="hero-section">
+                <h1 class="hero-title">Diego Farfán</h1>
+                <p class="hero-subtitle">Director Creativo & Filmmaker basado en Lima, Perú. Construyo identidades visuales, atmósferas y narrativas cinematográficas que conectan con la cultura.</p>
+            </section>
 
-        <!-- GUAYA GUAYA -->
-        <div class="project">
-            <div class="project-header">
-                <h2 class="project-title">GUAYA GUAYA - L CATA</h2>
-                <div class="project-tag">VIDEOCLIP</div>
-            </div>
-            <div class="project-credits">
-                <span>2026</span> • <span>Director de Fotografía</span>
-            </div>
-            <div class="zoom-img">
-                <video class="media-item" autoplay muted loop playsinline><source src="guaya-guaya.mp4" type="video/mp4"></video>
-            </div>
-        </div>
+            <!-- PROYECTOS -->
+            <section id="proyectos">
+                <h2 class="section-title">Proyectos Destacados</h2>
+                <div class="projects-grid">
+                    
+                    <div class="project-card">
+                        <div class="project-img-wrap">
+                            <video autoplay muted loop playsinline><source src="obsesion.mp4" type="video/mp4"></video>
+                        </div>
+                        <div class="project-info">
+                            <h3>Obsesión</h3>
+                            <p>Cortometraje • 2025 (Director de Fotografía)</p>
+                        </div>
+                    </div>
 
-        <!-- DIME, ¿CÓMO HAGO? -->
-        <div class="project">
-            <div class="project-header">
-                <h2 class="project-title">DIME, ¿CÓMO HAGO? - ROD CASTEL</h2>
-                <div class="project-tag">VIDEOCLIP</div>
-            </div>
-            <div class="project-credits">
-                <span>2026</span> • <span>Director de Fotografía</span>
-            </div>
-            <div class="zoom-img">
-                <video class="media-item" autoplay muted loop playsinline><source src="dime-como-hago.mp4" type="video/mp4"></video>
-            </div>
-        </div>
+                    <div class="project-card">
+                        <div class="project-img-wrap">
+                            <video autoplay muted loop playsinline><source src="guaya-guaya.mp4" type="video/mp4"></video>
+                        </div>
+                        <div class="project-info">
+                            <h3>Guaya Guaya - L Cata</h3>
+                            <p>Videoclip • 2026 (Director de Fotografía)</p>
+                        </div>
+                    </div>
 
-        <!-- NUNCA HUBO NADA MALO -->
-        <div class="project small-project">
-            <div class="project-header">
-                <h2 class="project-title">NUNCA HUBO NADA MALO - COLECTIVE</h2>
-                <div class="project-tag">FASHION FILM</div>
-            </div>
-            <div class="project-credits">
-                <span>2026</span> • <span>Director de Fotografía</span>
-            </div>
-            <div class="zoom-img">
-                <img src="nunca-huyo.jpg" alt="Nunca hubo nada malo" class="media-item">
-            </div>
-        </div>
+                    <div class="project-card">
+                        <div class="project-img-wrap">
+                            <video autoplay muted loop playsinline><source src="dime-como-hago.mp4" type="video/mp4"></video>
+                        </div>
+                        <div class="project-info">
+                            <h3>Dime, ¿Cómo hago? - Rod Castel</h3>
+                            <p>Videoclip • 2026 (Director de Fotografía)</p>
+                        </div>
+                    </div>
 
-        <!-- MIX MEDIA -->
-        <div class="project small-project">
-            <div class="project-header">
-                <h2 class="project-title">MIX MEDIA - DIEGO FARFÁN</h2>
-                <div class="project-tag">EXPERIMENTAL</div>
-            </div>
-            <div class="project-credits">
-                <span>2026</span> • <span>Director Creativo</span>
-            </div>
-            <div class="zoom-img">
-                <img src="mix-media.jpg" alt="Mix Media" class="media-item">
-            </div>
-        </div>
+                    <div class="project-card">
+                        <div class="project-img-wrap">
+                            <img src="nunca-huyo.jpg" alt="Nunca hubo nada malo">
+                        </div>
+                        <div class="project-info">
+                            <h3>Nunca hubo nada malo</h3>
+                            <p>Fashion Film • 2026</p>
+                        </div>
+                    </div>
 
-        <!-- EL ENSAYO -->
-        <div class="project small-project">
-            <div class="project-header">
-                <h2 class="project-title">EL ENSAYO - DIEGO FARFÁN</h2>
-                <div class="project-tag">CORTO DE 1 MIN</div>
-            </div>
-            <div class="project-credits">
-                <span>2026</span> • <span>Director & Edición</span>
-            </div>
-            <div class="zoom-img">
-                <img src="el-ensayo.jpg" alt="El Ensayo" class="media-item">
-            </div>
-        </div>
+                </div>
+            </section>
+
+            <!-- ABOUT ME -->
+            <section id="about">
+                <h2 class="section-title">Sobre Mí</h2>
+                <div class="about-grid">
+                    <img src="tu-foto.jpg" alt="Diego Farfán" class="about-img">
+                    <div class="about-text">
+                        <p>Me especializo en la dirección de fotografía, el montaje y la creación de conceptos visuales con una estética limpia, contrastada y sumamente expresiva.</p>
+                        <p>Trabajo de la mano con marcas, músicos y artistas independientes para darles un lenguaje visual único en cada fotograma.</p>
+                        <div class="skills-list">
+                            Temas principales: freelancing • cinematografía • dirección de arte • moda
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACTO -->
+            <section id="contacto" class="contact-section">
+                <h2>Creemos algo extraordinario!</h2>
+                <p>Si deseas colaborar conmigo o tienes una campaña en mente, escríbeme directamente para conversar sobre la visión y los entregables.</p>
+                <a href="mailto:Diegofarfan.media@gmail.com" class="contact-email">Diegofarfan.media@gmail.com</a>
+            </section>
+        </main>
 
     </div>
 
-    <!-- PILARES CREATIVOS -->
-    <section class="pillars-section" id="filosofia">
-        <h2 class="pillars-title">CONSTRUYO IMÁGENES ALREDEDOR DE LA EMOCIÓN, LA IDENTIDAD Y LA ATMÓSFERA.</h2>
-        <div class="pillars-grid">
-            <div class="pillar-card">
-                <h3>Luz</h3>
-                <p>Contraste, textura y color que moldean el estado de ánimo y el significado.</p>
-            </div>
-            <div class="pillar-card">
-                <h3>Cámara</h3>
-                <p>Movimiento, encuadre y perspectiva que guían la emoción.</p>
-            </div>
-            <div class="pillar-card">
-                <h3>Historia</h3>
-                <p>Personajes, emoción y narrativa en el centro de todo.</p>
-            </div>
-            <div class="pillar-card">
-                <h3>Dirección de Arte</h3>
-                <p>Espacios, texturas y detalles que construyen el mundo.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CATEGORÍAS -->
-    <section class="categories-section">
-        <div class="categories-nav">
-            <button class="category-btn active">CASA</button>
-            <button class="category-btn">MODA</button>
-            <button class="category-btn">ARTISTAS</button>
-            <button class="category-btn">EDITORIAL</button>
-            <button class="category-btn">CONCIERTO</button>
-        </div>
-        <div class="categories-grid">
-            <img src="casa-1.jpg" alt="Casa" class="media-item">
-            <img src="moda-1.jpg" alt="Moda" class="media-item">
-            <img src="artistas-1.jpg" alt="Artistas" class="media-item">
-        </div>
-    </section>
-
-    <!-- PORTADAS PARA ARTISTAS -->
-    <section class="covers-section" id="portadas">
-        <h2>PORTADAS PARA ARTISTAS</h2>
-        <div class="covers-grid">
-            <div class="cover-item">
-                <img src="portada-1.jpg" alt="Mikele - Alive" class="media-item">
-                <p>MIKELE - Alive</p>
-            </div>
-            <div class="cover-item">
-                <img src="portada-2.jpg" alt="Gianpool - A primera vista" class="media-item">
-                <p>Gianpool - A primera vista</p>
-            </div>
-            <div class="cover-item">
-                <img src="portada-3.jpg" alt="Rod Castel - Autosaboteo" class="media-item">
-                <p>Rod Castel - Autosaboteo</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SKILLS / ROLES -->
-    <section class="skills-section">
-        <div class="skills-grid">
-            <div class="skill-column">
-                <h3>Filmmaker / Dirección</h3>
-                <ul>
-                    <li>Cinematografía</li>
-                    <li>Cortometrajes</li>
-                    <li>Videoclips</li>
-                    <li>Fashion films</li>
-                    <li>Experimental</li>
-                </ul>
-            </div>
-            <div class="skill-column">
-                <h3>Dirección Creativa</h3>
-                <ul>
-                    <li>Conceptos visuales</li>
-                    <li>Dirección de arte</li>
-                    <li>Campañas</li>
-                    <li>Identidad de marca</li>
-                </ul>
-            </div>
-            <div class="skill-column">
-                <h3>Fotografía</h3>
-                <ul>
-                    <li>Moda</li>
-                    <li>Retrato</li>
-                    <li>Editorial</li>
-                    <li>Conciertos</li>
-                    <li>Artistas</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER / CONTACTO -->
-    <footer id="contacto">
-        <h2>Creemos algo extraordinario!</h2>
-        <div class="footer-info">
-            <strong>DIEGO FARFÁN</strong><br>
-            Director creativo & filmmaker<br><br>
-            +51 977 403 711<br>
-            Diegofarfan.media@gmail.com<br>
-            IG: Diego farfan___<br><br>
-            <span style="color: var(--accent);">Disponible para proyectos a nivel mundial.</span>
-        </div>
-        <a href="#" class="back-to-top">↑</a>
-    </footer>
-
-    <!-- LIGHTBOX -->
-    <div id="lightbox">
-        <span class="close-lightbox">&times;</span>
-        <img id="lightbox-img" src="" alt="Vista ampliada">
-        <video id="lightbox-video" controls></video>
-    </div>
-
-    <script>
-        const cursor = document.getElementById('cursor');
-        window.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        document.querySelectorAll('a, video, img, .close-lightbox, button').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-        });
-
-        const lightbox = document.getElementById('lightbox');
-        const lbImg = document.getElementById('lightbox-img');
-        const lbVideo = document.getElementById('lightbox-video');
-        const closeBtn = document.querySelector('.close-lightbox');
-
-        document.querySelectorAll('.media-item').forEach(media => {
-            media.addEventListener('click', () => {
-                lightbox.classList.add('active');
-                if(media.tagName.toLowerCase() === 'img') {
-                    lightbox.classList.add('show-img');
-                    lbImg.src = media.src;
-                } else if (media.tagName.toLowerCase() === 'video') {
-                    lightbox.classList.add('show-video');
-                    const sourceTag = media.querySelector('source');
-                    lbVideo.src = sourceTag ? sourceTag.src : media.src;
-                    lbVideo.play();
-                }
-            });
-        });
-
-        const closeLightbox = () => {
-            lightbox.classList.remove('active', 'show-img', 'show-video');
-            setTimeout(() => {
-                lbImg.src = '';
-                lbVideo.src = '';
-            }, 300);
-        };
-
-        closeBtn.addEventListener('click', closeLightbox);
-        lightbox.addEventListener('click', (e) => {
-            if(e.target === lightbox) closeLightbox();
-        });
-    </script>
 </body>
 </html>
