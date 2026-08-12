@@ -4,36 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diego Farfán | Director Creativo & Filmmaker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body { background: #000; color: #fff; margin: 0; font-family: system-ui, -apple-system, sans-serif; line-height: 1.5; }
-        header { padding: 40px 20px; text-align: center; }
-        h1 { font-size: 3.5rem; margin: 0; letter-spacing: -1px; }
+        body { background: #000; color: #fff; margin: 0; font-family: 'Inter', sans-serif; line-height: 1.5; }
+        h1, h2, h3, .brand-title { font-family: 'Syne', sans-serif; text-transform: uppercase; }
+        
+        header { padding: 50px 20px; text-align: center; background: #000; }
+        h1 { font-size: 4rem; margin: 0; letter-spacing: -1px; font-weight: 800; }
         .accent { color: #C1FF72; }
-        .subtitle { font-size: 1.2rem; color: #C1FF72; font-weight: bold; margin-top: 5px; }
+        .subtitle { font-size: 1.2rem; color: #C1FF72; font-weight: 600; margin-top: 5px; text-transform: uppercase; letter-spacing: 2px; }
         
-        .section-green { background: #C1FF72; color: #000; padding: 60px 20px; text-align: center; }
-        .section-green h2 { font-size: 2.2rem; max-width: 800px; margin: 0 auto 30px auto; }
+        .section-green { background: #C1FF72; color: #000; padding: 80px 20px; text-align: center; }
+        .section-green h2 { font-size: 2.5rem; max-width: 900px; margin: 0 auto 40px auto; font-weight: 800; line-height: 1.2; }
         
-        .profile-img { width: 280px; height: 280px; border-radius: 50%; object-fit: cover; border: 4px solid #000; margin: 20px auto; display: block; }
-        .bio-text { max-width: 600px; margin: 20px auto 0 auto; font-size: 1.1rem; text-align: left; }
+        .profile-img { width: 300px; height: 300px; border-radius: 50%; object-fit: cover; border: 4px solid #000; margin: 30px auto; display: block; }
+        .bio-text { max-width: 700px; margin: 30px auto 0 auto; font-size: 1.2rem; text-align: left; font-weight: 400; }
 
-        .project { padding: 40px 20px; max-width: 900px; margin: 0 auto; border-bottom: 1px solid #222; }
-        .project h2 { font-size: 2rem; margin-bottom: 5px; }
-        .project-tag { color: #C1FF72; font-weight: bold; font-size: 0.9rem; margin-bottom: 15px; text-transform: uppercase; }
-        .project-desc { color: #ccc; margin-bottom: 20px; }
+        .project { padding: 60px 20px; max-width: 1000px; margin: 0 auto; border-bottom: 1px solid #1a1a1a; }
+        .project h2 { font-size: 2.5rem; margin-bottom: 5px; font-weight: 800; }
+        .project-tag { color: #C1FF72; font-weight: 700; font-size: 1rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .project-desc { color: #bbb; margin-bottom: 25px; font-size: 1.05rem; }
         
-        video, iframe { width: 100%; max-width: 900px; height: 500px; border-radius: 8px; background: #111; border: none; }
+        video { width: 100%; max-width: 1000px; height: 560px; border-radius: 8px; background: #111; object-fit: cover; }
         
-        .grid-photos { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
-        .grid-photos img { width: 100%; height: 180px; object-fit: cover; border-radius: 6px; }
+        .photo-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px; }
+        .photo-grid-4 img { width: 100%; height: 140px; object-fit: cover; border-radius: 4px; }
 
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 900px; margin: 40px auto; padding: 0 20px; }
-        .skills-grid h3 { color: #C1FF72; border-bottom: 2px solid #C1FF72; padding-bottom: 5px; }
-        .skills-grid ul { list-style: none; padding: 0; color: #ccc; }
-        .skills-grid li { margin-bottom: 8px; }
+        .pillars-section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; text-align: center; }
+        .pillars-section h2 { font-size: 2.2rem; margin-bottom: 40px; }
+        .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: left; margin-top: 40px; }
+        .pillar-card img { width: 100%; height: 280px; object-fit: cover; border-radius: 6px; margin-bottom: 15px; }
+        .pillar-title { color: #C1FF72; font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+        .pillar-desc { font-size: 0.9rem; color: #aaa; }
 
-        footer { background: #000; color: #fff; padding: 60px 20px; text-align: center; border-top: 1px solid #222; }
-        footer h2 { color: #C1FF72; font-size: 2.5rem; }
+        .covers-section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
+        .covers-section h2 { font-size: 2.5rem; margin-bottom: 30px; font-weight: 800; }
+        .covers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .cover-item img { width: 100%; height: 320px; object-fit: cover; border-radius: 6px; }
+        .cover-caption { margin-top: 10px; font-size: 0.95srem; color: #ccc; }
+
+        .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1000px; margin: 60px auto; padding: 0 20px; }
+        .skills-grid h3 { color: #C1FF72; font-size: 1.5rem; margin-bottom: 20px; font-weight: 800; }
+        .skills-grid ul { list-style: none; padding: 0; color: #ccc; font-size: 1.05rem; }
+        .skills-grid li { margin-bottom: 12px; }
+
+        footer { background: #000; color: #fff; padding: 80px 20px; text-align: center; border-top: 1px solid #1a1a1a; }
+        footer h2 { color: #C1FF72; font-size: 3rem; font-weight: 800; margin-bottom: 20px; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .photo-grid-4, .covers-grid, .skills-grid { grid-template-columns: 1fr; }
+            video { height: 250px; }
+        }
     </style>
 </head>
 <body>
@@ -47,7 +69,6 @@
     <!-- SECCIÓN BIO / VERDE -->
     <section class="section-green">
         <h2>CREO HISTORIAS VISUALES QUE CONECTAN, INSPIRAN Y DEJAN HUELLA.</h2>
-        <!-- Nota: Aquí puedes subir tu foto a GitHub y cambiar el enlace de abajo -->
         <img src="tu-foto.jpg" alt="Diego Farfán" class="profile-img">
         <div class="bio-text">
             <p>Soy un Director Creativo y Cineasta de Lima, Perú.</p>
@@ -56,30 +77,126 @@
         </div>
     </section>
 
-    <!-- PROYECTO: EL ENSAYO -->
+    <!-- 1. EL ENSAYO -->
     <div class="project">
         <h2>EL ENSAYO</h2>
         <div class="project-tag">Corto de 1 min – 2026</div>
-        <!-- Reemplaza el src con el enlace de tu video o YouTube/Vimeo -->
-        <video controls>
-            <source src="tu-video-ensayo.mp4" type="video/mp4">
-            Tu navegador no soporta videos.
-        </video>
+        <video controls><source src="el-ensayo.mp4" type="video/mp4"></video>
     </div>
 
-    <!-- PROYECTO: OBSESIÓN -->
+    <!-- PILARES / FOTOS DE DIRECCIÓN -->
+    <section class="pillars-section">
+        <h2>CONSTRUYO IMÁGENES ALREDEDOR DE LA EMOCIÓN, LA IDENTIDAD Y LA ATMÓSFERA.</h2>
+        <div class="pillars-grid">
+            <div class="pillar-card">
+                <img src="foto-luz.jpg" alt="Luz">
+                <div class="pillar-title">LUZ</div>
+                <div class="pillar-desc">Contraste, textura y color que moldean el estado de ánimo y el significado.</div>
+            </div>
+            <div class="pillar-card">
+                <img src="foto-camara.jpg" alt="Cámara">
+                <div class="pillar-title">CÁMARA</div>
+                <div class="pillar-desc">Movimiento, encuadre y perspectiva que guían la emoción.</div>
+            </div>
+            <div class="pillar-card">
+                <img src="foto-historia.jpg" alt="Historia">
+                <div class="pillar-title">HISTORIA</div>
+                <div class="pillar-desc">Personajes, emoción y narrativa en el centro de todo.</div>
+            </div>
+            <div class="pillar-card">
+                <img src="foto-arte.jpg" alt="Dirección de Arte">
+                <div class="pillar-title">DIRECCIÓN DE ARTE</div>
+                <div class="pillar-desc">Espacios, texturas y detalles que construyen el mundo.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. OBSESIÓN -->
     <div class="project">
         <h2>OBSESIÓN</h2>
         <div class="project-tag">Cortometraje – 2025</div>
         <p class="project-desc">Tras ser secuestrado y sometido a una brutal alteración facial para reemplazar a la difunta esposa de su captor, una joven despojada de su identidad emprende un implacable camino de venganza para recuperar su rostro y hacer pagar al responsable.</p>
-        <video controls>
-            <source src="tu-video-obsesion.mp4" type="video/mp4">
-        </video>
+        <video controls><source src="obsesion.mp4" type="video/mp4"></video>
+        <div style="margin-top: 30px; font-weight: 700; color: #fff; font-size: 1.1rem;">DIRECTOR DE FOTOGRAFÍA</div>
+        <div class="photo-grid-4">
+            <img src="obs-1.jpg" alt="Stills Obsesión">
+            <img src="obs-2.jpg" alt="Stills Obsesión">
+            <img src="obs-3.jpg" alt="Stills Obsesión">
+            <img src="obs-4.jpg" alt="Stills Obsesión">
+        </div>
     </div>
 
-    <!-- LO QUE HAGO (HABILIDADES) -->
+    <!-- 3. GUAYA GUAYA – L'CATA -->
+    <div class="project">
+        <h2>GUAYA GUAYA – L'CATA</h2>
+        <div class="project-tag">Videoclip – 2026</div>
+        <video controls><source src="guaya-guaya.mp4" type="video/mp4"></video>
+        <div style="margin-top: 30px; font-weight: 700; color: #fff; font-size: 1.1rem;">DIRECTOR DE FOTOGRAFÍA</div>
+        <div class="photo-grid-4">
+            <img src="guaya-1.jpg" alt="Stills Guaya">
+            <img src="guaya-2.jpg" alt="Stills Guaya">
+            <img src="guaya-3.jpg" alt="Stills Guaya">
+            <img src="guaya-4.jpg" alt="Stills Guaya">
+        </div>
+    </div>
+
+    <!-- 4. DIME, ¿CÓMO HAGO? – ROD CASTEL -->
+    <div class="project">
+        <h2>DIME, ¿CÓMO HAGO? – ROD CASTEL</h2>
+        <div class="project-tag">Videoclip – 2026</div>
+        <video controls><source src="dime-como-hago.mp4" type="video/mp4"></video>
+        <div style="margin-top: 30px; font-weight: 700; color: #fff; font-size: 1.1rem;">DIRECTOR DE FOTOGRAFÍA</div>
+        <div class="photo-grid-4">
+            <img src="dime-1.jpg" alt="Stills Dime">
+            <img src="dime-2.jpg" alt="Stills Dime">
+            <img src="dime-3.jpg" alt="Stills Dime">
+            <img src="dime-4.jpg" alt="Stills Dime">
+        </div>
+    </div>
+
+    <!-- 5. NUNCA HUBO NADA MALO – COLECTIVE -->
+    <div class="project">
+        <h2>NUNCA HUBO NADA MALO – COLECTIVE</h2>
+        <div class="project-tag">Fashion Film – 2026</div>
+        <video controls><source src="nunca-hubo.mp4" type="video/mp4"></video>
+        <div style="margin-top: 30px; font-weight: 700; color: #fff; font-size: 1.1rem;">DIRECTOR DE FOTOGRAFÍA</div>
+        <div class="photo-grid-4">
+            <img src="nunca-1.jpg" alt="Stills Nunca">
+            <img src="nunca-2.jpg" alt="Stills Nunca">
+            <img src="nunca-3.jpg" alt="Stills Nunca">
+            <img src="nunca-4.jpg" alt="Stills Nunca">
+        </div>
+    </div>
+
+    <!-- 6. MIX MEDIA -->
+    <div class="project">
+        <h2>MIX MEDIA – DIEGO FARFÁN</h2>
+        <div class="project-tag">Experimental – 2026</div>
+        <video controls><source src="mix-media.mp4" type="video/mp4"></video>
+    </div>
+
+    <!-- PORTADAS PARA ARTISTAS -->
+    <section class="covers-section">
+        <h2>PORTADAS PARA ARTISTAS</h2>
+        <div class="covers-grid">
+            <div class="cover-item">
+                <img src="portada-1.jpg" alt="MKSIS - Alive">
+                <div class="cover-caption">MKSIS – Alive</div>
+            </div>
+            <div class="cover-item">
+                <img src="portada-2.jpg" alt="Gianpool - A primera vista">
+                <div class="cover-caption">Gianpool – A primera vista</div>
+            </div>
+            <div class="cover-item">
+                <img src="portada-3.jpg" alt="Rod Castel - Autosabotaje">
+                <div class="cover-caption">Rod Castel – Autosabotaje</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LO QUE HAGO -->
     <section>
-        <div class="skills-grid">
+        <div class="skills-grid" style="max-width: 1000px; margin: 60px auto;">
             <div>
                 <h3>FILMMAKER</h3>
                 <ul>
@@ -112,16 +229,16 @@
         </div>
     </section>
 
-    <!-- FOOTER / CONTACTO -->
+    <!-- FOOTER -->
     <footer>
         <h2>CREEEEMOS ALGO EXTRAAAAAORDINARIOOOOO!!!</h2>
         <p><strong>DIEGO FARFÁN</strong><br><span class="accent">Director creativo & filmmaker</span></p>
-        <p style="margin-top: 30px;">
+        <p style="margin-top: 30px; line-height: 1.8;">
             IG: Diego_farfan____<br>
             diegofarfan.media@gmail.com<br>
             +51 977403 711
         </p>
-        <p style="color: #666; font-size: 0.8rem; margin-top: 40px;">Disponible para proyectos a nivel mundial.</p>
+        <p style="color: #666; font-size: 0.85rem; margin-top: 50px;">Disponible para proyectos a nivel mundial.</p>
     </footer>
 
 </body>
