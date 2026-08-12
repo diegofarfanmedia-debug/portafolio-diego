@@ -17,15 +17,22 @@
         html { scroll-behavior: smooth; }
         body { background: var(--black); color: #fff; margin: 0; font-family: 'Syne', sans-serif; overflow-x: hidden; }
         
-        /* CURSOR DE ESTRELLA PERSONALIZADO */
+        /* CURSOR DE ESTRELLA LIMPIO (SIN CAJA CUADRADA) */
         .custom-cursor { 
-            position: fixed; width: 24px; height: 24px; 
+            position: fixed; 
+            width: 8px; 
+            height: 8px; 
             background: var(--accent); 
             clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            pointer-events: none; transition: transform 0.1s ease; 
-            z-index: 999999; transform: translate(-50%, -50%); mix-blend-mode: difference; 
+            transform: scale(2.5);
+            pointer-events: none; 
+            transition: transform 0.1s ease; 
+            z-index: 999999; 
+            margin-top: -4px;
+            margin-left: -4px;
+            mix-blend-mode: difference; 
         }
-        .custom-cursor.hovered { transform: translate(-50%, -50%) scale(1.6) rotate(45deg); }
+        .custom-cursor.hovered { transform: scale(4) rotate(45deg); }
 
         /* PRELOADER */
         #preloader { 
@@ -320,9 +327,9 @@
 
     </div>
 
-    <!-- PILARES CREATIVOS -->
+    <!-- PILARES CREATIVOS CON TEXTO CORREGIDO -->
     <section class="pillars-section" id="filosofia">
-        <h2 class="pillars-title">Construyo imágenes alrededor de la emoción, la identidad y la atmósfera.</h2>
+        <h2 class="pillars-title">CONSTRUYO IMÁGENES ALREDEDOR DE LA EMOCIÓN, LA IDENTIDAD Y LA ATMÓSFERA.</h2>
         <div class="pillars-grid">
             <div class="pillar-card">
                 <h3>Luz</h3>
@@ -413,7 +420,7 @@
         </div>
     </section>
 
-    <!-- FOOTER / CONTACTO CON TEXTO CORREGIDO -->
+    <!-- FOOTER / CONTACTO -->
     <footer id="contacto">
         <h2>CREMOS ALGO<br>EXTRAORDINARIO!</h2>
         <div class="footer-info">
