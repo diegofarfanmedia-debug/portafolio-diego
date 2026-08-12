@@ -13,62 +13,132 @@
         .custom-cursor { position: fixed; width: 15px; height: 15px; background: var(--accent); border-radius: 50%; pointer-events: none; transition: transform 0.2s ease; z-index: 999999; transform: translate(-50%, -50%); mix-blend-mode: difference; }
         .custom-cursor.hovered { transform: translate(-50%, -50%) scale(3); }
 
-        /* MENÚ STICKY */
-        nav { position: fixed; top: 0; width: 100%; padding: 30px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 999; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); }
-        .nav-logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; }
-        .nav-links { display: flex; gap: 30px; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; }
-        .nav-links a { color: #fff; text-decoration: none; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--accent); }
-
-        /* PRELOADER */
-        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--accent); z-index: 9999; display: grid; padding: 20px; gap: 15px; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr); animation: fadeOut 1s ease 4s forwards; }
+        /* PRELOADER COLLAGE */
+        #preloader { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: var(--accent); z-index: 9999; 
+            display: grid; padding: 20px; gap: 15px;
+            grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr);
+            animation: fadeOut 1s ease 4s forwards;
+        }
         .item { overflow: hidden; border-radius: 4px; animation: popIn 0.8s ease forwards; opacity: 0; }
         .item img { width: 100%; height: 100%; object-fit: cover; }
         .large { grid-column: span 2; grid-row: span 2; }
         .tall { grid-row: span 2; }
+        
         @keyframes popIn { to { opacity: 1; transform: scale(1); } }
         @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
 
         /* ESTRUCTURA GENERAL */
-        header { padding: 200px 5% 60px 5%; max-width: 1200px; margin: 0 auto; }
+        header { padding: 100px 5% 60px 5%; max-width: 1200px; margin: 0 auto; text-align: left; }
         .hero-title { font-size: clamp(4rem, 9vw, 8rem); font-weight: 800; text-transform: uppercase; line-height: 0.95; letter-spacing: -2px; margin: 0; }
         .hero-subtitle { font-size: 1.15rem; color: var(--accent); font-weight: 600; margin-top: 25px; text-transform: uppercase; letter-spacing: 3px; }
 
         .section-green { background: var(--accent); color: var(--black); padding: 100px 5%; }
-        .section-green-content { max-width: 1200px; margin: 0 auto; }
+        .section-green-content { max-width: 1200px; margin: 0 auto; text-align: left; }
         .bio-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; margin-top: 40px; }
-        .profile-img { width: 100%; height: 480px; object-fit: cover; border-radius: 8px; transition: transform 0.6s ease-out; }
+        .profile-img { width: 100%; height: 480px; object-fit: cover; border-radius: 8px; filter: contrast(1.05); }
 
-        .project { padding: 100px 5%; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #151515; }
+        .project { padding: 100px 5%; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #151515; text-align: left; }
         .project-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
         .project-title { font-size: clamp(2rem, 5vw, 4rem); font-weight: 800; text-transform: uppercase; line-height: 1; margin: 0; }
         .project-tag { color: var(--accent); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
         
-        /* CONTENEDOR PARALLAX */
-        .parallax-container { overflow: hidden; border-radius: 8px; }
-        .media-item { width: 100%; height: 580px; object-fit: cover; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform; }
+        .zoom-img { overflow: hidden; border-radius: 8px; position: relative; }
+        video, .media-item { width: 100%; display: block; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease; background: #0a0a0a; height: 580px; object-fit: cover; }
+        .zoom-img:hover video, .covers-item:hover img, .categories-grid img:hover { transform: scale(1.03); filter: brightness(1.1); }
 
-        /* FOOTER */
-        footer { padding: 120px 5% 80px 5%; max-width: 1200px; margin: 0 auto; border-top: 1px solid #151515; position: relative; }
-        footer h2 { font-size: clamp(2.5rem, 6.5vw, 5.5rem); font-weight: 800; color: var(--accent); text-transform: uppercase; margin: 0 0 40px 0; line-height: 0.95; letter-spacing: -1px; word-break: break-word; max-width: 90%; }
-        .back-to-top { position: absolute; right: 5%; bottom: 80px; background: #111; color: var(--accent); border: 1px solid #333; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; text-decoration: none; transition: 0.3s; }
+        /* PORTADAS ASIMÉTRICAS */
+        .covers-section { padding: 100px 5%; max-width: 1200px; margin: 0 auto; text-align: left; }
+        .covers-section h2 { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800; text-transform: uppercase; margin: 0 0 50px 0; }
+        .covers-grid { display: grid; grid-template-columns: 1.2fr 0.8fr 1fr; gap: 20px; align-items: center; }
+        .cover-item:nth-child(1) img { height: 420px; }
+        .cover-item:nth-child(2) img { height: 320px; }
+        .cover-item:nth-child(3) img { height: 480px; }
+        .cover-item img { width: 100%; object-fit: cover; border-radius: 6px; margin-bottom: 15px; transition: transform 0.5s ease; }
+        .cover-item p { color: #fff; font-weight: 700; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; margin: 0; }
+
+        /* CATEGORÍAS FOTO */
+        .categories-section { padding: 100px 5%; max-width: 1200px; margin: 0 auto; text-align: left; }
+        .categories-nav { display: flex; gap: 30px; flex-wrap: wrap; margin-bottom: 40px; font-weight: 800; font-size: 1.1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
+        .categories-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 15px; }
+        .categories-grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; transition: transform 0.5s ease; }
+        .cat-1 { grid-column: span 2; grid-row: span 2; }
+        .cat-2 { grid-row: span 2; }
+
+        /* FOOTER AJUSTADO */
+        footer { padding: 120px 5% 80px 5%; max-width: 1200px; margin: 0 auto; border-top: 1px solid #151515; position: relative; text-align: left; }
+        footer h2 { 
+            font-size: clamp(2.5rem, 6.5vw, 5.5rem); 
+            font-weight: 800; 
+            color: var(--accent); 
+            text-transform: uppercase; 
+            margin: 0 0 40px 0; 
+            line-height: 0.95; 
+            letter-spacing: -1px; 
+            word-break: break-word; 
+            max-width: 90%; 
+        }
+        footer p { margin: 0; }
+        
+        .back-to-top { 
+            position: absolute; 
+            right: 5%; 
+            bottom: 80px; 
+            background: #111; 
+            color: var(--accent); 
+            border: 1px solid #333; 
+            width: 60px; 
+            height: 60px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.5rem; 
+            font-weight: 800; 
+            text-decoration: none; 
+            transition: background 0.3s, transform 0.3s; 
+        }
         .back-to-top:hover { background: var(--accent); color: #000; transform: translateY(-5px); }
 
-        @media (max-width: 768px) { .bio-grid { grid-template-columns: 1fr; } .back-to-top { position: relative; right: auto; margin-top: 40px; } }
+        /* LIGHTBOX */
+        #lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95); z-index: 100000;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+        #lightbox.active { opacity: 1; pointer-events: all; }
+        
+        #lightbox img, #lightbox video { 
+            max-width: 90vw; max-height: 90vh; border-radius: 8px; display: none; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8); transform: scale(0.95); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        #lightbox.show-img img { display: block; transform: scale(1); }
+        #lightbox.show-video video { display: block; transform: scale(1); }
+        
+        .close-lightbox { 
+            position: absolute; top: 30px; right: 40px; color: #fff; font-size: 3rem; 
+            font-weight: 300; line-height: 1; transition: color 0.3s; z-index: 100001; 
+        }
+        .close-lightbox:hover { color: var(--accent); }
+
+        @media (max-width: 768px) {
+            .bio-grid, .covers-grid, .categories-grid { grid-template-columns: 1fr; }
+            .categories-grid { grid-auto-rows: 250px; }
+            .cat-1, .cat-2 { grid-column: span 1; grid-row: span 1; }
+            #preloader { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 1fr); }
+            video, .media-item { height: 320px; }
+            footer h2 { max-width: 100%; }
+            .back-to-top { position: relative; right: auto; bottom: auto; margin-top: 40px; }
+        }
     </style>
 </head>
 <body>
 
     <div class="custom-cursor" id="cursor"></div>
-
-    <nav>
-        <div class="nav-logo">DIEGO FARFÁN</div>
-        <div class="nav-links">
-            <a href="#proyectos">Proyectos</a>
-            <a href="#bio">Bio</a>
-            <a href="mailto:Diegofarfan.media@gmail.com">Contacto</a>
-        </div>
-    </nav>
 
     <div id="preloader">
         <div class="item large"><img src="foto1.jpg"></div>
@@ -85,51 +155,139 @@
         <div class="hero-subtitle">Director creativo & filmmaker</div>
     </header>
 
-    <section class="section-green" id="bio">
+    <section class="section-green">
         <div class="section-green-content">
             <h2 style="font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800; text-transform: uppercase; line-height: 1.1; margin: 0 0 30px 0;">CREO HISTORIAS VISUALES QUE CONECTAN, INSPIRAN Y DEJAN HUELLA.</h2>
             <div class="bio-grid">
                 <img src="tu-foto.jpg" alt="Diego Farfán" class="profile-img">
                 <div>
                     <p style="font-size: 1.2rem; font-weight: 700; color: #000; line-height: 1.5; margin-bottom: 25px;">Soy un Director Creativo y Cineasta de Lima, Perú.</p>
+                    <p style="font-size: 1.1rem; color: #111; line-height: 1.6;">Me especializo en la narrativa visual, la dirección y la creación de contenido cinematográfico para marcas, artistas y proyectos impulsados por la cultura.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="project" id="proyectos">
+    <div class="project">
         <div class="project-header">
             <h2 class="project-title">OBSESIÓN</h2>
             <div class="project-tag">CORTOMETRAJE - 2025</div>
         </div>
-        <div class="parallax-container">
+        <p style="font-weight: 700; color: #fff; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">DIRECTOR DE FOTOGRAFÍA</p>
+        <div class="zoom-img">
             <video class="media-item" autoplay muted loop playsinline><source src="obsesion.mp4" type="video/mp4"></video>
         </div>
     </div>
+
+    <div class="project">
+        <div class="project-header">
+            <h2 class="project-title">GUAYA GUAYA - L CATA</h2>
+            <div class="project-tag">VIDEOCLIP - 2026</div>
+        </div>
+        <div class="zoom-img">
+            <video class="media-item" autoplay muted loop playsinline><source src="guaya-guaya.mp4" type="video/mp4"></video>
+        </div>
+    </div>
+
+    <div class="project">
+        <div class="project-header">
+            <h2 class="project-title">DIME, ¿CÓMO HAGO?</h2>
+            <div class="project-tag">ROD CASTEL • VIDEOCLIP - 2026</div>
+        </div>
+        <div class="zoom-img">
+            <video class="media-item" autoplay muted loop playsinline><source src="dime-como-hago.mp4" type="video/mp4"></video>
+        </div>
+    </div>
+
+    <section class="covers-section">
+        <h2>PORTADAS PARA ARTISTAS</h2>
+        <div class="covers-grid">
+            <div class="cover-item">
+                <img src="portada-1.jpg" alt="Mikele - Alive" class="media-item">
+                <p>MIKELE - Alive</p>
+            </div>
+            <div class="cover-item">
+                <img src="portada-2.jpg" alt="Gianpool" class="media-item">
+                <p>Gianpool - A primera vista</p>
+            </div>
+            <div class="cover-item">
+                <img src="portada-3.jpg" alt="Rod Castel" class="media-item">
+                <p>Rod Castel - Autosaboteo</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories-section">
+        <div class="categories-nav">
+            <span>CASA</span><span>MODA</span><span>ARTISTAS</span><span>EDITORIAL</span><span>CONCIERTO</span>
+        </div>
+        <div class="categories-grid">
+            <img src="casa-1.jpg" alt="Casa" class="media-item cat-1">
+            <img src="moda-1.jpg" alt="Moda" class="media-item cat-2">
+            <img src="artistas-1.jpg" alt="Artistas" class="media-item">
+            <img src="editorial-1.jpg" alt="Editorial" class="media-item">
+            <img src="concierto-1.jpg" alt="Concierto" class="media-item">
+        </div>
+    </section>
 
     <footer>
         <h2>CREEEEEMOS ALGO EXTRAAAAORDINARIOOOOO!!!</h2>
         <p style="font-size: 1.1rem; font-weight: 700; text-transform: uppercase;">Director creativo & filmmaker</p>
         <p style="font-size: 1.4rem; font-weight: 800; text-transform: uppercase; color: var(--accent); margin-top: 10px;">DIEGO FARFÁN</p>
+        <p style="margin-top: 30px; font-size: 1.1rem; line-height: 1.8; color: #aaa;">+51 977 403 711<br>Diegofarfan.media@gmail.com</p>
+        
         <a href="#" class="back-to-top">↑</a>
     </footer>
 
+    <div id="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img id="lightbox-img" src="" alt="Vista ampliada">
+        <video id="lightbox-video" controls></video>
+    </div>
+
     <script>
-        // Cursor
         const cursor = document.getElementById('cursor');
         window.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        // Parallax simple al scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallaxItems = document.querySelectorAll('.media-item');
-            parallaxItems.forEach(item => {
-                const speed = 0.2;
-                item.style.transform = `translateY(-${scrolled * speed}px) scale(1.05)`;
+        document.querySelectorAll('a, video, img, .close-lightbox').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        const lbVideo = document.getElementById('lightbox-video');
+        const closeBtn = document.querySelector('.close-lightbox');
+
+        document.querySelectorAll('.media-item').forEach(media => {
+            media.addEventListener('click', () => {
+                lightbox.classList.add('active');
+                if(media.tagName.toLowerCase() === 'img') {
+                    lightbox.classList.add('show-img');
+                    lbImg.src = media.src;
+                } else if (media.tagName.toLowerCase() === 'video') {
+                    lightbox.classList.add('show-video');
+                    const sourceTag = media.querySelector('source');
+                    lbVideo.src = sourceTag ? sourceTag.src : media.src;
+                    lbVideo.play();
+                }
             });
+        });
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('active', 'show-img', 'show-video');
+            setTimeout(() => {
+                lbImg.src = '';
+                lbVideo.src = '';
+            }, 400);
+        };
+
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if(e.target === lightbox) closeLightbox();
         });
     </script>
 </body>
