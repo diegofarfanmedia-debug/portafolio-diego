@@ -6,23 +6,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --accent: #C1FF72; /* Verde neón original */
-            --black: #080808; 
-            --surface: #111111;
-            --border: #1f1f1f; 
-            --text-muted: #999;
+            --accent: #111111; /* Negro de contraste principal */
+            --accent-green: #65b800; /* Verde editorial más elegante para acentos sutiles */
+            --bg: #ffffff; 
+            --surface: #f4f4f4;
+            --border: #e2e2e2; 
+            --text-main: #111111;
+            --text-muted: #666666;
         }
         
         * { cursor: none !important; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { background: var(--black); color: #fff; margin: 0; font-family: 'Syne', sans-serif; overflow-x: hidden; }
+        body { background: var(--bg); color: var(--text-main); margin: 0; font-family: 'Syne', sans-serif; overflow-x: hidden; }
         
-        /* CURSOR DE ESTRELLA */
+        /* CURSOR DE ESTRELLA INVERTIDO */
         .custom-cursor { 
             position: fixed; 
             width: 8px; 
             height: 8px; 
-            background: var(--accent); 
+            background: var(--text-main); 
             clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
             transform: scale(2.5);
             pointer-events: none; 
@@ -34,10 +36,10 @@
         }
         .custom-cursor.hovered { transform: scale(4) rotate(45deg); }
 
-        /* PRELOADER */
+        /* PRELOADER LIMPIO */
         #preloader { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: var(--accent); z-index: 9999; 
+            background: #fff; z-index: 9999; 
             display: grid; padding: 20px; gap: 15px;
             grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr);
             animation: fadeOut 0.8s ease 3s forwards;
@@ -53,14 +55,14 @@
         /* NAVBAR FIJA */
         nav {
             position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            background: rgba(8, 8, 8, 0.85); backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border); padding: 20px 5%;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .nav-logo { font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; color: #fff; text-decoration: none; }
+        .nav-logo { font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-main); text-decoration: none; }
         .nav-links { display: flex; gap: 30px; }
         .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover { color: var(--text-main); }
 
         /* HERO */
         header { 
@@ -68,46 +70,46 @@
             display: flex; justify-content: space-between; align-items: flex-end; 
             border-bottom: 1px solid var(--border); 
         }
-        .hero-title { font-size: clamp(3rem, 7vw, 6rem); font-weight: 800; text-transform: uppercase; line-height: 0.95; letter-spacing: -2px; margin: 0; }
-        .hero-subtitle { font-size: 0.9rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; text-align: right; }
+        .hero-title { font-size: clamp(3rem, 7vw, 6rem); font-weight: 800; text-transform: uppercase; line-height: 0.95; letter-spacing: -2px; margin: 0; color: var(--text-main); }
+        .hero-subtitle { font-size: 0.9rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; text-align: right; }
 
-        /* BIO */
-        .section-green { background: var(--accent); color: var(--black); padding: 100px 5%; }
-        .section-green-content { max-width: 1300px; margin: 0 auto; }
+        /* BIO ESTILO EDITORIAL */
+        .section-bio { background: var(--surface); color: var(--text-main); padding: 100px 5%; border-bottom: 1px solid var(--border); }
+        .section-bio-content { max-width: 1300px; margin: 0 auto; }
         .bio-title { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; text-transform: uppercase; line-height: 1.15; margin: 0 0 50px 0; max-width: 1000px; }
         .bio-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; align-items: center; }
-        .profile-img { width: 100%; height: 500px; object-fit: cover; border-radius: 8px; filter: contrast(1.05); }
-        .bio-text p { font-size: 1.15rem; font-weight: 600; line-height: 1.6; margin: 0 0 24px 0; color: #111; }
+        .profile-img { width: 100%; height: 500px; object-fit: cover; border-radius: 8px; filter: grayscale(20%); }
+        .bio-text p { font-size: 1.15rem; font-weight: 600; line-height: 1.6; margin: 0 0 24px 0; color: var(--text-muted); }
 
         /* PROYECTOS */
         .projects-container { max-width: 1300px; margin: 0 auto; padding: 0 5%; }
         .project { padding: 90px 0; border-bottom: 1px solid var(--border); }
         .project-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
-        .project-title { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; text-transform: uppercase; line-height: 1; margin: 0; }
-        .project-tag { color: var(--accent); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        .project-title { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; text-transform: uppercase; line-height: 1; margin: 0; color: var(--text-main); }
+        .project-tag { color: var(--text-muted); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
         
         .project-credits { 
             display: flex; gap: 20px; font-family: monospace; font-size: 0.85rem; 
-            color: var(--accent); text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; 
+            color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; 
         }
         .project-desc { font-size: 1.05rem; color: var(--text-muted); line-height: 1.6; max-width: 850px; margin-bottom: 30px; }
         
         .zoom-img { overflow: hidden; border-radius: 8px; position: relative; background: var(--surface); }
         video, .media-item { width: 100%; display: block; transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease; height: 620px; object-fit: cover; }
         .project.small-project video, .project.small-project .media-item { height: 440px; }
-        .zoom-img:hover video, .zoom-img:hover img { transform: scale(1.02); filter: brightness(1.05); }
+        .zoom-img:hover video, .zoom-img:hover img { transform: scale(1.02); filter: brightness(1.02); }
 
-        /* PILARES CREATIVOS (Como en la captura) */
+        /* PILARES CREATIVOS */
         .pillars-section { padding: 120px 5%; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid var(--border); }
         .pillars-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; text-transform: uppercase; line-height: 1.2; margin-bottom: 60px; max-width: 1100px; }
         .pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
         .pillar-card { background: var(--surface); padding: 35px 30px; border-radius: 8px; border: 1px solid var(--border); transition: border-color 0.3s; }
-        .pillar-card:hover { border-color: var(--accent); }
-        .pillar-card .pillar-icon { color: var(--accent); font-size: 1.4rem; margin-bottom: 15px; display: block; }
-        .pillar-card h3 { color: var(--accent); font-size: 1.1rem; font-weight: 800; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 1px; }
+        .pillar-card:hover { border-color: var(--text-main); }
+        .pillar-card .pillar-icon { color: var(--text-main); font-size: 1.4rem; margin-bottom: 15px; display: block; }
+        .pillar-card h3 { color: var(--text-main); font-size: 1.1rem; font-weight: 800; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 1px; }
         .pillar-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0; }
 
-        /* CATEGORÍAS (Como en la captura) */
+        /* CATEGORÍAS */
         .categories-section { padding: 120px 5%; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid var(--border); }
         .categories-nav { display: flex; gap: 35px; flex-wrap: wrap; margin-bottom: 40px; }
         .category-btn {
@@ -116,24 +118,24 @@
             text-transform: uppercase; letter-spacing: 2px; padding: 0; position: relative;
             cursor: none; transition: color 0.3s ease;
         }
-        .category-btn.active, .category-btn:hover { color: var(--accent); }
+        .category-btn.active, .category-btn:hover { color: var(--text-main); }
         
         .categories-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
         .categories-grid img { width: 100%; height: 380px; object-fit: cover; border-radius: 8px; transition: transform 0.4s ease; }
         .categories-grid img:hover { transform: scale(1.02); }
 
-        /* PORTADAS PARA ARTISTAS (Como en la captura) */
+        /* PORTADAS PARA ARTISTAS */
         .covers-section { padding: 120px 5%; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid var(--border); }
         .covers-section h2 { font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; text-transform: uppercase; margin: 0 0 50px 0; }
-        .covers-section h2 span { color: var(--accent); }
+        .covers-section h2 span { color: var(--text-muted); font-weight: 400; }
         .covers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
         .cover-item img { width: 100%; height: 440px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
-        .cover-item p { color: #fff; font-weight: 700; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; margin: 0; }
+        .cover-item p { color: var(--text-main); font-weight: 700; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; margin: 0; }
 
         /* SKILLS */
         .skills-section { padding: 120px 5%; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid var(--border); }
         .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; }
-        .skill-column h3 { color: var(--accent); font-size: 1.15rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 25px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+        .skill-column h3 { color: var(--text-main); font-size: 1.15rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 25px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
         .skill-column ul { list-style: none; padding: 0; margin: 0; }
         .skill-column li { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 14px; font-weight: 600; }
 
@@ -142,7 +144,7 @@
         footer h2 { 
             font-size: clamp(2.2rem, 5vw, 4.5rem); 
             font-weight: 800; 
-            color: var(--accent); 
+            color: var(--text-main); 
             text-transform: uppercase; 
             margin: 0 0 40px 0; 
             line-height: 1; 
@@ -150,22 +152,22 @@
             max-width: 1000px; 
         }
         .footer-info { font-size: 1.15rem; line-height: 1.8; color: var(--text-muted); }
-        .footer-info strong { color: #fff; }
+        .footer-info strong { color: var(--text-main); }
         
         .back-to-top { 
             position: absolute; right: 5%; bottom: 80px; 
-            background: var(--surface); color: var(--accent); border: 1px solid var(--border); 
+            background: var(--surface); color: var(--text-main); border: 1px solid var(--border); 
             width: 60px; height: 60px; border-radius: 50%; 
             display: flex; align-items: center; justify-content: center; 
             font-size: 1.4rem; font-weight: 800; text-decoration: none; 
             transition: background 0.3s, transform 0.3s, color 0.3s; 
         }
-        .back-to-top:hover { background: var(--accent); color: var(--black); transform: translateY(-5px); }
+        .back-to-top:hover { background: var(--text-main); color: #fff; transform: translateY(-5px); }
 
         /* LIGHTBOX */
         #lightbox {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.96); z-index: 100000;
+            background: rgba(255, 255, 255, 0.96); z-index: 100000;
             display: flex; justify-content: center; align-items: center;
             opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
             backdrop-filter: blur(15px);
@@ -173,15 +175,15 @@
         #lightbox.active { opacity: 1; pointer-events: all; }
         #lightbox img, #lightbox video { 
             max-width: 90vw; max-height: 90vh; border-radius: 8px; display: none; 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.9); 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15); 
         }
         #lightbox.show-img img { display: block; }
         #lightbox.show-video video { display: block; }
         .close-lightbox { 
-            position: absolute; top: 35px; right: 45px; color: #fff; font-size: 3rem; 
+            position: absolute; top: 35px; right: 45px; color: var(--text-main); font-size: 3rem; 
             font-weight: 300; line-height: 1; transition: color 0.3s; z-index: 100001; cursor: none;
         }
-        .close-lightbox:hover { color: var(--accent); }
+        .close-lightbox:hover { color: var(--text-muted); }
 
         @media (max-width: 900px) {
             header, .bio-grid, .pillars-grid, .categories-grid, .covers-grid, .skills-grid { grid-template-columns: 1fr; }
@@ -227,8 +229,8 @@
     </header>
 
     <!-- BIO -->
-    <section class="section-green">
-        <div class="section-green-content">
+    <section class="section-bio">
+        <div class="section-bio-content">
             <h2 class="bio-title">Creo historias visuales que conectan, inspiran y dejan huella.</h2>
             <div class="bio-grid">
                 <img src="tu-foto.jpg" alt="Diego Farfán" class="profile-img">
@@ -331,7 +333,7 @@
 
     </div>
 
-    <!-- PILARES CREATIVOS (IDÉNTICO A LA CAPTURA) -->
+    <!-- PILARES CREATIVOS -->
     <section class="pillars-section" id="filosofia">
         <h2 class="pillars-title">CONSTRUYO IMÁGENES ALREDEDOR DE LA EMOCIÓN, LA IDENTIDAD Y LA ATMÓSFERA.</h2>
         <div class="pillars-grid">
@@ -358,7 +360,7 @@
         </div>
     </section>
 
-    <!-- CATEGORÍAS (IDÉNTICO A LA CAPTURA) -->
+    <!-- CATEGORÍAS -->
     <section class="categories-section">
         <div class="categories-nav">
             <button class="category-btn active">CASA</button>
@@ -375,7 +377,7 @@
         </div>
     </section>
 
-    <!-- PORTADAS PARA ARTISTAS (IDÉNTICO A LA CAPTURA) -->
+    <!-- PORTADAS PARA ARTISTAS -->
     <section class="covers-section" id="portadas">
         <h2>PORTADAS <span>PARA ARTISTAS</span></h2>
         <div class="covers-grid">
@@ -438,7 +440,7 @@
             +51 977 403 711<br>
             Diegofarfan.media@gmail.com<br>
             IG: Diego farfan___<br><br>
-            <span style="color: var(--accent);">Disponible para proyectos a nivel mundial.</span>
+            <span style="color: var(--text-main);">Disponible para proyectos a nivel mundial.</span>
         </div>
         <a href="#" class="back-to-top">↑</a>
     </footer>
