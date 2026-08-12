@@ -58,9 +58,43 @@
         .cover-item img { width: 100%; object-fit: cover; border-radius: 6px; margin-bottom: 15px; transition: transform 0.5s ease; }
         .cover-item p { color: #fff; font-weight: 700; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; margin: 0; }
 
-        /* CATEGORÍAS FOTO */
+        /* CATEGORÍAS - BOTONES DE NAVEGACIÓN */
         .categories-section { padding: 100px 5%; max-width: 1200px; margin: 0 auto; text-align: left; }
-        .categories-nav { display: flex; gap: 30px; flex-wrap: wrap; margin-bottom: 40px; font-weight: 800; font-size: 1.1rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
+        .categories-nav { display: flex; gap: 30px; flex-wrap: wrap; margin-bottom: 40px; }
+        
+        /* ESTILO DE CADA BOTÓN DE CATEGORÍA */
+        .category-btn {
+            background: transparent;
+            border: none;
+            color: var(--accent);
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0;
+            position: relative;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .category-btn::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .category-btn:hover {
+            color: #fff;
+        }
+        .category-btn:hover::after {
+            width: 100%;
+            background-color: #fff;
+        }
+
         .categories-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 15px; }
         .categories-grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; transition: transform 0.5s ease; }
         .cat-1 { grid-column: span 2; grid-row: span 2; }
@@ -217,9 +251,14 @@
         </div>
     </section>
 
+    <!-- SECCIÓN DE CATEGORÍAS CON BOTONES FUNCIONALES -->
     <section class="categories-section">
         <div class="categories-nav">
-            <span>CASA</span><span>MODA</span><span>ARTISTAS</span><span>EDITORIAL</span><span>CONCIERTO</span>
+            <a href="#casa" class="category-btn">CASA</a>
+            <a href="#moda" class="category-btn">MODA</a>
+            <a href="#artistas" class="category-btn">ARTISTAS</a>
+            <a href="#editorial" class="category-btn">EDITORIAL</a>
+            <a href="#concierto" class="category-btn">CONCIERTO</a>
         </div>
         <div class="categories-grid">
             <img src="casa-1.jpg" alt="Casa" class="media-item cat-1">
