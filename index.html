@@ -193,7 +193,6 @@
             gap: 35px;
         }
 
-        /* Estilo general de tarjetas */
         .project-card {
             text-decoration: none;
             color: inherit;
@@ -213,7 +212,6 @@
             position: relative;
         }
 
-        /* Videos locales o imágenes que hacen zoom */
         .project-media video, .project-media img {
             width: 100%;
             height: 100%;
@@ -226,28 +224,6 @@
         .project-card:hover .project-media img {
             transform: scale(1.03);
             filter: brightness(1.05);
-        }
-
-        .play-badge {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            background: rgba(27, 54, 93, 0.85);
-            color: #fff;
-            padding: 6px 12px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 2px;
-            backdrop-filter: blur(4px);
-            z-index: 10;
-            pointer-events: none;
-            transition: background 0.3s;
-        }
-
-        .project-card:hover .play-badge {
-            background: var(--blueprint-blue);
         }
 
         .project-meta h3 {
@@ -367,30 +343,28 @@
                 </div>
             </section>
 
-            <!-- MOTION / CINE (MEZCLA DE VIDEOS LOCALES EN BUCLE Y ENLACES DE YOUTUBE) -->
+            <!-- MOTION / CINE (VIDEOS LOCALES LIMPIOS SIN ETIQUETAS MOLESTAS) -->
             <section id="motion">
                 <h2 class="section-title">motion / cine (videoclips)</h2>
                 <div class="projects-grid">
                     
-                    <!-- CASO A: Video que tienes en tu PC / carpeta (Se reproduce como un gif solo) -->
+                    <!-- Video Local 1 (Ejemplo) -->
                     <div class="project-card">
                         <div class="project-media">
                             <video autoplay muted loop playsinline>
                                 <source src="tu-video-local.mp4" type="video/mp4">
                             </video>
-                            <span class="play-badge">▶ reproduciendo</span>
                         </div>
                         <div class="project-meta">
-                            <h3>Proyecto Local - Archivo PC</h3>
+                            <h3>Título del Proyecto</h3>
                             <p>Videoclip • 2026 // DP</p>
                         </div>
                     </div>
 
-                    <!-- CASO B: Video que está en YouTube (Usa miniatura y abre enlace) -->
+                    <!-- Video de YouTube (Enlace limpio) -->
                     <a href="https://www.youtube.com/watch?v=wrGP7YdDEyk" target="_blank" class="project-card">
                         <div class="project-media">
                             <img src="https://img.youtube.com/vi/wrGP7YdDEyk/maxresdefault.jpg" alt="Guaya Guaya">
-                            <span class="play-badge">▶ ver en youtube</span>
                         </div>
                         <div class="project-meta">
                             <h3>Guaya Guaya - L Cata</h3>
