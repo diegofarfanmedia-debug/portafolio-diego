@@ -3,61 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>DIEGO FARFÁN | CREATIVE DIRECTOR</title>
-    <!-- Fuente Syne para ese look de productora top -->
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { --accent: #C1FF72; --black: #000; }
         body { background: var(--black); color: #fff; margin: 0; font-family: 'Syne', sans-serif; overflow-x: hidden; }
+
+        /* Pantalla de carga de 4 segundos */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--accent); display: flex; justify-content: center; align-items: center;
+            z-index: 9999; animation: fadeOut 1s ease 4s forwards;
+        }
+        @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
+
+        /* Grid de mosaico inicial */
+        .mosaic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; width: 80%; }
+        .mosaic-grid img { width: 100%; height: 150px; object-fit: cover; animation: popIn 0.8s ease forwards; opacity: 0; }
+        @keyframes popIn { to { opacity: 1; transform: scale(1); } }
+
+        /* Estilos ajustados (menos gigante) */
+        header { padding: 80px 5%; }
+        .hero-title { font-size: clamp(3rem, 8vw, 6rem); font-weight: 700; line-height: 1; text-transform: uppercase; }
         
-        /* Animación suave al cargar */
-        .fade-in { animation: fadeInUp 1s ease forwards; opacity: 0; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .section-green { background: var(--accent); color: var(--black); padding: 80px 5%; }
+        .bio-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; }
+        .profile-img { width: 100%; height: 400px; object-fit: cover; border-radius: 10px; }
 
-        header { padding: 100px 5%; }
-        .hero-title { font-size: clamp(4rem, 15vw, 12rem); font-weight: 800; line-height: 0.8; text-transform: uppercase; }
-        .hero-title span { display: block; }
-        
-        .section-green { background: var(--accent); color: var(--black); padding: 100px 5%; }
-        .bio-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 50px; }
-        .profile-img { width: 100%; height: 500px; object-fit: cover; border-radius: 20px; transition: transform 0.6s ease; }
-        .profile-img:hover { transform: scale(1.02); }
+        .project { padding: 80px 5%; }
+        .project-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 20px; }
+        .zoom-img { overflow: hidden; border-radius: 8px; }
+        .zoom-img video { width: 100%; transition: transform 0.6s ease; }
+        .zoom-img:hover video { transform: scale(1.02); }
 
-        .project { padding: 100px 5%; border-top: 1px solid #222; }
-        .project-title { font-size: clamp(2rem, 5vw, 4rem); font-weight: 800; margin-bottom: 20px; text-transform: uppercase; }
-        
-        /* Efecto Zoom en Imágenes */
-        .zoom-img { overflow: hidden; border-radius: 10px; }
-        .zoom-img img, .zoom-img video { transition: transform 0.8s ease; width: 100%; display: block; }
-        .zoom-img:hover img, .zoom-img:hover video { transform: scale(1.05); }
-
-        .footer { padding: 100px 5%; text-align: center; }
-        .footer h2 { font-size: clamp(3rem, 10vw, 8rem); color: var(--accent); }
-
-        @media (max-width: 768px) { .bio-grid { grid-template-columns: 1fr; } }
+        .footer { padding: 60px 5%; text-align: center; }
+        .footer h2 { font-size: 3rem; color: var(--accent); }
     </style>
 </head>
 <body>
 
-    <header class="fade-in">
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="mosaic-grid">
+            <img src="foto1.jpg" style="animation-delay: 0.5s;">
+            <img src="foto2.jpg" style="animation-delay: 1s;">
+            <img src="foto3.jpg" style="animation-delay: 1.5s;">
+            <img src="foto4.jpg" style="animation-delay: 2s;">
+        </div>
+    </div>
+
+    <!-- CONTENIDO -->
+    <header>
         <div class="hero-title">
             <span>DIEGO</span>
             <span style="color: var(--accent);">FARFÁN</span>
         </div>
-        <div style="margin-top: 20px; font-size: 1.5rem; letter-spacing: 2px;">DIRECTOR CREATIVO & FILMMAKER</div>
+        <div style="margin-top: 15px; font-size: 1.1rem; letter-spacing: 1px;">DIRECTOR CREATIVO & FILMMAKER</div>
     </header>
 
     <section class="section-green">
         <div class="bio-grid">
             <img src="tu-foto.jpg" alt="Diego Farfán" class="profile-img">
             <div>
-                <h2 style="font-size: 3rem; line-height: 1;">CREO HISTORIAS VISUALES QUE CONECTAN.</h2>
-                <p style="font-size: 1.2rem; font-weight: 400;">Director de fotografía y cineasta basado en Lima. Mi trabajo reside en la intersección entre la moda, la música y la narrativa cinematográfica. No busco lo convencional, busco la identidad.</p>
+                <h2 style="font-size: 2.2rem; line-height: 1.2;">CREO HISTORIAS VISUALES QUE CONECTAN.</h2>
+                <p style="font-size: 1.1rem;">Director de fotografía y cineasta basado en Lima. Mi trabajo reside en la intersección entre la moda, la música y la narrativa cinematográfica.</p>
             </div>
         </div>
     </section>
 
-    <!-- Ejemplo de Proyecto con Zoom -->
-    <div class="project fade-in">
+    <div class="project">
         <div class="project-title">OBSESIÓN</div>
         <div class="zoom-img">
             <video controls><source src="obsesion.mp4" type="video/mp4"></video>
@@ -65,20 +78,13 @@
     </div>
 
     <footer class="footer">
-        <h2 class="fade-in">CREEMOS ALGO EXTRAORDINARIO</h2>
-        <div style="font-size: 1.5rem; margin-top: 40px;">
+        <h2>CREEMOS ALGO EXTRAORDINARIO</h2>
+        <div style="font-size: 1.2rem; margin-top: 20px;">
             <p>@diegofarfan____</p>
             <p>diegofarfan.media@gmail.com</p>
             <p>+51 977 403 711</p>
         </div>
     </footer>
 
-    <script>
-        // Pequeño script para animar al hacer scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('fade-in'); });
-        });
-        document.querySelectorAll('.project, .section-green').forEach(el => observer.observe(el));
-    </script>
 </body>
 </html>
