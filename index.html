@@ -6,37 +6,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #f4f6f9; --blueprint-blue: #1b365d; --text-main: #111111; --text-muted: #555555; --border: #d0d7de; }
-        body { background-color: var(--bg-color); color: var(--text-main); margin: 0; font-family: 'Syne', sans-serif; }
+        * { box-sizing: border-box; }
+        body { background-color: var(--bg-color); background-image: radial-gradient(rgba(27, 54, 93, 0.04) 1px, transparent 0); background-size: 20px 20px; color: var(--text-main); margin: 0; font-family: 'Syne', sans-serif; }
         .site-wrapper { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
         aside { position: fixed; top: 0; left: 0; width: 280px; height: 100vh; padding: 40px 30px; border-right: 1px solid var(--border); background: rgba(244, 246, 249, 0.95); z-index: 1000; }
+        .brand-title { font-size: 1.1rem; font-weight: 800; text-transform: uppercase; color: var(--blueprint-blue); margin-bottom: 30px; display: block; }
         main { grid-column: 2; padding: 60px 80px; }
+        .section-title { font-size: 1.3rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 35px; color: var(--blueprint-blue); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; }
         .about-img { width: 100%; height: 420px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border); }
-        .section-title { font-size: 1.3rem; font-weight: 800; text-transform: uppercase; margin-bottom: 35px; color: var(--blueprint-blue); }
-        .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 35px; }
-        .project-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 12px; }
-        .project-media { width: 100%; height: 380px; background: #111; border-radius: 4px; overflow: hidden; border: 1px solid var(--border); }
-        .project-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .project-card:hover .project-media img { transform: scale(1.03); }
-        .project-meta h3 { font-size: 1.1rem; font-weight: 800; text-transform: uppercase; color: var(--blueprint-blue); margin: 0; }
+        .about-text p { font-size: 1.05rem; line-height: 1.7; color: var(--text-muted); }
     </style>
 </head>
 <body>
+
     <div class="site-wrapper">
         <aside>
-            <h2 style="color:var(--blueprint-blue)">DIEGO FARFÁN</h2>
-            <nav>
-                <p>Director Creativo & Filmmaker</p>
-                <a href="#about">Sobre mí</a>
-            </nav>
+            <a href="#" class="brand-title">diego farfán<br><span style="font-size: 0.75rem; font-weight: 600; opacity: 0.7;">director creativo & filmmaker</span></a>
+            <!-- Aquí iría tu navegación lateral igual que antes -->
         </aside>
+
         <main>
+            <!-- SOBRE MÍ (CON TU FOTO INTEGRADA) -->
             <section id="about">
                 <h2 class="section-title">sobre mí</h2>
-                <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px;">
-                    <!-- AQUÍ ESTÁ TU FOTO CON LA CALIDAD REAL -->
+                <div class="about-grid">
+                    <!-- FOTO DE ALTA CALIDAD -->
                     <img src="https://i.postimg.cc/n9rBNvmZ/IMG-4796.jpg" alt="Diego Farfán" class="about-img">
-                    <div>
-                        <p>Director creativo y filmmaker. Fusiono el lenguaje del cine de autor con la creación de contenido digital.</p>
+                    <div class="about-text">
+                        <p>Soy Diego Farfán, director creativo, filmmaker y creador de contenido basado en Lima. Mi trabajo une la rigurosidad visual del cine con la inmediatez y frescura del contenido digital.</p>
+                        <p>Diseño universos visuales únicos que funcionan tanto en la gran pantalla como en las plataformas de las marcas más exigentes.</p>
                     </div>
                 </div>
             </section>
