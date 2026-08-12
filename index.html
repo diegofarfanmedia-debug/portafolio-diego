@@ -6,338 +6,357 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --accent: #3b5bdb; /* Azul editorial / eléctrico inspirador */
-            --bg-color: #f7f7f9;
-            --text-main: #111111;
-            --text-muted: #666666;
-            --border-color: #d1d1d6;
+            --accent: #C1FF72; 
+            --black: #080808; 
+            --surface: #121212;
+            --border: #222222; 
+            --text-muted: #888888;
         }
         
         * { cursor: default; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { 
-            background: var(--bg-color); 
-            color: var(--text-main); 
+            background: var(--black); 
+            color: #fff; 
             margin: 0; 
             font-family: 'Syne', sans-serif; 
             overflow-x: hidden; 
         }
 
-        /* LAYOUT PRINCIPAL TIPO WEB EDITORIAL */
-        .site-container {
+        /* LAYOUT PRINCIPAL DE GALERÍA EDITORIAL */
+        .site-wrapper {
             display: grid;
-            grid-template-columns: 260px 1fr;
+            grid-template-columns: 280px 1fr;
             min-height: 100vh;
         }
 
-        /* MENÚ LATERAL FIJO */
+        /* SIDEBAR FIJO */
         aside {
             position: fixed;
             top: 0;
             left: 0;
-            width: 260px;
+            width: 280px;
             height: 100vh;
-            padding: 40px 30px;
+            padding: 50px 40px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border-right: 1px solid var(--border-color);
-            background: var(--bg-color);
-            z-index: 100;
+            border-right: 1px solid var(--border);
+            background: var(--black);
+            z-index: 1000;
+        }
+
+        .brand-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 40px;
         }
 
         .side-nav {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 14px;
         }
 
         .side-nav a {
-            color: var(--accent);
+            color: var(--text-muted);
             text-decoration: none;
-            font-weight: 800;
-            font-size: 1.05rem;
+            font-weight: 700;
+            font-size: 0.95rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: opacity 0.2s;
+            letter-spacing: 1.5px;
+            transition: color 0.3s ease;
         }
 
-        .side-nav a:hover {
-            opacity: 0.6;
+        .side-nav a:hover, .side-nav a.active {
+            color: var(--accent);
         }
 
         .side-subnav {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
+            gap: 10px;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border);
         }
 
         .side-subnav a {
-            font-size: 0.85rem;
-            color: var(--text-main);
-            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
         }
 
-        .side-footer-contact a {
+        .side-footer a {
             color: var(--accent);
             text-decoration: none;
             font-weight: 800;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* CONTENIDO PRINCIPAL */
+        /* CONTENEDOR PRINCIPAL */
         main {
             grid-column: 2;
-            padding: 60px 80px;
+            padding: 80px 100px;
         }
 
         section {
-            padding: 60px 0;
-            border-bottom: 1px solid var(--border-color);
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border);
         }
 
-        section:last-child {
+        section:last-of-type {
             border-bottom: none;
         }
 
-        /* SECCIÓN HOME / HERO */
+        /* HERO SECTION */
         .hero-section {
-            padding-top: 20px;
+            padding-top: 0;
         }
 
         .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-size: clamp(3rem, 6vw, 5.5rem);
             font-weight: 800;
             text-transform: uppercase;
-            line-height: 1.1;
-            margin: 0 0 20px 0;
+            line-height: 0.95;
+            letter-spacing: -2px;
+            margin: 0 0 30px 0;
         }
 
         .hero-subtitle {
             font-size: 1.1rem;
-            color: var(--text-muted);
-            font-weight: 600;
-            max-width: 600px;
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            max-width: 700px;
             line-height: 1.6;
         }
 
         /* GRILLA DE PROYECTOS */
         .section-title {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 800;
             text-transform: uppercase;
-            margin-bottom: 40px;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            margin-bottom: 50px;
+            color: #fff;
         }
 
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
+            gap: 50px 40px;
         }
 
         .project-card {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
             text-decoration: none;
             color: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
-        .project-img-wrap {
+        .project-media {
             width: 100%;
-            height: 420px;
+            height: 480px;
+            background: var(--surface);
+            border-radius: 6px;
             overflow: hidden;
-            border-radius: 4px;
-            background: #e1e1e6;
+            position: relative;
+            border: 1px solid var(--border);
         }
 
-        .project-img-wrap img, .project-img-wrap video {
+        .project-media video, .project-media img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease, filter 0.3s ease;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
         }
 
-        .project-card:hover .project-img-wrap img, 
-        .project-card:hover .project-img-wrap video {
+        .project-card:hover .project-media video, 
+        .project-card:hover .project-media img {
             transform: scale(1.03);
-            filter: brightness(1.05);
+            filter: brightness(1.08);
         }
 
-        .project-info h3 {
-            font-size: 1.2rem;
+        .project-meta h3 {
+            font-size: 1.25rem;
             font-weight: 800;
             text-transform: uppercase;
-            margin: 0 0 5px 0;
+            margin: 0 0 6px 0;
+            letter-spacing: 0.5px;
         }
 
-        .project-info p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            font-weight: 600;
+        .project-meta p {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-family: monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin: 0;
         }
 
-        /* SECCIÓN ABOUT / SOBRE MÍ */
+        /* SOBRE MÍ */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1.2fr;
-            gap: 50px;
+            gap: 60px;
             align-items: center;
         }
 
         .about-img {
             width: 100%;
-            height: 450px;
+            height: 500px;
             object-fit: cover;
-            border-radius: 4px;
+            border-radius: 6px;
+            filter: grayscale(20%);
         }
 
         .about-text p {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             line-height: 1.7;
-            color: var(--text-main);
+            color: #ddd;
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        .skills-list {
-            margin-top: 30px;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            font-weight: 700;
+        .about-tags {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-family: monospace;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            margin-top: 30px;
         }
 
-        /* SECCIÓN CONTACTO */
+        /* CONTACTO */
         .contact-section h2 {
-            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 800;
             text-transform: uppercase;
-            margin-bottom: 20px;
-            line-height: 1.1;
+            color: var(--accent);
+            margin: 0 0 30px 0;
+            line-height: 1;
+            letter-spacing: -1px;
         }
 
         .contact-section p {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--text-muted);
-            max-width: 600px;
-            line-height: 1.6;
-            margin-bottom: 30px;
+            max-width: 650px;
+            line-height: 1.7;
+            margin-bottom: 40px;
         }
 
         .contact-email {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 800;
-            color: var(--accent);
+            color: #fff;
             text-decoration: none;
-            display: inline-block;
             border-bottom: 2px solid var(--accent);
-            padding-bottom: 4px;
+            padding-bottom: 6px;
+            display: inline-block;
+            transition: color 0.3s;
         }
 
-        /* RESPONSIVE PARA MÓVILES */
-        @media (max-width: 900px) {
-            .site-container {
-                display: block;
-            }
-            aside {
-                position: relative;
-                width: 100%;
-                height: auto;
-                padding: 30px 20px;
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-            }
-            main {
-                padding: 40px 20px;
-            }
-            .projects-grid, .about-grid {
-                grid-template-columns: 1fr;
-            }
+        .contact-email:hover {
+            color: var(--accent);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .site-wrapper { display: block; }
+            aside { position: relative; width: 100%; height: auto; padding: 30px; border-right: none; border-bottom: 1px solid var(--border); }
+            main { padding: 50px 30px; }
+            .projects-grid, .about-grid { grid-template-columns: 1fr; }
+            .project-media { height: 380px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="site-container">
+    <div class="site-wrapper">
 
-        <!-- MENÚ LATERAL ESTILO REFERENCIA -->
+        <!-- MENÚ LATERAL -->
         <aside>
-            <nav class="side-nav">
-                <a href="#home">Home</a>
-                <a href="#proyectos">Projects</a>
-                <a href="#about">About Me</a>
-                
-                <div class="side-subnav">
-                    <a href="#proyectos">Editorial</a>
-                    <a href="#proyectos">Portraits</a>
-                    <a href="#proyectos">Videoclips</a>
-                    <a href="#proyectos">Art Direction</a>
-                </div>
-            </nav>
-
-            <div class="side-footer-contact">
-                <a href="#contacto">Contact</a>
+            <div>
+                <a href="#home" class="brand-title">Diego Farfán</a>
+                <nav class="side-nav">
+                    <a href="#home" class="active">Home</a>
+                    <a href="#proyectos">Projects</a>
+                    <a href="#about">About Me</a>
+                    
+                    <div class="side-subnav">
+                        <a href="#proyectos">Editorial / Moda</a>
+                        <a href="#proyectos">Videoclips</a>
+                        <a href="#proyectos">Cortometrajes</a>
+                        <a href="#proyectos">Dirección de Arte</a>
+                    </div>
+                </nav>
+            </div>
+            <div class="side-footer">
+                <a href="#contacto">Let's Talk →</a>
             </div>
         </aside>
 
-        <!-- CONTENIDO PRINCIPAL -->
+        <!-- CONTENIDO -->
         <main>
             <!-- HERO -->
             <section id="home" class="hero-section">
-                <h1 class="hero-title">Diego Farfán</h1>
-                <p class="hero-subtitle">Director Creativo & Filmmaker basado en Lima, Perú. Construyo identidades visuales, atmósferas y narrativas cinematográficas que conectan con la cultura.</p>
+                <h1 class="hero-title">Director Creativo<br>& Filmmaker</h1>
+                <p class="hero-subtitle">Construyendo identidades visuales, atmósferas y narrativas cinematográficas con base en Lima, Perú.</p>
             </section>
 
             <!-- PROYECTOS -->
             <section id="proyectos">
-                <h2 class="section-title">Proyectos Destacados</h2>
+                <h2 class="section-title">Trabajos Seleccionados</h2>
                 <div class="projects-grid">
                     
                     <div class="project-card">
-                        <div class="project-img-wrap">
+                        <div class="project-media">
                             <video autoplay muted loop playsinline><source src="obsesion.mp4" type="video/mp4"></video>
                         </div>
-                        <div class="project-info">
+                        <div class="project-meta">
                             <h3>Obsesión</h3>
-                            <p>Cortometraje • 2025 (Director de Fotografía)</p>
+                            <p>Cortometraje • 2025 // Director de Fotografía</p>
                         </div>
                     </div>
 
                     <div class="project-card">
-                        <div class="project-img-wrap">
+                        <div class="project-media">
                             <video autoplay muted loop playsinline><source src="guaya-guaya.mp4" type="video/mp4"></video>
                         </div>
-                        <div class="project-info">
+                        <div class="project-meta">
                             <h3>Guaya Guaya - L Cata</h3>
-                            <p>Videoclip • 2026 (Director de Fotografía)</p>
+                            <p>Videoclip • 2026 // Director de Fotografía</p>
                         </div>
                     </div>
 
                     <div class="project-card">
-                        <div class="project-img-wrap">
+                        <div class="project-media">
                             <video autoplay muted loop playsinline><source src="dime-como-hago.mp4" type="video/mp4"></video>
                         </div>
-                        <div class="project-info">
+                        <div class="project-meta">
                             <h3>Dime, ¿Cómo hago? - Rod Castel</h3>
-                            <p>Videoclip • 2026 (Director de Fotografía)</p>
+                            <p>Videoclip • 2026 // Director de Fotografía</p>
                         </div>
                     </div>
 
                     <div class="project-card">
-                        <div class="project-img-wrap">
+                        <div class="project-media">
                             <img src="nunca-huyo.jpg" alt="Nunca hubo nada malo">
                         </div>
-                        <div class="project-info">
+                        <div class="project-meta">
                             <h3>Nunca hubo nada malo</h3>
-                            <p>Fashion Film • 2026</p>
+                            <p>Fashion Film • 2026 // Cinematografía</p>
                         </div>
                     </div>
 
@@ -350,10 +369,10 @@
                 <div class="about-grid">
                     <img src="tu-foto.jpg" alt="Diego Farfán" class="about-img">
                     <div class="about-text">
-                        <p>Me especializo en la dirección de fotografía, el montaje y la creación de conceptos visuales con una estética limpia, contrastada y sumamente expresiva.</p>
-                        <p>Trabajo de la mano con marcas, músicos y artistas independientes para darles un lenguaje visual único en cada fotograma.</p>
-                        <div class="skills-list">
-                            Temas principales: freelancing • cinematografía • dirección de arte • moda
+                        <p>Me especializo en la dirección de fotografía, la narrativa visual y el montaje cinematográfico. Mi enfoque fusiona la estética de la moda, la música y la cultura urbana.</p>
+                        <p>Cada fotograma está pensado para transmitir una atmósfera precisa, priorizando el contraste, la textura y la emoción cruda.</p>
+                        <div class="about-tags">
+                            Cinematografía • Dirección de Arte • Edición • Color Grading
                         </div>
                     </div>
                 </div>
@@ -362,7 +381,7 @@
             <!-- CONTACTO -->
             <section id="contacto" class="contact-section">
                 <h2>Creemos algo extraordinario!</h2>
-                <p>Si deseas colaborar conmigo o tienes una campaña en mente, escríbeme directamente para conversar sobre la visión y los entregables.</p>
+                <p>Disponible para proyectos independientes, campañas comerciales y videoclips a nivel mundial. Conversemos sobre tu próxima visión.</p>
                 <a href="mailto:Diegofarfan.media@gmail.com" class="contact-email">Diegofarfan.media@gmail.com</a>
             </section>
         </main>
