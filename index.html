@@ -8,7 +8,6 @@
     <style>
         body { background: #000; color: #fff; margin: 0; font-family: 'Poppins', sans-serif; line-height: 1.6; }
         
-        /* Alineación izquierda estricta para títulos */
         h1, h2, h3, .brand-title { 
             font-family: 'Poppins', sans-serif; 
             text-transform: uppercase; 
@@ -44,6 +43,15 @@
         .pillar-title { color: #C1FF72; font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; text-align: left; }
         .pillar-desc { font-size: 0.9rem; color: #aaa; text-align: left; }
 
+        /* Estilo para la galería de categorías (Casa, Moda, Artistas, Editorial, Concierto) */
+        .categories-section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
+        .categories-nav { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; font-weight: 800; font-size: 1.1rem; color: #C1FF72; text-transform: uppercase; }
+        .categories-grid { display: grid; grid-template-columns: 1.2fr 1.2fr 1fr 1.4fr; grid-template-rows: repeat(2, 210px); gap: 12px; }
+        .categories-grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
+        .cat-item-1 { grid-row: span 2; }
+        .cat-item-editorial { grid-row: span 2; }
+        .cat-item-concierto { grid-row: span 2; }
+
         .covers-section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
         .covers-section h2 { font-size: 2.5rem; margin-bottom: 30px; font-weight: 900; text-align: left; }
         .covers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -61,20 +69,20 @@
 
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
-            .photo-grid-4, .covers-grid, .skills-grid { grid-template-columns: 1fr; }
+            .photo-grid-4, .covers-grid, .skills-grid, .categories-grid { grid-template-columns: 1fr; }
             video { height: 250px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- CABECERA -->
+    <!-- 1. CABECERA -->
     <header>
         <h1>DIEGO <span class="accent">FARFÁN</span></h1>
         <div class="subtitle">Director creativo & filmmaker</div>
     </header>
 
-    <!-- SECCIÓN BIO / VERDE -->
+    <!-- 2. SECCIÓN BIO / VERDE -->
     <section class="section-green">
         <div class="section-green-content">
             <h2>CREO HISTORIAS VISUALES QUE CONECTAN, INSPIRAN Y DEJAN HUELLA.</h2>
@@ -87,14 +95,14 @@
         </div>
     </section>
 
-    <!-- 1. EL ENSAYO -->
+    <!-- 3. EL ENSAYO -->
     <div class="project">
         <h2>EL ENSAYO</h2>
         <div class="project-tag">Corto de 1 min – 2026</div>
         <video controls><source src="el-ensayo.mp4" type="video/mp4"></video>
     </div>
 
-    <!-- PILARES / FOTOS DE DIRECCIÓN -->
+    <!-- 4. PILARES / FOTOS DE DIRECCIÓN -->
     <section class="pillars-section">
         <h2>CONSTRUYO IMÁGENES ALREDEDOR DE LA EMOCIÓN, LA IDENTIDAD Y LA ATMÓSFERA.</h2>
         <div class="pillars-grid">
@@ -121,7 +129,25 @@
         </div>
     </section>
 
-    <!-- 2. OBSESIÓN -->
+    <!-- 5. CATEGORÍAS DE FOTOGRAFÍA (CASA, MODA, ARTISTAS, EDITORIAL, CONCIERTO) -->
+    <section class="categories-section">
+        <div class="categories-nav">
+            <span>Casa</span>
+            <span>Moda</span>
+            <span>Artistas</span>
+            <span>Editorial</span>
+            <span>Concierto</span>
+        </div>
+        <div class="categories-grid">
+            <img src="casa-1.jpg" alt="Casa" class="cat-item-1">
+            <img src="moda-1.jpg" alt="Moda">
+            <img src="artistas-1.jpg" alt="Artistas" class="cat-item-editorial">
+            <img src="concierto-1.jpg" alt="Concierto" class="cat-item-concierto">
+            <img src="moda-2.jpg" alt="Moda 2">
+        </div>
+    </section>
+
+    <!-- 6. OBSESIÓN -->
     <div class="project">
         <h2>OBSESIÓN</h2>
         <div class="project-tag">Cortometraje – 2025</div>
@@ -129,63 +155,63 @@
         <video controls><source src="obsesion.mp4" type="video/mp4"></video>
         <div style="margin-top: 30px; font-weight: 700; color: #fff; font-size: 1.1rem; text-align: left;">DIRECTOR DE FOTOGRAFÍA</div>
         <div class="photo-grid-4">
-            <img src="obs-1.jpg" alt="Stills Obsesión">
-            <img src="obs-2.jpg" alt="Stills Obsesión">
-            <img src="obs-3.jpg" alt="Stills Obsesión">
-            <img src="obs-4.jpg" alt="Stills Obsesión">
+            <img src="obs-1.jpg" alt="Stills">
+            <img src="obs-2.jpg" alt="Stills">
+            <img src="obs-3.jpg" alt="Stills">
+            <img src="obs-4.jpg" alt="Stills">
         </div>
     </div>
 
-    <!-- 3. GUAYA GUAYA – L'CATA -->
+    <!-- 7. GUAYA GUAYA – L'CATA -->
     <div class="project">
         <h2>GUAYA GUAYA – L'CATA</h2>
         <div class="project-tag">Videoclip – 2026</div>
         <video controls><source src="guaya-guaya.mp4" type="video/mp4"></video>
         <div style="margin-top: 30px; font-weight: 700; color: #fff; font-size: 1.1rem; text-align: left;">DIRECTOR DE FOTOGRAFÍA</div>
         <div class="photo-grid-4">
-            <img src="guaya-1.jpg" alt="Stills Guaya">
-            <img src="guaya-2.jpg" alt="Stills Guaya">
-            <img src="guaya-3.jpg" alt="Stills Guaya">
-            <img src="guaya-4.jpg" alt="Stills Guaya">
+            <img src="guaya-1.jpg" alt="Stills">
+            <img src="guaya-2.jpg" alt="Stills">
+            <img src="guaya-3.jpg" alt="Stills">
+            <img src="guaya-4.jpg" alt="Stills">
         </div>
     </div>
 
-    <!-- 4. DIME, ¿CÓMO HAGO? – ROD CASTEL -->
+    <!-- 8. DIME, ¿CÓMO HAGO? – ROD CASTEL -->
     <div class="project">
         <h2>DIME, ¿CÓMO HAGO? – ROD CASTEL</h2>
         <div class="project-tag">Videoclip – 2026</div>
         <video controls><source src="dime-como-hago.mp4" type="video/mp4"></video>
         <div style="margin-top: 30px; font-weight: 700; color: #fff; font-size: 1.1rem; text-align: left;">DIRECTOR DE FOTOGRAFÍA</div>
         <div class="photo-grid-4">
-            <img src="dime-1.jpg" alt="Stills Dime">
-            <img src="dime-2.jpg" alt="Stills Dime">
-            <img src="dime-3.jpg" alt="Stills Dime">
-            <img src="dime-4.jpg" alt="Stills Dime">
+            <img src="dime-1.jpg" alt="Stills">
+            <img src="dime-2.jpg" alt="Stills">
+            <img src="dime-3.jpg" alt="Stills">
+            <img src="dime-4.jpg" alt="Stills">
         </div>
     </div>
 
-    <!-- 5. NUNCA HUBO NADA MALO – COLECTIVE -->
+    <!-- 9. NUNCA HUBO NADA MALO – COLECTIVE -->
     <div class="project">
         <h2>NUNCA HUBO NADA MALO – COLECTIVE</h2>
         <div class="project-tag">Fashion Film – 2026</div>
         <video controls><source src="nunca-hubo.mp4" type="video/mp4"></video>
         <div style="margin-top: 30px; font-weight: 700; color: #fff; font-size: 1.1rem; text-align: left;">DIRECTOR DE FOTOGRAFÍA</div>
         <div class="photo-grid-4">
-            <img src="nunca-1.jpg" alt="Stills Nunca">
-            <img src="nunca-2.jpg" alt="Stills Nunca">
-            <img src="nunca-3.jpg" alt="Stills Nunca">
-            <img src="nunca-4.jpg" alt="Stills Nunca">
+            <img src="nunca-1.jpg" alt="Stills">
+            <img src="nunca-2.jpg" alt="Stills">
+            <img src="nunca-3.jpg" alt="Stills">
+            <img src="nunca-4.jpg" alt="Stills">
         </div>
     </div>
 
-    <!-- 6. MIX MEDIA -->
+    <!-- 10. MIX MEDIA -->
     <div class="project">
         <h2>MIX MEDIA – DIEGO FARFÁN</h2>
         <div class="project-tag">Experimental – 2026</div>
         <video controls><source src="mix-media.mp4" type="video/mp4"></video>
     </div>
 
-    <!-- PORTADAS PARA ARTISTAS -->
+    <!-- 11. PORTADAS PARA ARTISTAS -->
     <section class="covers-section">
         <h2>PORTADAS PARA ARTISTAS</h2>
         <div class="covers-grid">
@@ -204,7 +230,7 @@
         </div>
     </section>
 
-    <!-- LO QUE HAGO -->
+    <!-- 12. LO QUE HAGO -->
     <div class="skills-container">
         <div class="skills-grid">
             <div>
@@ -239,7 +265,7 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
+    <!-- 13. FOOTER -->
     <footer>
         <h2>CREEEEMOS ALGO EXTRAAAAAORDINARIOOOOO!!!</h2>
         <p><strong>DIEGO FARFÁN</strong><br><span class="accent">Director creativo & filmmaker</span></p>
